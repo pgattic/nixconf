@@ -1,7 +1,7 @@
 { inputs, self, ... }: let
   hmModule = { config, lib, pkgs, ... }: {
     imports = [
-      inputs.stylix.homeModules.stylix # https://github.com/sodiboo/niri-flake
+      inputs.stylix.homeModules.stylix
     ];
 
     home.packages = with pkgs; [
@@ -45,7 +45,7 @@
           fonts.override.sizes.applications = 16; # It was 12 by default
         };
         librewolf = {
-          profileNames = [ config.my.user.name ];
+          profileNames = [ config.my.user.name "work" ];
           colorTheme.enable = true;
         };
       };

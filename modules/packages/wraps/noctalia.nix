@@ -50,8 +50,11 @@
       settings = {
         general = {
           enableShadows = false;
+          enableBlurBehind = false;
           radiusRatio = self.desktop.corner-radius / 20.0;
           avatarImage = "${assets}/profile.jpg";
+          enableLockScreenMediaControls = true;
+          clockStyle = "digital"; # This setting configures the lock screen clock
         };
         ui = {
           panelBackgroundOpacity = self.desktop.opacity;
@@ -103,6 +106,7 @@
           backgroundOpacity = self.desktop.opacity;
         };
         nightLight.enabled = true;
+        idle.enabled = true;
         appLauncher = {
           enableClipboardHistory = true;
           terminalCommand = term_cmd;

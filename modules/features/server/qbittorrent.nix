@@ -29,6 +29,8 @@
       [Preferences]
       WebUI\Username=${config.my.user.name}
       WebUI\Password_PBKDF2=@QB_WEBUI_PBKDF2@
+      WebUI\AlternativeUIEnabled=true
+      WebUI\RootFolder=${pkgs.vuetorrent}/share/vuetorrent
       Connection\PortRangeMin=${toString peerPort}
     '';
   in {
@@ -49,7 +51,7 @@
 
     vpnNamespaces."wg" = {
       enable = true;
-      wireguardConfigFile = "${cfg.paths.secrets}/mullvad_wireguard_linux_us_slc/us-slc-wg-301.conf";
+      wireguardConfigFile = "${cfg.paths.secrets}/mullvad_wireguard_linux_us_slc/us-mia-wg-101.conf";
       accessibleFrom = [ lanCidr ];
       portMappings = [
         { from = webuiPort; to = webuiPort; protocol = "tcp"; }

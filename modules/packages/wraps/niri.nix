@@ -9,10 +9,7 @@
       env = {
         ELECTRON_OZONE_PLATFORM_HINT = "auto"; # Prefer Wayland for electron apps (doesn't always work)
         NIXOS_OZONE_WL = "1";
-
-        # Temporary fix for home-manager-only Nix installations
-        SHELL = pkgs.bash; # If a graphical app is asking, my shell is bash
-        # EDITOR = "nvim";
+        SHELL = lib.getExe pkgs.bash; # If a graphical app is asking, my shell is bash
         XDG_CURRENT_DESKTOP = "niri";
         XDG_SESSION_DESKTOP = "niri";
       };
@@ -91,6 +88,7 @@
           { # General rules
             geometry-corner-radius = with self.desktop; [ corner-radius corner-radius corner-radius corner-radius ];
             clip-to-geometry = true;
+            background-effect.blur = true;
           }
           { # KDE Connect Presentation Pointer fix
             matches = [ { app-id = "org.kde.kdeconnect.daemon"; } ];
@@ -105,6 +103,12 @@
             focus-ring.off = {};
             border.off = {};
             draw-border-with-background = false;
+          }
+        ];
+        layer-rules = [
+          {
+            matches = [ { namespace = "^noctalia-(background|dock|launcher-overlay)-.*$"; } ];
+            background-effect.xray = false;
           }
         ];
         overview.zoom = 0.5;
@@ -230,6 +234,7 @@
           "Mod+Ctrl+R".reset-window-height = {};
           "Mod+F".maximize-column = {};
           "Mod+Shift+F".fullscreen-window = {};
+          "Mod+M".maximize-window-to-edges = {};
 
           "Mod+BracketLeft".consume-or-expel-window-left = {};
           "Mod+BracketRight".consume-or-expel-window-right = {};

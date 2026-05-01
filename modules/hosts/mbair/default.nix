@@ -9,10 +9,12 @@
       inputs.self.nixosModules.stylix
       inputs.self.nixosModules.browser
       inputs.self.nixosModules.remote-builder
+      inputs.self.nixosModules.work
 
       ({ pkgs, ... }: {
         networking.hostName = "mbair";
         system.stateVersion = "25.11";
+        boot.loader.efi.canTouchEfiVariables = false;
         # Use `--impure` while building
         hardware.asahi.peripheralFirmwareDirectory = /etc/nixos/firmware;
 
@@ -43,12 +45,15 @@
           self'.packages.btop
           self'.packages.git
           inputs.wasmcarts.packages.${pkgs.stdenv.hostPlatform.system}.engine-linux
+          inputs.wasmcarts.packages.${pkgs.stdenv.hostPlatform.system}.buildtool
           pkgs.signal-desktop
           pkgs.lazygit
           pkgs.codex
+          pkgs.cursor-cli
           pkgs.vesktop
           pkgs.ungoogled-chromium
           pkgs.nix-tree
+          pkgs.whatsapp-electron
         ];
 
         programs.niri = {

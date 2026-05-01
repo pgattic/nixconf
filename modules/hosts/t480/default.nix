@@ -33,7 +33,6 @@
           element-desktop
           ungoogled-chromium
           ripgrep-all
-          kdeconnect
           self'.packages.bambu-studio
           self'.packages.jujutsu
           inputs.wasmcarts.packages.${stdenv.hostPlatform.system}.engine-linux
@@ -48,6 +47,7 @@
           nix-ld.enable = true;
           appimage.enable = true;
           appimage.binfmt = true;
+          kdeconnect.enable = true;
           niri = {
             enable = true;
             useNautilus = false;

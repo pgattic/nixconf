@@ -67,12 +67,17 @@
           };
         };
       };
-      nh = wlib.wrapPackage ({ config, ... }: {
+      luanti-client = wlib.wrapPackage {
+        inherit pkgs;
+        package = pkgs.luanti-client;
+        env.SDL_VIDEODRIVER = "wayland,x11"; # Prefer wayland first, fall back to xorg
+      };
+      nh = wlib.wrapPackage {
         inherit pkgs;
         package = pkgs.nh;
         env.NH_FLAKE = "/home/pgattic/dotfiles";
-      });
-      sioyek = wlib.wrapPackage ({ config, ... }: {
+      };
+      sioyek = wlib.wrapPackage {
         inherit pkgs;
         package = pkgs.sioyek;
         env.XDG_CONFIG_HOME = "${builtins.placeholder "out"}/config";
@@ -105,8 +110,8 @@
             # visual_mark_color #484f58
           '';
         };
-      });
-      zellij = wlib.wrapPackage ({ config, ... }: { # Zellij doesn't have a pre-built module
+      };
+      zellij = wlib.wrapPackage ({ config, ... }: {
         inherit pkgs;
         package = pkgs.zellij;
         constructFiles.zellijConfig = {

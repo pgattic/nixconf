@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{ inputs, self, ... }: {
   perSystem = { pkgs, self', ... }: let
     wlib = inputs.nix-wrapper-modules.lib;
 
@@ -34,31 +34,26 @@
         };
         mouse-bindings.primary-paste = "none";
         colors-dark = {
-          alpha = 0.85;
-          background = "161b22";
-          foreground = "c9d1d9";
-          "16" = "db6d28";
-          "17" = "3d2f00";
-          "18" = "30363d";
-          "19" = "484f58";
-          "20" = "8b949e";
-          "21" = "f0f6fc";
-          regular0 = "161b22";
-          regular1 = "f85149";
-          regular2 = "2ea043";
-          regular3 = "bb8009";
-          regular4 = "388bfd";
-          regular5 = "a371f7";
-          regular6 = "2a9d9a";
-          regular7 = "c9d1d9";
-          bright0 = "6e7681";
-          bright1 = "f85149";
-          bright2 = "2ea043";
-          bright3 = "bb8009";
-          bright4 = "388bfd";
-          bright5 = "a371f7";
-          bright6 = "2a9d9a";
-          bright7 = "ffffff";
+          alpha = self.desktop.opacity;
+          background = "1e1e1e"; # Was 1e1e1e
+          foreground = "cccccc";
+          regular0 = "000000";
+          regular1 = "cd3131";
+          regular2 = "0dbc79";
+          regular3 = "e5e510";
+          regular4 = "2472c8";
+          regular5 = "bc3fbc";
+          regular6 = "11a8cd";
+          regular7 = "e5e5e5";
+          bright0 = "666666";
+          bright1 = "f14c4c";
+          bright2 = "23d18b";
+          bright3 = "f5f543";
+          bright4 = "3b8eea";
+          bright5 = "d670d6";
+          bright6 = "29b8db";
+          bright7 = "e5e5e5";
+          blur = true;
         };
       };
     });

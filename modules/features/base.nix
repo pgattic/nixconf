@@ -25,6 +25,7 @@ in {
       nixpkgs = nixpkgsConf;
 
       boot.loader.systemd-boot.enable = lib.mkDefault true;
+      boot.loader.systemd-boot.configurationLimit = 5;
       # Allow NixOS to add itself to bootloader options
       boot.loader.efi.canTouchEfiVariables = lib.mkDefault true;
       zramSwap.enable = lib.mkDefault true;
