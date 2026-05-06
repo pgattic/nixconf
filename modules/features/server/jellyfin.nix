@@ -4,8 +4,14 @@ let port = 8096; in {
     hardware.graphics.enable = true;
     hardware.graphics.extraPackages = with pkgs; [ intel-media-driver ]; # for newer Intel
 
-    services.jellyfin.enable = true;
+    services.jellyfin = {
+      enable = true;
+      dataDir = "/tank/appdata/jellyfin";
+    };
     users.users.jellyfin.extraGroups = [ "media" ];
+
+    systemd.services.jellyfin.after = [ "zfs-mount.service" ];
+    systemd.services.jellyfin.requires = [ "zfs-mount.service" ];
 
     services.nginx.virtualHosts."cinema.${cfg.domain}" = {
       enableACME = true;

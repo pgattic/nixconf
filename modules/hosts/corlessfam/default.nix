@@ -16,6 +16,7 @@
       inputs.self.nixosModules.qbittorrent
       # inputs.self.nixosModules.romm
       inputs.self.nixosModules.cookbook
+      inputs.self.nixosModules.forgejo
 
       ({ lib, pkgs, ... }: {
         boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
