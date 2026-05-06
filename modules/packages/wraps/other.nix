@@ -1,5 +1,5 @@
 { inputs, ... }: {
-  perSystem = { pkgs, ... }: let
+  perSystem = { pkgs, self', ... }: let
     wlib = inputs.nix-wrapper-modules.lib;
   in {
     packages = {
@@ -111,6 +111,43 @@
           '';
         };
       };
+      zed-editor = wlib.wrapPackage ({ config, lib, ... }: {
+        inherit pkgs;
+        package = pkgs.zed-editor;
+        # Some libs that Codex depends on
+        extraPackages = [
+          pkgs.libcap
+          pkgs.libz
+        ];
+        env.SHELL = lib.getExe (self'.packages.nushell.apply {
+          extraPackages = [ pkgs.file ];
+        }).wrapper;
+        constructFiles.settings = {
+          relPath = "config/settings.json";
+          content = builtins.toJSON { # run "zed: open default settings" to see all options
+            telemetry = {
+              diagnostics = false;
+              metrics = false;
+            };
+            vim_mode = true;
+            window_decorations = "server";
+            buffer_line_height = "standard";
+            auto_update = false;
+            tab_size = 2;
+            inlay_hints.enabled = true;
+            show_edit_predictions = false;
+          };
+        };
+        # Zed checks for a writeable config file, so we put it in $XDG_RUNTIME_DIR
+        runShell = [
+          ''
+            ZED_CFG_HOME="$XDG_RUNTIME_DIR/zed-wrapped"
+            mkdir -p "$ZED_CFG_HOME/zed"
+            cp -r ${builtins.placeholder "out"}/config/* "$ZED_CFG_HOME/zed"
+            export XDG_CONFIG_HOME="$ZED_CFG_HOME"
+          ''
+        ];
+      });
       zellij = wlib.wrapPackage ({ config, ... }: {
         inherit pkgs;
         package = pkgs.zellij;

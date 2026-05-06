@@ -31,6 +31,22 @@
         ibl        = indent-blankline-nvim;
         harpoon    = harpoon2;
         lean       = lean-nvim;
+        wiki = {
+          data = vimwiki;
+          config = ''
+            vim.g.vimwiki_path = "~/vimwiki/"
+            vim.g.vimwiki_syntax = "markdown"
+            vim.g.vimwiki_ext = "md"
+            vim.g.vimwiki_global_ext = 0
+            vim.treesitter.language.register("markdown", "vimwiki")
+            vim.api.nvim_create_autocmd("FileType", {
+              pattern = "vimwiki",
+              callback = function()
+                vim.treesitter.start()
+              end,
+            })
+          '';
+        };
       };
       hosts.python3.nvim-host.enable = false;
       hosts.ruby.nvim-host.enable = false;
