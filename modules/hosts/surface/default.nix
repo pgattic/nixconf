@@ -7,7 +7,6 @@
       inputs.self.nixosModules.remote-builder
       inputs.self.nixosModules.default
       inputs.self.nixosModules.desktop-default
-      inputs.self.nixosModules.zeditor
       inputs.self.nixosModules.browser
 
       ({ pkgs, ... }: {
@@ -25,6 +24,7 @@
           self'.packages.neovim
           self'.packages.btop
           self'.packages.git
+          self'.packages.zed-editor
           pkgs.lazygit
           pkgs.rnote
         ];

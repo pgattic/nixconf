@@ -8,7 +8,6 @@
       inputs.self.nixosModules.desktop-default
       inputs.self.nixosModules.stylix
       inputs.self.nixosModules.work
-      inputs.self.nixosModules.zeditor
       inputs.self.nixosModules.browser
       inputs.self.nixosModules.office
       inputs.self.nixosModules.obsidian
@@ -41,6 +40,7 @@
           self'.packages.neovim # The package provides aliases
           self'.packages.btop
           self'.packages.git
+          self'.packages.zed-editor
         ];
 
         programs = {
