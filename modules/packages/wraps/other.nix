@@ -55,6 +55,45 @@
         };
         env.GIT_CONFIG_GLOBAL = config.constructFiles.gitConfig.path;
       });
+      helix = wlib.evalPackage {
+        inherit pkgs;
+        imports = [ wlib.wrapperModules.helix ];
+        themes.darkplus-transparent = {
+          inherits = "dark_plus";
+          "ui.background" = {};
+        };
+        settings = {
+          theme = "darkplus-transparent";
+          editor = {
+            middle-click-paste = false;
+            bufferline = "multiple";
+            color-modes = true;
+            cursorline = true;
+            end-of-line-diagnostics = "hint"; # works in-tandem with `editor.inline-diagnostics`
+            statusline = {
+              left = ["mode" "spinner" "file-name" "read-only-indicator" "file-modification-indicator" "version-control"]; # Add version-control
+            };
+            lsp.display-inlay-hints = true;
+            cursor-shape = {
+              insert = "bar";
+              normal = "block";
+              select = "underline";
+            };
+            indent-guides = {
+              render = true;
+              character = "▏";
+            };
+            inline-diagnostics.cursor-line = "warning"; # warnings/errors inline on the cursorline
+            # gutters.layout = ["diagnostics" "spacer" "line-numbers" "spacer" "diff"];
+            # soft-wrap = {
+            #   enable = true;
+            #   max-wrap = 25; # increase value to reduce forced mid-word wrapping
+            #   max-indent-retain = 0;
+            #   wrap-indicator = "";  # set wrap-indicator to "" to hide it
+            # };
+          };
+        };
+      };
       jujutsu = wlib.evalPackage {
         inherit pkgs;
         imports = [ wlib.wrapperModules.jujutsu ];
@@ -111,7 +150,7 @@
           '';
         };
       };
-      zed-editor = wlib.wrapPackage ({ config, lib, ... }: {
+      zed-editor = wlib.wrapPackage ({ lib, ... }: {
         inherit pkgs;
         package = pkgs.zed-editor;
         # Some libs that Codex depends on
@@ -141,7 +180,7 @@
         # Zed checks for a writeable config file, so we put it in $XDG_RUNTIME_DIR
         runShell = [
           ''
-            ZED_CFG_HOME="$XDG_RUNTIME_DIR/zed-wrapped"
+            ZED_CFG_HOME="$XDG_RUNTIME_DIR/zed-wrapped-$$"
             mkdir -p "$ZED_CFG_HOME/zed"
             cp -r ${builtins.placeholder "out"}/config/* "$ZED_CFG_HOME/zed"
             export XDG_CONFIG_HOME="$ZED_CFG_HOME"
