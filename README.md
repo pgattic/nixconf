@@ -1,6 +1,6 @@
-# .dotfiles
+# NixConf
 
-pgattic's NixOS dotfiles
+pgattic's NixOS configs and packages
 
 ## Usage
 
@@ -12,7 +12,7 @@ Adding a device:
 nix.settings.experimental-features = [ "nix-command" "flakes" ];
 environment.systemPackages = with pkgs; [ git neovim nh ];
 ```
-3. `git clone https://github.com/pgattic/dotfiles`
+3. `git clone https://github.com/pgattic/nixconf`
 4. Add a directory in [`/modules/hosts/`](/modules/hosts/) for the new device, and copy `/etc/nixos/hardware-configuration.nix` to the new dir under the name `_hardware.nix`.
 5. Add a `default.nix` in the new directory with the example minimal configuration:
 ```nix
@@ -46,7 +46,7 @@ environment.systemPackages = with pkgs; [ git neovim nh ];
   });
 }
 ```
-6. Rebuild the system with `nh os switch /home/pgattic/dotfiles#new-computer` (subsequent rebuilds can be done with simply `nh os switch`)
+6. Rebuild the system with `nh os switch /home/pgattic/nixconf#new-computer` (subsequent rebuilds can be done with simply `nh os switch`)
 7. (Optional) to set up remote building, include the `remote-builder` module, then generate a root-level ssh key to paste into `./modules/hosts/corlessfam/default.nix`:
 ```bash
 sudo ssh-keygen -t ed25519 -f /root/.ssh/nixbuilder_ed25519 -C "nixbuilder-new-computer"

@@ -114,7 +114,7 @@
       nh = wlib.wrapPackage {
         inherit pkgs;
         package = pkgs.nh;
-        env.NH_FLAKE = "/home/pgattic/dotfiles";
+        env.NH_FLAKE = "/home/pgattic/nixconf";
       };
       sioyek = wlib.wrapPackage {
         inherit pkgs;
