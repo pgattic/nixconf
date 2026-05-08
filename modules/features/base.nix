@@ -25,9 +25,13 @@ in {
       nixpkgs = nixpkgsConf;
 
       boot.loader.systemd-boot.enable = lib.mkDefault true;
-      boot.loader.systemd-boot.configurationLimit = 5;
+      boot.loader.systemd-boot.configurationLimit = lib.mkDefault 5;
       # Allow NixOS to add itself to bootloader options
       boot.loader.efi.canTouchEfiVariables = lib.mkDefault true;
+      # Don't kill the user session when I rebuild
+      services.logind.settings.Login.killUserProcesses = lib.mkDefault false;
+      # systemd.services."systemd-logind".restartIfChanged = lib.mkDefault false;
+      # ZRAM swap = free RAM
       zramSwap.enable = lib.mkDefault true;
 
       home-manager = {
