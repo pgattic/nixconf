@@ -18,17 +18,6 @@
       inherit pkgs;
       imports = [ wlib.wrapperModules.noctalia-shell ];
 
-      plugins = {
-        sources = [
-          {
-            name = "Official Noctalia Plugins";
-            url = "https://github.com/noctalia-dev/noctalia-plugins";
-            enabled = true;
-          }
-        ];
-        version = 2;
-      };
-
       colors = { # Copied from the GitHub Dark theme
         mError = "#f85149";
         mHover = "#21262d";
@@ -150,12 +139,10 @@
     });
 
     noctalia-activate-linux = noctalia-base.config.apply ({ ... }: {
-      settings = {
-        plugins.states.activate-linux = {
-          sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-          enabled = true;
-        };
-        pluginSettings.activate-linux = {
+      preInstalledPlugins.activate-linux = {
+        src = "${inputs.noctalia-plugins.outPath}/activate-linux";
+        sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+        settings = {
           customizeText = true;
           firstLine = "Activate Linux";
           secondLine = "Go to Settings to activate Linux.";

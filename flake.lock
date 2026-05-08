@@ -409,6 +409,22 @@
         "type": "github"
       }
     },
+    "noctalia-plugins": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1778072640,
+        "narHash": "sha256-vgJj89YeiU2FQ+cXIraPx/XdiAMC9Cj+rJqC//O4Na4=",
+        "owner": "noctalia-dev",
+        "repo": "noctalia-plugins",
+        "rev": "cb10d233e53ac45dbc9117f0ca19e6224f3ea2d8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "noctalia-dev",
+        "repo": "noctalia-plugins",
+        "type": "github"
+      }
+    },
     "nur": {
       "inputs": {
         "flake-parts": [
@@ -446,6 +462,7 @@
         "nixos-apple-silicon": "nixos-apple-silicon",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
+        "noctalia-plugins": "noctalia-plugins",
         "nur": "nur",
         "stylix": "stylix",
         "vpn-confinement": "vpn-confinement",

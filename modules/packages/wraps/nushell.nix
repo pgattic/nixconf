@@ -59,11 +59,21 @@
         }
       '';
     });
+
+    nushell-env-rude-sfw = nushell-env.apply ({ lib, ... }: {
+      "config.nu".content = lib.mkAfter ''
+        $env.config.hooks.command_not_found = { |cmd: string|
+          print "You stupid idiot"
+          job spawn { ${self'.packages.dark-text}/bin/dark-text -t "Go back to Windows" --duration 2000 }
+        }
+      '';
+    });
   in {
     packages = {
       nushell = nushell.config.wrapper;
       nushell-env = nushell-env.wrapper;
       nushell-env-rude = nushell-env-rude.wrapper;
+      nushell-env-rude-sfw = nushell-env-rude-sfw.wrapper;
     };
   };
 }

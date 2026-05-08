@@ -59,6 +59,10 @@
       url = "github:vimjoyer/dark-text";
       flake = false;
     };
+    noctalia-plugins = {
+      url = "github:noctalia-dev/noctalia-plugins";
+      flake = false;
+    };
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } {

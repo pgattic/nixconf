@@ -65,11 +65,16 @@
     foot-rude = foot-base.config.apply ({ lib, ... }: {
       env.SHELL = lib.getExe self'.packages.nushell-env-rude;
     });
+
+    foot-rude-sfw = foot-base.config.apply ({ lib, ... }: {
+      env.SHELL = lib.getExe self'.packages.nushell-env-rude-sfw;
+    });
   in {
     packages = {
       foot-base = foot-base.config.wrapper;
       foot = foot.wrapper;
       foot-rude = foot-rude.wrapper;
+      foot-rude-sfw = foot-rude-sfw.wrapper;
     };
   };
 }
