@@ -21,6 +21,7 @@
         pavucontrol
         brightnessctl
         libnotify
+        bibata-cursors
       ];
 
       settings = { # https://birdeehub.github.io/nix-wrapper-modules/wrapperModules/niri.html#settings
@@ -81,6 +82,8 @@
           };
         };
         cursor = {
+          xcursor-theme = "Bibata-Modern-Classic";
+          xcursor-size = 24;
           hide-when-typing = true;
           hide-after-inactive-ms = 1000;
         };

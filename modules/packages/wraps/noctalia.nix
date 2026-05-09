@@ -95,7 +95,7 @@
           backgroundOpacity = self.desktop.opacity;
         };
         nightLight.enabled = true;
-        idle.enabled = true;
+        # idle.enabled = true;
         appLauncher = {
           enableClipboardHistory = true;
           terminalCommand = term_cmd;

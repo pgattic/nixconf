@@ -56,9 +56,15 @@
                   pkgs.lazygit
                 ];
               }).wrapper;
+              packages = [
+                self'.packages.foot
+                self'.packages.helium
+                pkgs.xemu
+                pkgs.xenia-canary
+              ];
               openssh.authorizedKeys.keys =[
                 "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN+tQ11EwCLxsnFls30h6ht7mEOAJ+JapnD61tzu/urS pgattic@gmail.com" # t480
-                  "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB0Qx8iBekJ07LRxUsDNm0bcSkilw7xX51LYrzz6F4xx pgattic@gmail.com" # mbair
+                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB0Qx8iBekJ07LRxUsDNm0bcSkilw7xX51LYrzz6F4xx pgattic@gmail.com" # mbair
               ];
             };
           };
@@ -67,6 +73,14 @@
         environment.systemPackages = [
           pkgs.smartmontools # Used for hard drive SMART tests (`sudo smartctl -x /dev/sdX`)
         ];
+
+        programs.niri = {
+          enable = true;
+          useNautilus = false;
+          package = (self'.packages.niri.apply {
+            settings.outputs."HDMI-A-3".scale = 1.5;
+          }).wrapper;
+        };
 
         services = {
           openssh.enable = true;

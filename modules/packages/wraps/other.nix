@@ -75,8 +75,8 @@
             };
             lsp.display-inlay-hints = true;
             cursor-shape = {
-              insert = "bar";
               normal = "block";
+              insert = "bar";
               select = "underline";
             };
             indent-guides = {
@@ -153,8 +153,7 @@
       zed-editor = wlib.wrapPackage ({ lib, ... }: {
         inherit pkgs;
         package = pkgs.zed-editor;
-        # Some libs that Codex depends on
-        extraPackages = [
+        extraPackages = [ # Some libs that Codex depends on
           pkgs.libcap
           pkgs.libz
         ];
@@ -177,8 +176,7 @@
             show_edit_predictions = false;
           };
         };
-        # Zed checks for a writeable config file, so we put it in $XDG_RUNTIME_DIR
-        runShell = [
+        runShell = [ # Zed checks for a writeable config file, so we put it in $XDG_RUNTIME_DIR
           ''
             ZED_CFG_HOME="$XDG_RUNTIME_DIR/zed-wrapped-$$"
             mkdir -p "$ZED_CFG_HOME/zed"
