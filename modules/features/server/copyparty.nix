@@ -24,6 +24,7 @@
       accounts = {
         pgattic.passwordFile = config.age.secrets.copyparty-pgattic.path;
         skylar.passwordFile = config.age.secrets.copyparty-skylar.path;
+        jstucor.passwordFile = config.age.secrets.copyparty-jstucor.path;
         guest.passwordFile = builtins.toFile "copyparty-guest-password" "guest";
       };
       volumes = {
@@ -50,6 +51,12 @@
           access = {
             A = [ "pgattic" ];
             r = [ "guest" ];
+          };
+        };
+        "/family" = {
+          path = "${cfg.paths.store}/family";
+          access = {
+            A = [ "pgattic" "skylar" "jstucor" ];
           };
         };
       };
