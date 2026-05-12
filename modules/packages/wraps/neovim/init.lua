@@ -11,7 +11,7 @@ vim.opt.swapfile = false
 vim.opt.number = true
 -- vim.opt.relativenumber = true
 vim.opt.termguicolors = true -- Allow 24-bit RGB colors
-vim.opt.colorcolumn = "100"
+vim.opt.colorcolumn = "80"
 vim.opt.cursorline = true
 vim.opt.fillchars = { eob = " " } -- Don't fill the extra space with "~"
 vim.opt.winborder = "rounded"

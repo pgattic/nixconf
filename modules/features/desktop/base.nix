@@ -22,6 +22,7 @@ in {
     nixosModules.desktop-base = { config, lib, pkgs, ... }: {
       home-manager.users.${config.my.user.name} = hmModule;
       boot.plymouth.enable = true;
+      boot.loader.systemd-boot.consoleMode = "max"; # Make plymouth full resolution
       services.xserver.xkb = {
         layout = "us";
         variant = "";
