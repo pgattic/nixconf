@@ -6,33 +6,38 @@
       inherit pkgs;
       imports = [ wlib.wrapperModules.neovim ];
 
-      extraPackages = [
-        pkgs.nil # Nix language server
-      ];
+      extraPackages = [ pkgs.nil ];
+      settings.aliases = [ "vi" "vim" "vimdiff" ];
 
-      settings = {
-        config_directory = ./.;
-        aliases = [ "vi" "vim" "vimdiff" ];
-      };
-
-      specs = with pkgs.vimPlugins; {
-        devicons   = nvim-web-devicons;
-        vscode     = vscode-nvim;
-        lualine    = lualine-nvim;
-        undotree   = undotree;
-        gitsigns   = gitsigns-nvim;
-        lspconfig  = nvim-lspconfig;
-        telescope  = telescope-nvim;
-        dressing   = dressing-nvim;
-        blink      = blink-cmp;
-        todo       = todo-comments-nvim;
-        mini-files = mini-files;
-        lazygit    = lazygit-nvim;
-        ibl        = indent-blankline-nvim;
-        harpoon    = harpoon2;
-        lean       = lean-nvim;
+      specs = let cfg_dir = ./config; in {
+        general = {
+          data = with pkgs.vimPlugins; [
+            nvim-web-devicons
+            vscode-nvim
+            lualine-nvim
+            undotree
+            gitsigns-nvim
+            nvim-lspconfig
+            telescope-nvim
+            dressing-nvim
+            blink-cmp
+            todo-comments-nvim
+            mini-files
+            lazygit-nvim
+            indent-blankline-nvim
+          ];
+          config = builtins.readFile "${cfg_dir}/main.lua";
+        };
+        harpoon = {
+          data = with pkgs.vimPlugins; [ harpoon2 lualine-nvim ];
+          config = builtins.readFile "${cfg_dir}/harpoon_config.lua";
+        };
+        lean = {
+          data = pkgs.vimPlugins.lean-nvim;
+          config = builtins.readFile "${cfg_dir}/lean_config.lua";
+        };
         wiki = {
-          data = vimwiki;
+          data = pkgs.vimPlugins.vimwiki;
           config = ''
             vim.g.vimwiki_path = "~/vimwiki/"
             vim.g.vimwiki_syntax = "markdown"

@@ -14,6 +14,7 @@
     programs = {
       home-manager.enable = true;
     };
+    manual.manpages.enable = false;
     home.stateVersion = "25.05";
   };
 in {

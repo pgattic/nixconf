@@ -68,6 +68,8 @@ vim.filetype.add({
   },
 })
 
+-- PLUGINS --
+
 -- Color Theme
 require("vscode").setup({
     transparent = true, -- Transparent background
@@ -183,16 +185,7 @@ require("ibl").setup({
   whitespace = { remove_blankline_trail = true },
 })
 
-require("harpoon_config") -- A mess I won't write here
-
 -- require("scrollbar").setup({ handle = { color = "#555555" } })
-
-require("lean").setup({
-  infoview = {
-    orientation = "vertical",
-  },
-})
-vim.keymap.set("n", "<leader>\\", ":LeanAbbreviationsReverseLookup")
 
 -- Neovide-related config
 vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr-o:hor20"
@@ -202,9 +195,6 @@ vim.g.neovide_opacity = 0.85
 -- Extra/old stuff
 
 -- vim.opt.mousescroll = "ver:1,hor:6" -- For some reason, Neovim scrolls way fast on Ghostty
--- vim.cmd(":command W w") -- Resolves a carpal race condition
 -- vim.opt.guicursor = "n-v-c:block,i-ci-ve:ver25,r-cr-o:hor20"
 -- vim.opt.eol = false -- Don't add newlines
-
 -- vim.keymap.set("n", "<leader>0r", "mz:%!xxd -r | xxd -g 1<CR>`z") -- "refresh" hex data (preserve cursor location)
-

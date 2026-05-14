@@ -36,6 +36,11 @@
           trusted-public-keys = [ "nixos-apple-silicon.cachix.org-1:8psDu5SA5dAD7qA0zMy5UT292TxeEPzIz8VVEr2Js20=" ];
         };
 
+        fonts.packages = [
+          pkgs.noto-fonts-cjk-sans
+          pkgs.noto-fonts-cjk-serif
+        ];
+
         environment.systemPackages = [
           self'.packages.foot-rude
           self'.packages.luanti-client
@@ -44,9 +49,10 @@
           self'.packages.neovim
           self'.packages.btop
           self'.packages.git
+          self'.packages.helium
           inputs.wasmcarts.packages.${pkgs.stdenv.hostPlatform.system}.engine-linux
-          inputs.wasmcarts.packages.${pkgs.stdenv.hostPlatform.system}.buildtool
           pkgs.signal-desktop
+          pkgs.element-desktop
           pkgs.lazygit
           pkgs.codex
           pkgs.cursor-cli
