@@ -16,8 +16,6 @@
         networking.hostName = "t480";
         system.stateVersion = "25.05";
 
-        zramSwap.enable = false; # This machine has a swap partition
-
         environment.systemPackages = with pkgs; [
           self'.packages.foot-rude
           pinta

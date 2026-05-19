@@ -32,8 +32,12 @@ in {
       # Don't kill the user session when I rebuild
       services.logind.settings.Login.killUserProcesses = lib.mkDefault false;
       # systemd.services."systemd-logind".restartIfChanged = lib.mkDefault false;
-      # ZRAM swap = free RAM
-      zramSwap.enable = lib.mkDefault true;
+      boot.zswap.enable = lib.mkDefault true;
+      swapDevices = [{
+        device = "/var/lib/swapfile";
+        size = 16*1024; # 16 GiB
+      }];
+
 
       home-manager = {
         useUserPackages = true;
