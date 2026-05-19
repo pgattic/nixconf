@@ -121,6 +121,7 @@ require("gitsigns").setup{
 -- Language Servers
 vim.lsp.inlay_hint.enable()
 local lsp_servers = {
+  codebook = {}, -- Spellchecker
   rust_analyzer = {},
   clangd = {},
   openscad_lsp = {},
@@ -139,6 +140,8 @@ local lsp_servers = {
   racket_langserver = {}, -- install with `raco pkg install racket-langserver`
   koka = {},
   fsautocomplete = {}, -- F#
+  ts_ls = {},
+  pyrefly = {},
 }
 for server, config in pairs(lsp_servers) do
   vim.lsp.config(server, config)

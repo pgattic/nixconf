@@ -6,7 +6,10 @@
       inherit pkgs;
       imports = [ wlib.wrapperModules.neovim ];
 
-      extraPackages = [ pkgs.nil ];
+      extraPackages = [
+        pkgs.nil
+        pkgs.codebook
+      ];
       settings.aliases = [ "vi" "vim" "vimdiff" ];
 
       specs = let cfg_dir = ./config; in {

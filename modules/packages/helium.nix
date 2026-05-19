@@ -34,7 +34,7 @@
         install -m 444 -D ${appimageContents}/helium.png \
           $out/share/icons/hicolor/256x256/apps/${pname}.png
       '';
-      meta.platforms = lib.attrNames architectures;
+      meta.platforms = builtins.attrNames architectures;
     };
   };
 }
