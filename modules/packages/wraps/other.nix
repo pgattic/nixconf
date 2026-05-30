@@ -50,7 +50,7 @@
               defaultBranch = "master"
             [user]
               email = "pgattic@gmail.com"
-              name = "pgattic"
+              name = "Preston Corless"
           '';
         };
         env.GIT_CONFIG_GLOBAL = config.constructFiles.gitConfig.path;
