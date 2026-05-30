@@ -15,7 +15,10 @@
       home-manager.enable = true;
     };
     manual.manpages.enable = false;
-    home.stateVersion = "25.05";
+    home.stateVersion = "25.11";
+    # TODO: Migrate home-manager through 26.05
+    # https://nix-community.github.io/home-manager/release-notes.xhtml#sec-release-26.05-state-version-changes
+    gtk.gtk4.theme = null;
   };
 in {
   flake = {

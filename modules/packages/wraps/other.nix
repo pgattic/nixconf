@@ -158,7 +158,7 @@
           pkgs.libz
         ];
         env.SHELL = lib.getExe (self'.packages.nushell.apply {
-          extraPackages = [ pkgs.file ];
+          runtimePkgs = [ pkgs.file ];
         }).wrapper;
         constructFiles.settings = {
           relPath = "config/settings.json";

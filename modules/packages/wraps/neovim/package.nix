@@ -6,7 +6,7 @@
       inherit pkgs;
       imports = [ wlib.wrapperModules.neovim ];
 
-      extraPackages = [
+      runtimePkgs = [
         pkgs.nil
         pkgs.codebook
       ];

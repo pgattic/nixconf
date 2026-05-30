@@ -14,7 +14,7 @@
         XDG_SESSION_DESKTOP = "niri";
       };
 
-      extraPackages = with pkgs; [
+      runtimePkgs = with pkgs; [
         wl-clipboard
         wf-recorder
         wl-mirror

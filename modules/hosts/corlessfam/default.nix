@@ -50,7 +50,7 @@
             };
             pgattic = {
               shell = (self'.packages.nushell-env.apply {
-                extraPackages = [
+                runtimePkgs = [
                   self'.packages.neovim
                   self'.packages.git
                   pkgs.lazygit

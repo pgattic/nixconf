@@ -31,7 +31,7 @@
         "\"You are nothing but an unreliable wizard\" - Bruce Webster" | print
       '';
       env.EDITOR = lib.getExe self'.packages.neovim;
-      extraPackages = [
+      runtimePkgs = [
         self'.packages.btop
         self'.packages.fastfetch
         self'.packages.nh
