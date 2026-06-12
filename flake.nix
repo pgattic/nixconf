@@ -14,7 +14,10 @@
       url = "github:BirdeeHub/nix-wrapper-modules";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixos-hardware.url = "github:NixOS/nixos-hardware";
+    nixos-hardware = {
+      url = "github:NixOS/nixos-hardware";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nixos-apple-silicon = {
       url = "github:nix-community/nixos-apple-silicon";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -55,6 +58,7 @@
       inputs.blocksds-nix.follows = "";
       inputs.devkitNix.follows = "";
     };
+    kopuz.url = "github:temidaradev/kopuz";
     dark-text-src = {
       url = "github:vimjoyer/dark-text";
       flake = false;

@@ -294,6 +294,9 @@
           "XF86AudioLowerVolume"  = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "ipc" "call" "volume" "decrease" ]; };
           "XF86AudioMute"         = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "ipc" "call" "volume" "muteOutput" ]; };
           "XF86AudioMicMute"      = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "ipc" "call" "volume" "muteInput" ]; };
+          "XF86AudioPlay"         = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "ipc" "call" "media" "playPause" ]; };
+          "XF86AudioPrev"         = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "ipc" "call" "media" "previous" ]; };
+          "XF86AudioNext"         = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "ipc" "call" "media" "next" ]; };
           "XF86MonBrightnessUp"   = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "ipc" "call" "brightness" "increase" ]; };
           "XF86MonBrightnessDown" = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "ipc" "call" "brightness" "decrease" ]; };
         };

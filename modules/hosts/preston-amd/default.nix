@@ -11,6 +11,15 @@
       ({ pkgs, ... }: {
         networking.hostName = "preston-amd";
         system.stateVersion = "25.11";
+        boot.initrd.kernelModules = [ "amdgpu" ];
+        boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
+        nix.settings = {
+          substituters = ["https://kopuz.cachix.org" ];
+          trusted-public-keys = ["kopuz.cachix.org-1:J2X3AnAYhKTJW5S3aCLoA1ckonQXVNZMQvhZA0YAufw="];
+        };
+
+        users.users.pgattic.extraGroups = [ "dialout" ];
 
         environment.systemPackages = [
           self'.packages.foot-rude-sfw
@@ -21,6 +30,7 @@
           self'.packages.btop
           self'.packages.git
           self'.packages.helium
+          inputs.kopuz.packages.${pkgs.stdenv.hostPlatform.system}.default
           pkgs.signal-desktop
           pkgs.lazygit
           pkgs.codex
@@ -39,4 +49,3 @@
     ];
   });
 }
-

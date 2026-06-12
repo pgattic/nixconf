@@ -18,7 +18,6 @@
     home.stateVersion = "25.11";
     # TODO: Migrate home-manager through 26.05
     # https://nix-community.github.io/home-manager/release-notes.xhtml#sec-release-26.05-state-version-changes
-    gtk.gtk4.theme = null;
   };
 in {
   flake = {
@@ -29,7 +28,7 @@ in {
       nixpkgs = nixpkgsConf;
 
       boot.loader.systemd-boot.enable = lib.mkDefault true;
-      boot.loader.systemd-boot.configurationLimit = lib.mkDefault 5;
+      boot.loader.systemd-boot.configurationLimit = lib.mkDefault 10;
       # Allow NixOS to add itself to bootloader options
       boot.loader.efi.canTouchEfiVariables = lib.mkDefault true;
       # Don't kill the user session when I rebuild

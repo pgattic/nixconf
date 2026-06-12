@@ -21,7 +21,7 @@ in {
   flake = {
     nixosModules.desktop-base = { config, lib, pkgs, ... }: {
       home-manager.users.${config.my.user.name} = hmModule;
-      boot.plymouth.enable = true;
+      boot.plymouth.enable = lib.mkDefault true;
       boot.loader.systemd-boot.consoleMode = "max"; # Make plymouth full resolution
       services.xserver.xkb = {
         layout = "us";
@@ -37,12 +37,7 @@ in {
         greetd = {
           enable = lib.mkDefault true;
           settings.default_session = {
-            command = ''
-              ${pkgs.tuigreet}/bin/tuigreet --remember --asterisks --time \
-              --time-format "%a %b %d %I:%M %p" \
-              --window-padding 2 \
-              --theme "border=blue;action=blue;time=blue;button=gray"
-            '';
+            command = "${pkgs.tuigreet}/bin/tuigreet --remember --asterisks --time --time-format \"%a %b %d %I:%M %p\" --window-padding 2 --theme \"border=blue;action=blue;time=blue;button=gray\"";
             user = "greeter";
           };
         };
