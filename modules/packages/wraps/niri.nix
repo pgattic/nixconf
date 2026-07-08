@@ -10,6 +10,7 @@
         ELECTRON_OZONE_PLATFORM_HINT = "auto"; # Prefer Wayland for electron apps (doesn't always work)
         NIXOS_OZONE_WL = "1";
         SHELL = lib.getExe pkgs.bash; # If a graphical app is asking, my shell is bash
+        XCURSOR_PATH = "${pkgs.bibata-cursors}/share/icons:$HOME/.icons:$HOME/.local/share/icons";
         XDG_CURRENT_DESKTOP = "niri";
         XDG_SESSION_DESKTOP = "niri";
       };
@@ -21,7 +22,6 @@
         pavucontrol
         brightnessctl
         libnotify
-        bibata-cursors
       ];
 
       settings = { # https://birdeehub.github.io/nix-wrapper-modules/wrapperModules/niri.html#settings
@@ -332,4 +332,3 @@
     };
   };
 }
-
