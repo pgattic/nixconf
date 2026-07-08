@@ -47,7 +47,7 @@
           };
         };
         "/roms" = {
-          path = "${cfg.paths.store}/roms";
+          path = "${cfg.paths.media}/roms";
           access = {
             A = [ "pgattic" ];
             r = [ "guest" ];
@@ -57,6 +57,13 @@
           path = "${cfg.paths.store}/family";
           access = {
             A = [ "pgattic" "skylar" "jstucor" ];
+          };
+        };
+        "/shared" = {
+          path = "${cfg.paths.store}/files/shared";
+          access = {
+            A = [ "pgattic" "skylar" "jstucor" ];
+            r = [ "guest" ];
           };
         };
       };
@@ -69,7 +76,8 @@
       "d ${cfg.paths.store}/pgattic 2775 root copypartyaccess - -"
       "d ${cfg.paths.store}/skylar 2775 root copypartyaccess - -"
       "d ${cfg.paths.store}/cookbook 2775 root copypartyaccess - -"
-      "d ${cfg.paths.store}/roms 2775 root copypartyaccess - -"
+      "d ${cfg.paths.media}/roms 2775 root copypartyaccess - -"
+      "d ${cfg.paths.store}/files/shared 2775 root copypartyaccess - -"
       "d /var/lib/copyparty/md-hist 0700 copyparty copyparty - -"
     ];
 

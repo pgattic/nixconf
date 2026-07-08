@@ -1,7 +1,8 @@
 let port = 2285; in {
-  flake.nixosModules.forgejo = { config, ... }: let cfg = config.my.server; in {
+  flake.nixosModules.forgejo = { config, pkgs, ... }: let cfg = config.my.server; in {
     services.forgejo = {
       enable = true;
+      package = pkgs.forgejo; # Defaults to forgejo-lts
       stateDir = "/tank/store/forgejo";
       settings = {
         server = {
