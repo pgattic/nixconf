@@ -67,6 +67,10 @@
       url = "github:noctalia-dev/noctalia-plugins";
       flake = false;
     };
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } {

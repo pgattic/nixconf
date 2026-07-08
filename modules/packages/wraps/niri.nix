@@ -307,6 +307,30 @@
       settings.prefer-no-csd = {};
     };
 
+    niri-noctalia5 = niri-base.config.apply ({ lib, ... }: let
+      noctalia-cmd = lib.getExe self'.packages.noctalia5;
+    in {
+      settings = {
+        prefer-no-csd = {};
+        spawn-at-startup = [ [ noctalia-cmd ] ];
+        binds = {
+          "Mod+Space" = _: { props.hotkey-overlay-title = "Open Lanucher"; content.spawn = [ noctalia-cmd "msg" "panel-toggle" "launcher" ]; };
+          "Mod+Shift+E" = _: { props.hotkey-overlay-title = "Quit niri"; content.spawn = [ noctalia-cmd "msg" "panel-toggle" "session" ]; };
+
+          # The allow-when-locked=true property makes them work even when the session is locked.
+          "XF86AudioRaiseVolume"  = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "msg" "volume-up"]; };
+          "XF86AudioLowerVolume"  = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "msg" "volume-down" ]; };
+          "XF86AudioMute"         = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "msg" "volume-mute" ]; };
+          "XF86AudioMicMute"      = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "msg" "mic-mute" ]; };
+          "XF86AudioPlay"         = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "msg" "media" "toggle" ]; };
+          "XF86AudioPrev"         = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "msg" "media" "previous" ]; };
+          "XF86AudioNext"         = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "msg" "media" "next" ]; };
+          "XF86MonBrightnessUp"   = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "msg" "brightness-up" ]; };
+          "XF86MonBrightnessDown" = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "msg" "brightness-down" ]; };
+        };
+      };
+    });
+
     niri-activate-linux = (mkNiri self'.packages.noctalia-activate-linux).apply {
       settings.prefer-no-csd = {};
     };
@@ -329,6 +353,7 @@
       niri-touch = niri-touch.wrapper;
       niri-mobile = niri-mobile.wrapper;
       niri-activate-linux = niri-activate-linux.wrapper;
+      niri-noctalia5 = niri-noctalia5.wrapper;
     };
   };
 }

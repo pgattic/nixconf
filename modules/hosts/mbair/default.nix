@@ -36,7 +36,7 @@
         ];
 
         environment.systemPackages = [
-          self'.packages.foot-rude
+          self'.packages.foot
           self'.packages.luanti-client
           self'.packages.desktop
           self'.packages.sioyek
@@ -59,7 +59,7 @@
         programs.niri = {
           enable = true;
           useNautilus = false;
-          package = (self'.packages.niri-activate-linux.apply {
+          package = (self'.packages.niri-noctalia5.apply {
             settings.outputs."eDP-1".scale = 1.5;
           }).wrapper;
         };
