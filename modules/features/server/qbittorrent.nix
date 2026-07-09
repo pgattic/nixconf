@@ -29,8 +29,6 @@
       [Preferences]
       WebUI\Username=${config.my.user.name}
       WebUI\Password_PBKDF2=@QB_WEBUI_PBKDF2@
-      WebUI\AlternativeUIEnabled=true
-      WebUI\RootFolder=${pkgs.vuetorrent}/share/vuetorrent
       Connection\PortRangeMin=${toString peerPort}
     '';
   in {
