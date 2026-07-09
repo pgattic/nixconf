@@ -98,7 +98,7 @@
         inherit pkgs;
         imports = [ wlib.wrapperModules.jujutsu ];
         settings = {
-          user.name = "pgattic";
+          user.name = "Preston Corless";
           user.email = "pgattic@gmail.com";
           ui = {
             default-command = [ "log" "--reversed" ];

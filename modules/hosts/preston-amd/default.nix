@@ -30,6 +30,7 @@
           self'.packages.btop
           self'.packages.git
           self'.packages.helium
+          self'.packages.jujutsu
           inputs.kopuz.packages.${pkgs.stdenv.hostPlatform.system}.default
           pkgs.signal-desktop
           pkgs.lazygit
