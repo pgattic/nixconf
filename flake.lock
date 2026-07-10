@@ -1,5 +1,28 @@
 {
   "nodes": {
+    "activate-linux": {
+      "inputs": {
+        "flake-parts": [
+          "flake-parts"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1783688341,
+        "narHash": "sha256-irN5ASoOpK4vqK9Ref6/ywXQSQZLalbGIWO0uQjNHMQ=",
+        "owner": "pgattic",
+        "repo": "activate-linux",
+        "rev": "ba6afd7533dc423b49ce67a0fd924ee6235ece72",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pgattic",
+        "repo": "activate-linux",
+        "type": "github"
+      }
+    },
     "agenix": {
       "inputs": {
         "darwin": "darwin",
@@ -523,6 +546,7 @@
     },
     "root": {
       "inputs": {
+        "activate-linux": "activate-linux",
         "agenix": "agenix",
         "copyparty": "copyparty",
         "dark-text-src": "dark-text-src",

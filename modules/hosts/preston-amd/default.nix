@@ -42,7 +42,7 @@
         programs.niri = {
           enable = true;
           useNautilus = false;
-          package = (self'.packages.niri-activate-linux.apply {
+          package = (self'.packages.niri-noctalia5-activate-linux.apply {
             settings.outputs."HDMI-A-1".mode = "1920x1080@100.00";
           }).wrapper;
         };

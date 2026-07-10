@@ -307,11 +307,10 @@
       settings.prefer-no-csd = {};
     };
 
-    niri-noctalia5 = niri-base.config.apply ({ lib, ... }: let
-      noctalia-cmd = lib.getExe self'.packages.noctalia5;
+    mkNiri5 = noctalia5-pkg: niri-base.config.apply ({ lib, ... }: let
+      noctalia-cmd = lib.getExe noctalia5-pkg;
     in {
       settings = {
-        prefer-no-csd = {};
         spawn-at-startup = [ [ noctalia-cmd ] ];
         binds = {
           "Mod+Space" = _: { props.hotkey-overlay-title = "Open Lanucher"; content.spawn = [ noctalia-cmd "msg" "panel-toggle" "launcher" ]; };
@@ -330,6 +329,20 @@
         };
       };
     });
+
+    niri-noctalia5 = (mkNiri5 self'.packages.noctalia5).apply {
+      settings.prefer-no-csd = {};
+    };
+
+    niri-noctalia5-activate-linux = (mkNiri5 self'.packages.noctalia5).apply {
+      settings = {
+        prefer-no-csd = {};
+        spawn-at-startup = [
+          [ (lib.getExe self'.packages.noctalia5) ]
+          [ (lib.getExe inputs.activate-linux.packages.${pkgs.stdenv.hostPlatform.system}.default) ]
+        ];
+      };
+    };
 
     niri-activate-linux = (mkNiri self'.packages.noctalia-activate-linux).apply {
       settings.prefer-no-csd = {};
@@ -354,6 +367,7 @@
       niri-mobile = niri-mobile.wrapper;
       niri-activate-linux = niri-activate-linux.wrapper;
       niri-noctalia5 = niri-noctalia5.wrapper;
+      niri-noctalia5-activate-linux = niri-noctalia5-activate-linux.wrapper;
     };
   };
 }

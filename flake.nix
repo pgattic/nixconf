@@ -71,6 +71,11 @@
       url = "github:noctalia-dev/noctalia";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    activate-linux = {
+      url = "github:pgattic/activate-linux";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+    };
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } {
