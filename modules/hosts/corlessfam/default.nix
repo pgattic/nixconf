@@ -46,6 +46,7 @@
                 "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBfNeGvgeuyLKrAzgAsfKUhpHwB9AwwdO49WgKlkqTw+ nixbuilder-mbair"
                 "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM0S/bzInee4MQiTANd23jCRTbu/Lz50KgU15+iJtbxP nixbuilder-op6"
                 "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDWIqPifAxRsDOdVuApg1S2mE7y3sf8xOnO6bodTjKIT nixbuilder-surface"
+                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEtBb1uGEGrRgl8OXt+iue4bwKUSj1m5adq2n7NziyY8 nixbuilder-t480"
               ];
             };
             pgattic = {

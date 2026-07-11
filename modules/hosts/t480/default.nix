@@ -4,52 +4,47 @@
       ./_hardware.nix
       inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
       inputs.self.nixosModules.options
+      inputs.self.nixosModules.remote-builder
       inputs.self.nixosModules.default
       inputs.self.nixosModules.desktop-default
       inputs.self.nixosModules.stylix
       inputs.self.nixosModules.work
       inputs.self.nixosModules.browser
-      inputs.self.nixosModules.office
+      # inputs.self.nixosModules.office
       inputs.self.nixosModules.obsidian
 
       ({ pkgs, ... }: {
         networking.hostName = "t480";
         system.stateVersion = "25.05";
 
-        environment.systemPackages = with pkgs; [
-          self'.packages.foot-rude
-          pinta
-          antigravity-fhs
+        environment.systemPackages = [
+          self'.packages.foot
           self'.packages.luanti-client
-          zoom-us
-          ventoy
-          signal-desktop
-          whatsapp-electron
-          zotero
-          vesktop
-          element-desktop
-          ungoogled-chromium
-          ripgrep-all
-          self'.packages.bambu-studio
-          self'.packages.jujutsu
-          inputs.wasmcarts.packages.${stdenv.hostPlatform.system}.engine-linux
           self'.packages.desktop
           self'.packages.sioyek
-          self'.packages.neovim # The package provides aliases
+          self'.packages.neovim
           self'.packages.btop
           self'.packages.git
-          self'.packages.zed-editor
+          self'.packages.helium
+          self'.packages.bambu-studio
+          self'.packages.jujutsu
+          # inputs.wasmcarts.packages.${stdenv.hostPlatform.system}.engine-linux
+          pkgs.lazygit
+          pkgs.pinta
+          pkgs.zoom-us
+          # pkgs.ventoy
+          pkgs.signal-desktop
+          pkgs.vesktop
+          pkgs.element-desktop
+          pkgs.ungoogled-chromium
+          pkgs.ripgrep-all
         ];
 
         programs = {
-          nix-ld.enable = true;
-          appimage.enable = true;
-          appimage.binfmt = true;
-          kdeconnect.enable = true;
           niri = {
             enable = true;
             useNautilus = false;
-            package = (self'.packages.niri-activate-linux.apply {
+            package = (self'.packages.niri-noctalia5-activate-linux.apply {
               settings.outputs."eDP-1".scale = 1.0;
             }).wrapper;
           };
@@ -62,4 +57,3 @@
     ];
   });
 }
-
