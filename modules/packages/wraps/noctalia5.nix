@@ -1,4 +1,4 @@
-{ inputs, ... }: {
+{ inputs, self, ... }: {
   perSystem = { pkgs, self', ... }: let
     assets = ../../../assets;
     wlib = inputs.nix-wrapper-modules.lib;
@@ -7,7 +7,7 @@
     default_config = {
       bar = {
         default = {
-          background_opacity = 0.8;
+          background_opacity = self.desktop.opacity;
           start = [ "workspaces" "cpumon" "memmon" "tempmon" "media" ];
           center = [ "active_window" ];
           end = [ "tray" "clipboard" "brightness" "volume" "bluetooth" "network" "battery" "notifications" "clock" "control-center" ];
@@ -20,10 +20,15 @@
           widget_spacing = 12;
         };
       };
+      audio.enable_overdrive = true;
       control_center.sidebar_section = "none";
       desktop_widgets.enabled = false;
       location.address = "Provo, United States";
-      osd.position = "bottom_center";
+      nightlight.enabled = true;
+      osd = {
+        background_opacity = self.desktop.opacity;
+        position = "bottom_center";
+      };
       shell = {
         avatar_path = "${assets}/profile.jpg";
         panel.open_near_click_control_center = true;
@@ -37,6 +42,7 @@
       wallpaper = {
         directory = "${assets}/wallpapers";
         default.path = "${assets}/wallpapers/wedding_temple.jpg";
+        transition = [ "honeycomb" "stripes" ];
       };
       weather.unit = "imperial";
       widget = let

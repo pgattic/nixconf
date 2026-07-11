@@ -1,11 +1,6 @@
 {
   flake = {
     nixosModules.networking = { config, lib, ... }: {
-      hardware.bluetooth = {
-        enable = lib.mkDefault true;
-        powerOnBoot = false;
-        settings.General.Experimental = true;
-      };
       networking.networkmanager.enable = lib.mkDefault true;
       users.users.${config.my.user.name}.extraGroups = lib.mkAfter [ "networkmanager" ];
 
