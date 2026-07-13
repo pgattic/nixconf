@@ -339,7 +339,7 @@
         prefer-no-csd = {};
         spawn-at-startup = [
           [ (lib.getExe self'.packages.noctalia5) ]
-          [ (lib.getExe inputs.activate-linux.packages.${pkgs.stdenv.hostPlatform.system}.default) ]
+          [ (lib.getExe pkgs.activate-linux) ]
         ];
       };
     };

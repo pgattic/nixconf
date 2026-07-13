@@ -31,12 +31,13 @@
           self'.packages.git
           self'.packages.helium
           self'.packages.jujutsu
-          inputs.kopuz.packages.${pkgs.stdenv.hostPlatform.system}.default
+          pkgs.kopuz
           pkgs.signal-desktop
           pkgs.lazygit
           pkgs.codex
           pkgs.cursor-cli
           pkgs.nix-tree
+          pkgs.kicad
         ];
 
         programs.niri = {

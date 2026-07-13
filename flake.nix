@@ -58,7 +58,6 @@
       inputs.blocksds-nix.follows = "";
       inputs.devkitNix.follows = "";
     };
-    kopuz.url = "github:temidaradev/kopuz";
     dark-text-src = {
       url = "github:vimjoyer/dark-text";
       flake = false;
@@ -70,11 +69,6 @@
     noctalia = {
       url = "github:noctalia-dev/noctalia";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    activate-linux = {
-      url = "github:pgattic/activate-linux";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.flake-parts.follows = "flake-parts";
     };
   };
 

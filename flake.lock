@@ -1,28 +1,5 @@
 {
   "nodes": {
-    "activate-linux": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1783688341,
-        "narHash": "sha256-irN5ASoOpK4vqK9Ref6/ywXQSQZLalbGIWO0uQjNHMQ=",
-        "owner": "pgattic",
-        "repo": "activate-linux",
-        "rev": "ba6afd7533dc423b49ce67a0fd924ee6235ece72",
-        "type": "github"
-      },
-      "original": {
-        "owner": "pgattic",
-        "repo": "activate-linux",
-        "type": "github"
-      }
-    },
     "agenix": {
       "inputs": {
         "darwin": "darwin",
@@ -134,21 +111,6 @@
       "original": {
         "owner": "9001",
         "repo": "copyparty",
-        "type": "github"
-      }
-    },
-    "crane": {
-      "locked": {
-        "lastModified": 1780532242,
-        "narHash": "sha256-D+BsdpxmtUwtqGoY0IXPhHgTlmqgcZKCEo1oMyn7ep0=",
-        "owner": "ipetkov",
-        "repo": "crane",
-        "rev": "59a82a1222dd3b2080b5cc52a1a2e8d5f1b77f37",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ipetkov",
-        "repo": "crane",
         "type": "github"
       }
     },
@@ -323,26 +285,6 @@
         "type": "github"
       }
     },
-    "kopuz": {
-      "inputs": {
-        "crane": "crane",
-        "nixpkgs": "nixpkgs",
-        "rust-overlay": "rust-overlay"
-      },
-      "locked": {
-        "lastModified": 1783426443,
-        "narHash": "sha256-cjZuFPvYL2olk3MBf1rNKL68qMjtpFk51vEsyA5sZjg=",
-        "owner": "temidaradev",
-        "repo": "kopuz",
-        "rev": "be54cef9cabe1897634231dfdf291397f681233f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "temidaradev",
-        "repo": "kopuz",
-        "type": "github"
-      }
-    },
     "mobile-nixos": {
       "flake": false,
       "locked": {
@@ -443,15 +385,18 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1781074563,
-        "narHash": "sha256-d34lhgOet4IqYMnCxbIvwFBMOyTV6PT4TyNEOP0/ZhU=",
-        "rev": "9ae611a455b90cf061d8f332b977e387bda8e1ca",
-        "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1014179.9ae611a455b9/nixexprs.tar.xz"
+        "lastModified": 1783224372,
+        "narHash": "sha256-8i/87eeoqiGE4yOTjwSA3Eh/ziJRQEmd/unYU+K27sk=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "d407951447dcd00442e97087bf374aad70c04cea",
+        "type": "github"
       },
       "original": {
-        "type": "tarball",
-        "url": "https://channels.nixos.org/nixos-unstable/nixexprs.tar.xz"
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "nixpkgs-lib": {
@@ -466,22 +411,6 @@
       "original": {
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
-        "type": "github"
-      }
-    },
-    "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1783224372,
-        "narHash": "sha256-8i/87eeoqiGE4yOTjwSA3Eh/ziJRQEmd/unYU+K27sk=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "d407951447dcd00442e97087bf374aad70c04cea",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
         "type": "github"
       }
     },
@@ -546,47 +475,24 @@
     },
     "root": {
       "inputs": {
-        "activate-linux": "activate-linux",
         "agenix": "agenix",
         "copyparty": "copyparty",
         "dark-text-src": "dark-text-src",
         "flake-parts": "flake-parts",
         "home-manager": "home-manager",
         "import-tree": "import-tree",
-        "kopuz": "kopuz",
         "mobile-nixos": "mobile-nixos",
         "nix-wrapper-modules": "nix-wrapper-modules",
         "nixgl": "nixgl",
         "nixos-apple-silicon": "nixos-apple-silicon",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs",
         "noctalia": "noctalia",
         "noctalia-plugins": "noctalia-plugins",
         "nur": "nur",
         "stylix": "stylix",
         "vpn-confinement": "vpn-confinement",
         "wasmcarts": "wasmcarts"
-      }
-    },
-    "rust-overlay": {
-      "inputs": {
-        "nixpkgs": [
-          "kopuz",
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1781580018,
-        "narHash": "sha256-BlTedbM77FmesD2ZqR73vhFy+y77UrhefV7IYw1pDsk=",
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "rev": "8bceba21a1ebea535c27c4dc723a0d5a4db9e386",
-        "type": "github"
-      },
-      "original": {
-        "owner": "oxalica",
-        "repo": "rust-overlay",
-        "type": "github"
       }
     },
     "stylix": {
