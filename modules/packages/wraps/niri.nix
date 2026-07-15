@@ -54,9 +54,10 @@
           };
         };
         gestures.hot-corners.off = {};
-        # recent-windows.off = {}; # This option doesn't exist in the flake yet for some reason
+        # recent-windows.off = _: {};
         layout = {
           gaps = 8;
+          shadow.on = _: {};
           always-center-single-column = true;
           preset-column-widths = [
             { proportion = 1. / 3.; }
