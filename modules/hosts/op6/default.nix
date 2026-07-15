@@ -21,7 +21,6 @@
           self'.packages.luanti-client
           self'.packages.desktop
           self'.packages.neovim
-          self'.packages.sioyek
           self'.packages.btop
           self'.packages.git
           pkgs.signal-desktop

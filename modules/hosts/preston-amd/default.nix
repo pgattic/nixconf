@@ -14,18 +14,12 @@
         boot.initrd.kernelModules = [ "amdgpu" ];
         boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
 
-        nix.settings = {
-          substituters = ["https://kopuz.cachix.org" ];
-          trusted-public-keys = ["kopuz.cachix.org-1:J2X3AnAYhKTJW5S3aCLoA1ckonQXVNZMQvhZA0YAufw="];
-        };
-
         users.users.pgattic.extraGroups = [ "dialout" ];
 
         environment.systemPackages = [
           self'.packages.foot-rude-sfw
           self'.packages.luanti-client
           self'.packages.desktop
-          self'.packages.sioyek
           self'.packages.neovim
           self'.packages.btop
           self'.packages.git

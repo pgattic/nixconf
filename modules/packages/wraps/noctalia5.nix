@@ -60,7 +60,11 @@
         media.hide_when_no_media = true;
         network.show_label = false;
         volume.show_label = false;
-        workspaces.labels_only_when_occupied = true;
+        workspaces = {
+          # labels_only_when_occupied = true;
+          display = "none"; # No labels
+          pill_scale = 0.75;
+        };
 
         # Custom Widgets
         cpumon = sysmon_stat "cpu_usage";

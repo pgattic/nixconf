@@ -20,7 +20,6 @@
           self'.packages.foot-rude
           self'.packages.luanti-client
           self'.packages.desktop
-          self'.packages.sioyek
           self'.packages.neovim
           self'.packages.btop
           self'.packages.git
