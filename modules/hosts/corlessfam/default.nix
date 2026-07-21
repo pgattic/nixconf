@@ -14,9 +14,9 @@
       inputs.self.nixosModules.audiobookshelf
       inputs.self.nixosModules.copyparty
       inputs.self.nixosModules.qbittorrent
-      # inputs.self.nixosModules.romm
       inputs.self.nixosModules.cookbook
       inputs.self.nixosModules.forgejo
+      inputs.self.nixosModules.traccar
 
       ({ lib, pkgs, ... }: {
         boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
