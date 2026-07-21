@@ -16,7 +16,10 @@
         system.stateVersion = "25.11";
         boot.loader.efi.canTouchEfiVariables = false;
         # Use `--impure` while building
-        hardware.asahi.peripheralFirmwareDirectory = /etc/nixos/firmware;
+        hardware.asahi = {
+          enable = true;
+          peripheralFirmwareDirectory = /etc/nixos/firmware;
+        };
 
         # Uncomment this to support WPA3 (at the cost of some other connections working)
         # networking.networkmanager.wifi.backend = "iwd";

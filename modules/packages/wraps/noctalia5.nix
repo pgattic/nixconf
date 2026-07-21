@@ -56,7 +56,7 @@
         };
         brightness.show_label = false;
         clock.format = "{:%a %b %d %l:%M %p}";
-        control-center.custom_image = "${noctalia5-package}/share/noctalia/assets/images/distros/nixos.svg";
+        control-center.custom_image = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
         media.hide_when_no_media = true;
         network.show_label = false;
         volume.show_label = false;
