@@ -23,7 +23,7 @@
           self'.packages.neovim
           self'.packages.btop
           self'.packages.git
-          self'.packages.helium
+          inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
           self'.packages.jujutsu
           pkgs.kopuz
           pkgs.signal-desktop

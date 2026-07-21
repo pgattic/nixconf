@@ -24,9 +24,9 @@
           self'.packages.neovim
           self'.packages.btop
           self'.packages.git
-          self'.packages.helium
           self'.packages.bambu-studio
           self'.packages.jujutsu
+          inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
           # inputs.wasmcarts.packages.${stdenv.hostPlatform.system}.engine-linux
           pkgs.lazygit
           pkgs.pinta

@@ -51,6 +51,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     vpn-confinement.url = "github:Maroka-chan/VPN-Confinement";
+    helium = {
+      url = "github:schembriaiden/helium-browser-nix-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     wasmcarts = {
       url = "github:pgattic/wasm-experiment";
       inputs.nixpkgs.follows = "nixpkgs";

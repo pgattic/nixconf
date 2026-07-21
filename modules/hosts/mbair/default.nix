@@ -45,8 +45,8 @@
           self'.packages.neovim
           self'.packages.btop
           self'.packages.git
-          self'.packages.helium
           inputs.wasmcarts.packages.${pkgs.stdenv.hostPlatform.system}.engine-linux
+          inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
           pkgs.signal-desktop
           pkgs.element-desktop
           pkgs.lazygit

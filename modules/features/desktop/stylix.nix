@@ -10,7 +10,7 @@
     ];
     stylix = {
       enable = true;
-      base16Scheme = "${pkgs.base16-schemes}/share/themes/github-dark.yaml";
+      base16Scheme = "${pkgs.base16-schemes}/share/themes/da-one-gray.yaml";
       cursor = {
         package = pkgs.bibata-cursors;
         name = "Bibata-Modern-Classic";
@@ -64,7 +64,7 @@ in {
       stylix = {
         enable = true;
         homeManagerIntegration.autoImport = false;
-        base16Scheme = "${pkgs.base16-schemes}/share/themes/github-dark.yaml";
+        base16Scheme = "${pkgs.base16-schemes}/share/themes/da-one-gray.yaml";
         targets.plymouth.enable = false;
       };
     };
