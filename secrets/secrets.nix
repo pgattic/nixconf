@@ -14,8 +14,5 @@ in {
   "copyparty-pgattic.age" = { publicKeys = all; armor = true; };
   "copyparty-skylar.age" = { publicKeys = all; armor = true; };
   "copyparty-jstucor.age" = { publicKeys = all; armor = true; };
-  "romm-auth-secret-key.age" = { publicKeys = all; armor = true; };
-  "romm-db-password.age" = { publicKeys = all; armor = true; };
-  "romm-mariadb-root-password.age" = { publicKeys = all; armor = true; };
 }
 

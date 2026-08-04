@@ -35,18 +35,6 @@ in {
           file = ../../secrets/copyparty-jstucor.age;
           owner = "copyparty"; group = "copyparty"; mode = "0400";
         };
-        # romm-auth-secret-key = {
-        #   file = ../../secrets/romm-auth-secret-key.age;
-        #   owner = "root"; group = "root"; mode = "0400";
-        # };
-        # romm-db-password = {
-        #   file = ../../secrets/romm-db-password.age;
-        #   owner = "root"; group = "root"; mode = "0400";
-        # };
-        # romm-mariadb-root-password = {
-        #   file = ../../secrets/romm-mariadb-root-password.age;
-        #   owner = "root"; group = "root"; mode = "0400";
-        # };
       };
     };
     homeModules.agenix = hmModule;

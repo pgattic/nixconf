@@ -17,6 +17,7 @@
       inputs.self.nixosModules.cookbook
       inputs.self.nixosModules.forgejo
       inputs.self.nixosModules.traccar
+      inputs.self.nixosModules.barp
 
       ({ lib, pkgs, ... }: {
         boot.binfmt.emulatedSystems = [ "aarch64-linux" ];

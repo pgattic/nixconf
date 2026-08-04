@@ -25,6 +25,27 @@
         "type": "github"
       }
     },
+    "barp": {
+      "inputs": {
+        "crane": "crane",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1785811115,
+        "narHash": "sha256-Zb6sp7G7svfPO6Oi74wINjmtrIHfE26ikijCedMN6bU=",
+        "owner": "pgattic",
+        "repo": "barp",
+        "rev": "c0d4306a62993934c7540ea79166c5321a12e329",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pgattic",
+        "repo": "barp",
+        "type": "github"
+      }
+    },
     "base16": {
       "inputs": {
         "fromYaml": "fromYaml"
@@ -111,6 +132,21 @@
       "original": {
         "owner": "9001",
         "repo": "copyparty",
+        "type": "github"
+      }
+    },
+    "crane": {
+      "locked": {
+        "lastModified": 1784564969,
+        "narHash": "sha256-TkTWNhJV/8Wk3czlbz4bwHZkFCaCHPsOy+oJe4PUiXg=",
+        "owner": "ipetkov",
+        "repo": "crane",
+        "rev": "7930f6c291de6f83c257839d434592aa085f290a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ipetkov",
+        "repo": "crane",
         "type": "github"
       }
     },
@@ -514,6 +550,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "barp": "barp",
         "copyparty": "copyparty",
         "dark-text-src": "dark-text-src",
         "flake-parts": "flake-parts",
