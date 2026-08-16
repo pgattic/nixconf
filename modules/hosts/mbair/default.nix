@@ -53,9 +53,9 @@
           pkgs.codex
           pkgs.cursor-cli
           pkgs.vesktop
-          pkgs.ungoogled-chromium
           pkgs.nix-tree
           pkgs.whatsapp-electron
+          pkgs.kopuz
         ];
 
         programs.niri = {
