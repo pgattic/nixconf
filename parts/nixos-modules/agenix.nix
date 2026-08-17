@@ -16,6 +16,10 @@
         file = ../../secrets/copyparty-pgattic.age;
         owner = "copyparty"; group = "copyparty"; mode = "0400";
       };
+      copyparty-rgattic = {
+        file = ../../secrets/copyparty-rgattic.age;
+        owner = "copyparty"; group = "copyparty"; mode = "0400";
+      };
       copyparty-skylar = {
         file = ../../secrets/copyparty-skylar.age;
         owner = "copyparty"; group = "copyparty"; mode = "0400";

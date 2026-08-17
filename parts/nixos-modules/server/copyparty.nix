@@ -23,6 +23,7 @@
       };
       accounts = {
         pgattic.passwordFile = config.age.secrets.copyparty-pgattic.path;
+        rgattic.passwordFile = config.age.secrets.copyparty-rgattic.path;
         skylar.passwordFile = config.age.secrets.copyparty-skylar.path;
         jstucor.passwordFile = config.age.secrets.copyparty-jstucor.path;
         guest.passwordFile = builtins.toFile "copyparty-guest-password" "guest";
@@ -56,13 +57,20 @@
         "/family" = {
           path = "${cfg.paths.store}/family";
           access = {
-            A = [ "pgattic" "skylar" "jstucor" ];
+            A = [ "jstucor" "pgattic" "rgattic" "skylar" ];
           };
         };
         "/shared" = {
           path = "${cfg.paths.store}/files/shared";
           access = {
-            A = [ "pgattic" "skylar" "jstucor" ];
+            A = [ "jstucor" "pgattic" "rgattic" "skylar" ];
+            r = [ "guest" ];
+          };
+        };
+        "/corless-archive" = {
+          path = "${cfg.paths.store}/corless-archive";
+          access = {
+            A = [ "jstucor" "pgattic" "rgattic" "skylar" ];
             r = [ "guest" ];
           };
         };
@@ -78,6 +86,7 @@
       "d ${cfg.paths.store}/cookbook 2775 root copypartyaccess - -"
       "d ${cfg.paths.media}/roms 2775 root copypartyaccess - -"
       "d ${cfg.paths.store}/files/shared 2775 root copypartyaccess - -"
+      "d ${cfg.paths.store}/corless-archive 2775 root copypartyaccess - -"
       "d /var/lib/copyparty/md-hist 0700 copyparty copyparty - -"
     ];
 

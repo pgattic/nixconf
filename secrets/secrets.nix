@@ -12,6 +12,7 @@ in {
   "qbittorrent-pass.age" = { publicKeys = all; armor = true; };
   "namecheap-dns-env.age" = { publicKeys = all; armor = true; };
   "copyparty-pgattic.age" = { publicKeys = all; armor = true; };
+  "copyparty-rgattic.age" = { publicKeys = all; armor = true; };
   "copyparty-skylar.age" = { publicKeys = all; armor = true; };
   "copyparty-jstucor.age" = { publicKeys = all; armor = true; };
 }

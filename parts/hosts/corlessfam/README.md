@@ -23,10 +23,7 @@ tank/secrets
 tank/store
 tank/store/cookbook
 tank/store/pgattic
-tank/store/roms
 ```
-
-`/tank/media/roms` is where romM accesses roms (not currently in use), and `/tank/store/roms` is the ROMs file share in Copyparty
 
 - For agenix, make sure to have the proper SSH key setup and files in place. See `/modules/features/agenix.nix` for their details.
 

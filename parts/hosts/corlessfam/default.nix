@@ -73,6 +73,7 @@
 
         environment.systemPackages = [
           pkgs.smartmontools # Used for hard drive SMART tests (`sudo smartctl -x /dev/sdX`)
+          pkgs.waypipe
         ];
 
         programs.niri = {
