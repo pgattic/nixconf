@@ -59,7 +59,7 @@
               }).wrapper;
               packages = [
                 self'.packages.foot
-                inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
+                self'.packages.helium
                 pkgs.xemu
                 pkgs.xenia-canary
               ];

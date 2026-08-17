@@ -90,7 +90,7 @@
           self'.packages.btop
           self'.packages.git
           self'.packages.inputplumber-rg35xx-h
-          inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
+          self'.packages.helium
           pkgs.lazygit
           pkgs.kopuz
           pkgs.inputplumber

@@ -20,7 +20,7 @@
           self'.packages.git
           self'.packages.bambu-studio
           self'.packages.jujutsu
-          inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
+          self'.packages.helium
           # inputs.wasmcarts.packages.${stdenv.hostPlatform.system}.engine-linux
           pkgs.lazygit
           pkgs.pinta

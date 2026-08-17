@@ -22,7 +22,7 @@
           self'.packages.btop
           self'.packages.git
           self'.packages.zed-editor
-          inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
+          self'.packages.helium
           pkgs.lazygit
           pkgs.rnote
         ];

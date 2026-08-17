@@ -55,6 +55,12 @@
         };
         env.GIT_CONFIG_GLOBAL = config.constructFiles.gitConfig.path;
       });
+      helium = wlib.wrapPackage {
+        inherit pkgs;
+        package = inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default;
+        flags."--ozone-platform" = "wayland";
+        flagSeparator = "=";
+      };
       helix = wlib.evalPackage {
         inherit pkgs;
         imports = [ wlib.wrapperModules.helix ];

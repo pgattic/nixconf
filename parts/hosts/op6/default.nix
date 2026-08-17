@@ -23,7 +23,7 @@
           self'.packages.neovim
           self'.packages.btop
           self'.packages.git
-          inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default
+          self'.packages.helium
           pkgs.signal-desktop
           pkgs.lazygit
           pkgs.librewolf
