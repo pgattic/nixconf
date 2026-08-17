@@ -25,6 +25,26 @@
         "type": "github"
       }
     },
+    "anbernix": {
+      "inputs": {
+        "nixpkgs": "nixpkgs",
+        "rocknix": "rocknix",
+        "rocknix-joypad": "rocknix-joypad"
+      },
+      "locked": {
+        "lastModified": 1786740550,
+        "narHash": "sha256-d1+97GZ+eLWR5r4xlu0rK0Jlp1mmXDesCQfZdGOcjfY=",
+        "owner": "AmazinAxel",
+        "repo": "anbernix",
+        "rev": "c3c489c2d2b89b04e560e6feea867fb4cce2da91",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AmazinAxel",
+        "repo": "anbernix",
+        "type": "github"
+      }
+    },
     "barp": {
       "inputs": {
         "crane": "crane",
@@ -443,15 +463,15 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1784497964,
-        "narHash": "sha256-vlHUuqAcbcH2RKmHbPiuQzbv1pnzzavXnI62RD0bqCU=",
-        "owner": "nixos",
+        "lastModified": 1786599213,
+        "narHash": "sha256-yNJd40f11EzXBjSByCB7IPpeFFAdeoSKKM67dGkfFoU=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "241313f4e8e508cb9b13278c2b0fa25b9ca27163",
+        "rev": "0e251e24a4f24e036a084b6b4b2d2491af4167f4",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
+        "owner": "NixOS",
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
@@ -485,6 +505,22 @@
       "original": {
         "owner": "nix-community",
         "repo": "nixpkgs.lib",
+        "type": "github"
+      }
+    },
+    "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1784497964,
+        "narHash": "sha256-vlHUuqAcbcH2RKmHbPiuQzbv1pnzzavXnI62RD0bqCU=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "241313f4e8e508cb9b13278c2b0fa25b9ca27163",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
         "type": "github"
       }
     },
@@ -547,9 +583,43 @@
         "type": "github"
       }
     },
+    "rocknix": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786694441,
+        "narHash": "sha256-UPw7fLXxikq5g0hEAu9pbUc7CnCBEM3l3j0ByVXMuDI=",
+        "owner": "ROCKNIX",
+        "repo": "distribution",
+        "rev": "154e275e357d3dc731d3b05494f1216a7a4a95c2",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ROCKNIX",
+        "ref": "next",
+        "repo": "distribution",
+        "type": "github"
+      }
+    },
+    "rocknix-joypad": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786650830,
+        "narHash": "sha256-CPuvujQhfnrfYO6GnlrwbEeTpzTciKaoDfoOn3V+BrE=",
+        "owner": "ROCKNIX",
+        "repo": "rocknix-joypad",
+        "rev": "1dd1115c8d231ba934253efb91ffb0c6ad8e993d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ROCKNIX",
+        "repo": "rocknix-joypad",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "anbernix": "anbernix",
         "barp": "barp",
         "copyparty": "copyparty",
         "dark-text-src": "dark-text-src",
@@ -562,7 +632,7 @@
         "nixgl": "nixgl",
         "nixos-apple-silicon": "nixos-apple-silicon",
         "nixos-hardware": "nixos-hardware",
-        "nixpkgs": "nixpkgs",
+        "nixpkgs": "nixpkgs_2",
         "noctalia": "noctalia",
         "noctalia-plugins": "noctalia-plugins",
         "nur": "nur",

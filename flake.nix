@@ -78,6 +78,7 @@
       url = "github:pgattic/barp";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    anbernix.url = "github:AmazinAxel/anbernix";
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } {
