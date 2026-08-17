@@ -28,16 +28,13 @@ environment.systemPackages = with pkgs; [ git neovim nh ];
         networking.hostName = "new-computer";
         system.stateVersion = "25.05";
 
-        # Examples of modifying config values (consult `/modules/options.nix` for more info)
-        my.user.name = "pgattic";
-
         environment.systemPackages = [
           self'.packages.foot
           pkgs.rnote
         ];
 
         # Example of adding some home-manager config
-        home-manager.users.${config.my.user.name}.programs.chromium = {
+        home-manager.users.pgattic.programs.chromium = {
           enable = true;
           package = pkgs.ungoogled-chromium;
         };

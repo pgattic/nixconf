@@ -86,8 +86,7 @@
     imports = [
       inputs.home-manager.flakeModules.home-manager
       inputs.flake-parts.flakeModules.easyOverlay
-      (inputs.import-tree ./modules)
+      (inputs.import-tree ./parts)
     ];
   };
 }
-
