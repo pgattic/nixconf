@@ -5,25 +5,27 @@
     tomlFormat = pkgs.formats.toml { };
     sys = pkgs.stdenv.hostPlatform.system;
     noctalia5-package = inputs.noctalia.packages.${sys}.default;
-    # There shall be no Perl (enable this on the next update)
-    # noctalia5-package = inputs.noctalia.packages.${sys}.default.override {
-    #   git = pkgs.gitMinimal;
+    # noctalia5-package = pkgs.replaceDependency {
+    #   drv = inputs.noctalia.packages.${sys}.default;
+    #   oldDependency = pkgs.git;
+    #   newDependency = pkgs.gitMinimal;
     # };
     default_config = {
-      bar = {
-        default = {
-          background_opacity = self.desktop.opacity;
-          start = [ "workspaces" "cpumon" "memmon" "tempmon" "media" ];
-          center = [ "active_window" ];
-          end = [ "tray" "clipboard" "brightness" "volume" "bluetooth" "network" "battery" "notifications" "clock" "control-center" ];
-          margin_edge = 0;
-          margin_ends = 0;
-          padding = 6;
-          radius = 0;
-          shadow = false;
-          thickness = 24;
-          widget_spacing = 12;
-        };
+      bar.default = {
+        capsule_group = [
+          { id = "monitor"; opacity = 0; members = [ "cpumon" "memmon" "tempmon" ]; }
+        ];
+        start = [ "workspaces" "group:monitor" "media" ];
+        center = [ "active_window" ];
+        end = [ "tray" "clipboard" "brightness" "volume" "bluetooth" "network" "battery" "notifications" "clock" "control-center" ];
+        background_opacity = self.desktop.opacity;
+        margin_edge = 0;
+        margin_ends = 0;
+        padding = 6;
+        radius = 0;
+        shadow = false;
+        thickness = 24;
+        widget_spacing = 12;
       };
       audio.enable_overdrive = true;
       control_center.sidebar_section = "none";
@@ -43,6 +45,10 @@
         mode = "dark";
         source = "custom";
         custom_palette = "MyGHDark";
+        templates = {
+          enable_builtin_templates = false;
+          enable_community_templates = false;
+        };
       };
       wallpaper = {
         directory = "${assets}/wallpapers";
@@ -51,7 +57,7 @@
       };
       weather.unit = "imperial";
       widget = let
-        sysmon_stat = stat: { inherit stat; type = "sysmon"; show_label = false; };
+        sysmon_stat = stat: { inherit stat; type = "sysmon"; show_value = false; };
       in {
         # Default Widget Customization
         active_window.max_length = 800;
@@ -66,8 +72,7 @@
         network.show_label = false;
         volume.show_label = false;
         workspaces = {
-          # labels_only_when_occupied = true;
-          display = "none"; # No labels
+          show_labels = false;
           pill_scale = 0.75;
         };
 

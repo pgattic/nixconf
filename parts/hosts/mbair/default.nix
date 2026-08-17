@@ -9,7 +9,7 @@
       inputs.self.nixosModules.remote-builder
       inputs.self.nixosModules.work
 
-      ({ pkgs, ... }: {
+      ({ lib, pkgs, ... }: {
         networking.hostName = "mbair";
         system.stateVersion = "25.11";
         boot.loader.efi.canTouchEfiVariables = false;
@@ -27,8 +27,8 @@
         # };
 
         nix.settings = {
-          substituters = [ "https://nixos-apple-silicon.cachix.org" ];
-          trusted-public-keys = [ "nixos-apple-silicon.cachix.org-1:8psDu5SA5dAD7qA0zMy5UT292TxeEPzIz8VVEr2Js20=" ];
+          substituters = lib.mkAfter [ "https://nixos-apple-silicon.cachix.org" ];
+          trusted-public-keys = lib.mkAfter [ "nixos-apple-silicon.cachix.org-1:8psDu5SA5dAD7qA0zMy5UT292TxeEPzIz8VVEr2Js20=" ];
         };
 
         fonts.packages = [

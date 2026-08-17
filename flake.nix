@@ -70,10 +70,7 @@
       url = "github:noctalia-dev/noctalia-plugins";
       flake = false;
     };
-    noctalia = {
-      url = "github:noctalia-dev/noctalia";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    noctalia.url = "github:noctalia-dev/noctalia";
     barp = {
       url = "github:pgattic/barp";
       inputs.nixpkgs.follows = "nixpkgs";
