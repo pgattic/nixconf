@@ -117,10 +117,10 @@
         package = pkgs.luanti-client;
         env.SDL_VIDEODRIVER = "wayland,x11"; # Prefer wayland first, fall back to xorg
       };
-      nh = wlib.wrapPackage {
+      nh = wlib.evalPackage {
         inherit pkgs;
-        package = pkgs.nh;
-        env.NH_FLAKE = "/home/pgattic/nixconf";
+        imports = [ wlib.wrapperModules.nh ];
+        flake = "/home/pgattic/nixconf";
       };
       sioyek = wlib.wrapPackage {
         inherit pkgs;
