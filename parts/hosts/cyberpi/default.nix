@@ -33,7 +33,7 @@
           self'.packages.neovim
           self'.packages.btop
           self'.packages.git
-          pkgs.ungoogled-chromium
+          self'.packages.helium
         ];
 
         programs.niri = {

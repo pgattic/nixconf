@@ -51,6 +51,7 @@
           self'.packages.btop
           self'.packages.git
           self'.packages.helium
+          self'.packages.nestopia-ue
           inputs.wasmcarts.packages.${pkgs.stdenv.hostPlatform.system}.engine-linux
           pkgs.signal-desktop
           pkgs.element-desktop

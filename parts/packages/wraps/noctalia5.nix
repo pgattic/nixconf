@@ -66,7 +66,7 @@
           show_label = false;
         };
         brightness.show_label = false;
-        clock.format = "{:%a %b %d %l:%M %p}";
+        clock.format = "{:%a %b %d %-I:%M %p}";
         control-center.custom_image = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
         media.hide_when_no_media = true;
         network.show_label = false;

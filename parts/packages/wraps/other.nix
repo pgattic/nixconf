@@ -117,6 +117,9 @@
         package = pkgs.luanti-client;
         env.SDL_VIDEODRIVER = "wayland,x11"; # Prefer wayland first, fall back to xorg
       };
+      nestopia-ue = pkgs.nestopia-ue.override {
+        fltk = pkgs.fltk_1_4;
+      };
       nh = wlib.evalPackage {
         inherit pkgs;
         imports = [ wlib.wrapperModules.nh ];
