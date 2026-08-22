@@ -2,7 +2,7 @@
   flake = {
     desktop = {
       opacity = 0.85;
-      corner-radius = 10.0;
+      corner-radius = 12.0;
     };
     server = {
       domain = "corlessfamily.net";

@@ -93,6 +93,7 @@
             geometry-corner-radius = with self.desktop; [ corner-radius corner-radius corner-radius corner-radius ];
             clip-to-geometry = true;
             background-effect.blur = true;
+            draw-border-with-background = false;
           }
           { # KDE Connect Presentation Pointer fix
             matches = [ { app-id = "org.kde.kdeconnect.daemon"; } ];
@@ -119,7 +120,7 @@
         binds = {
           "Mod+Return" = _: { props.hotkey-overlay-title = "Spawn terminal"; content.spawn = [ "foot" ]; };
           "Mod+N" = _: { props.hotkey-overlay-title = "Quick note"; content.spawn = [ "foot" "nvim" "note.md" ]; };
-          "Mod+E" = _: { props.hotkey-overlay-title = "File Manager"; content.spawn = [ "dolphin" ]; };
+          "Mod+E" = _: { props.hotkey-overlay-title = "File Manager"; content.spawn = [ "cosmic-files" ]; };
 
           "Mod+Shift+Slash".show-hotkey-overlay = {};
 
