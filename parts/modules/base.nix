@@ -42,7 +42,6 @@ in {
         size = 16*1024; # 16 GiB
       }];
 
-
       home-manager = {
         useUserPackages = true;
         extraSpecialArgs = { inherit inputs; };
@@ -73,6 +72,11 @@ in {
           "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
         ];
       };
+
+      fonts.packages = [
+        pkgs.noto-fonts-cjk-sans
+        pkgs.noto-fonts-cjk-serif
+      ];
 
       services = {
         fwupd.enable = lib.mkDefault true;
