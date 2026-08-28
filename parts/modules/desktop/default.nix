@@ -4,7 +4,6 @@
       imports = [
         config.flake.nixosModules.desktop-base
         config.flake.nixosModules.bluetooth
-        config.flake.nixosModules.portals
       ];
     };
     homeModules.desktop-default = {
