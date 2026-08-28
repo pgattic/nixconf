@@ -14,12 +14,17 @@
 
         users.users.pgattic.extraGroups = [ "dialout" ];
 
-        home-manager.users.pgattic.imports = [
-          inputs.self.homeModules.base
-          inputs.self.homeModules.desktop
-          inputs.self.homeModules.stylix
-          inputs.self.homeModules.browser
-        ];
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          extraSpecialArgs = { inherit inputs; };
+          users.pgattic.imports = [
+            inputs.self.homeModules.base
+            inputs.self.homeModules.desktop
+            inputs.self.homeModules.stylix
+            inputs.self.homeModules.browser
+          ];
+        };
 
         environment.systemPackages = [
           self'.packages.foot-rude-sfw

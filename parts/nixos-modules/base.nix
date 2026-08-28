@@ -1,0 +1,62 @@
+{ inputs, self, ... }: {
+  flake.nixosModules.base = { config, lib, pkgs, ... }: {
+    nixpkgs = {
+      overlays = [
+        inputs.nur.overlays.default # Nix User Repository
+        self.overlays.default
+      ];
+      config.allowUnfree = true;
+      config.permittedInsecurePackages = [
+        "ventoy-1.1.10"
+      ];
+    };
+
+    boot.loader.systemd-boot.enable = lib.mkDefault true;
+    boot.loader.systemd-boot.configurationLimit = lib.mkDefault 10;
+    # Allow NixOS to add itself to bootloader options
+    boot.loader.efi.canTouchEfiVariables = lib.mkDefault true;
+    # Don't kill the user session when I rebuild
+    services.logind.settings.Login.killUserProcesses = lib.mkDefault false;
+    # systemd.services."systemd-logind".restartIfChanged = lib.mkDefault false;
+    boot.zswap.enable = lib.mkDefault true;
+    swapDevices = [{
+      device = "/var/lib/swapfile";
+      size = 16*1024; # 16 GiB
+    }];
+
+    time.timeZone = "America/Boise";
+    i18n.defaultLocale = "en_US.UTF-8";
+    i18n.extraLocaleSettings = {
+      LC_ADDRESS = "en_US.UTF-8";
+      LC_IDENTIFICATION = "en_US.UTF-8";
+      LC_MEASUREMENT = "en_US.UTF-8";
+      LC_MONETARY = "en_US.UTF-8";
+      LC_NAME = "en_US.UTF-8";
+      LC_NUMERIC = "en_US.UTF-8";
+      LC_PAPER = "en_US.UTF-8";
+      LC_TELEPHONE = "en_US.UTF-8";
+      LC_TIME = "en_US.UTF-8";
+    };
+
+    nix.settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      trusted-users = ["root" "@wheel" ];
+      substituters = lib.mkAfter [
+        "https://noctalia.cachix.org"
+      ];
+      trusted-public-keys = lib.mkAfter [
+        "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+      ];
+    };
+
+    fonts.packages = [
+      pkgs.noto-fonts-cjk-sans
+      pkgs.noto-fonts-cjk-serif
+    ];
+
+    services = {
+      fwupd.enable = lib.mkDefault true;
+      openssh.package = pkgs.openssh_hpn;
+    };
+  };
+}

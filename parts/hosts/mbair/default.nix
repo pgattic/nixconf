@@ -3,6 +3,7 @@
     modules = [
       ./_hardware.nix
       inputs.nixos-apple-silicon.nixosModules.apple-silicon-support
+      inputs.home-manager.nixosModules.home-manager
       inputs.self.nixosModules.default
       inputs.self.nixosModules.desktop-default
       inputs.self.nixosModules.stylix
@@ -31,12 +32,17 @@
           trusted-public-keys = lib.mkAfter [ "nixos-apple-silicon.cachix.org-1:8psDu5SA5dAD7qA0zMy5UT292TxeEPzIz8VVEr2Js20=" ];
         };
 
-        home-manager.users.pgattic.imports = [
-          inputs.self.homeModules.base
-          inputs.self.homeModules.desktop
-          inputs.self.homeModules.stylix
-          inputs.self.homeModules.browser
-        ];
+        home-manager = {
+          useGlobalPkgs = true;
+          useUserPackages = true;
+          extraSpecialArgs = { inherit inputs; };
+          users.pgattic.imports = [
+            inputs.self.homeModules.base
+            inputs.self.homeModules.desktop
+            inputs.self.homeModules.stylix
+            inputs.self.homeModules.browser
+          ];
+        };
 
         environment.systemPackages = [
           self'.packages.foot
