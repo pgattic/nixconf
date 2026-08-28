@@ -1,8 +1,6 @@
 {
-  flake.homeModules.base  = { config, pkgs, ... }: {
-    programs = {
-      home-manager.enable = true;
-    };
+  flake.homeModules.base = {
+    programs.home-manager.enable = true;
     manual.manpages.enable = false;
     home.username = "pgattic";
     home.homeDirectory = "/home/pgattic";

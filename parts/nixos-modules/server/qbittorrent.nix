@@ -36,10 +36,10 @@
     ];
 
     # Diagnostic tools
-    environment.systemPackages = with pkgs; [
-      wireguard-tools
-      iproute2
-      tcpdump
+    environment.systemPackages = [
+      pkgs.wireguard-tools
+      pkgs.iproute2
+      pkgs.tcpdump
     ];
 
     users.groups.media = {};

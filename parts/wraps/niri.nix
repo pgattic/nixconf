@@ -15,13 +15,13 @@
         XDG_SESSION_DESKTOP = "niri";
       };
 
-      runtimePkgs = with pkgs; [
-        wl-clipboard
-        wf-recorder
-        wl-mirror
-        pavucontrol
-        brightnessctl
-        libnotify
+      runtimePkgs = [
+        pkgs.wl-clipboard
+        pkgs.wf-recorder
+        pkgs.wl-mirror
+        pkgs.pavucontrol
+        pkgs.brightnessctl
+        pkgs.libnotify
       ];
 
       settings = { # https://birdeehub.github.io/nix-wrapper-modules/wrapperModules/niri.html#settings
@@ -123,12 +123,7 @@
           "Mod+E" = _: { props.hotkey-overlay-title = "File Manager"; content.spawn = [ "cosmic-files" ]; };
 
           "Mod+Shift+Slash".show-hotkey-overlay = {};
-
-          # Open/close the Overview: a zoomed-out view of workspaces and windows.
-          # You can also move the mouse into the top-left hot corner,
-          # or do a four-finger swipe up on a touchpad.
           "Mod+O" = _: { props.repeat = false; content.toggle-overview = {}; };
-
           "Mod+Shift+Q".close-window = {};
 
           # Column/workspace focus – arrows
@@ -191,12 +186,11 @@
           "Mod+Shift+U".move-workspace-down = {};
           "Mod+Shift+I".move-workspace-up = {};
 
-          # "Whack with a shovel" workspace moves
+          # Workspace moves
           "Mod+Ctrl+Page_Down".move-workspace-down = {};
           "Mod+Ctrl+Page_Up".move-workspace-up = {};
           "Mod+Ctrl+U".move-workspace-down = {};
           "Mod+Ctrl+I".move-workspace-up = {};
-          # (You had commented-out versions that also reload ironbar.)
 
           # Scroll bindings (workspace/column navigation)
           "Mod+WheelScrollDown" = _: { props.cooldown-ms = 150; content.focus-workspace-down = {}; };
@@ -265,10 +259,6 @@
           "Print".screenshot = {};
           "Ctrl+Print".screenshot-screen = {};
           "Mod+Print".screenshot-window = {};
-
-          # Keyboard shortcuts inhibit
-          # allow-inhibiting=false on Mod+Escape in your KDL
-          # "Mod+Escape".toggle-keyboard-shortcuts-inhibit.enable = true;
 
           "Mod+Ctrl+Alt+E".quit = {}; # Emergency keybind for when shell is broken
           "Mod+Shift+P".power-off-monitors = {};

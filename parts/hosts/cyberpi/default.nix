@@ -17,7 +17,7 @@
         hardware.deviceTree.enable = true;
         hardware.graphics = {
           enable = true;
-          extraPackages = with pkgs; [ mesa ];
+          extraPackages = [ pkgs.mesa ];
         };
 
         networking.hostName = "cyberpi";

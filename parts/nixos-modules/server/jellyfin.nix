@@ -2,7 +2,7 @@
   flake.nixosModules.jellyfin = { config, pkgs, ... }: {
     # Help transcode movies faster
     hardware.graphics.enable = true;
-    hardware.graphics.extraPackages = with pkgs; [ intel-media-driver ]; # for newer Intel
+    hardware.graphics.extraPackages = [ pkgs.intel-media-driver ]; # for newer Intel
 
     services.jellyfin = {
       enable = true;

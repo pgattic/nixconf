@@ -10,9 +10,9 @@
 
       ({ pkgs, ... }: {
         targets.genericLinux.enable = true;
-        home.packages = with pkgs; [
+        home.packages = [
           self'.packages.foot
-          zotero
+          pkgs.zotero
         ];
       })
     ];
