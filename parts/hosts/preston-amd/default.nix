@@ -15,8 +15,8 @@
         users.users.pgattic.extraGroups = [ "dialout" ];
 
         home-manager.users.pgattic.imports = [
-          inputs.self.homeModules.default
-          inputs.self.homeModules.desktop-default
+          inputs.self.homeModules.base
+          inputs.self.homeModules.desktop
           inputs.self.homeModules.stylix
           inputs.self.homeModules.browser
         ];

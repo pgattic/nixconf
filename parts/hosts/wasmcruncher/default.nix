@@ -4,8 +4,8 @@
 
     modules = [
       config.flake.homeModules.options
-      config.flake.homeModules.default
-      config.flake.homeModules.desktop-default
+      config.flake.homeModules.base
+      config.flake.homeModules.desktop
       config.flake.homeModules.browser
 
       ({ pkgs, ... }: {

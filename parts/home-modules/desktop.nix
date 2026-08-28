@@ -1,5 +1,5 @@
 {
-  flake.homeModules.desktop-base = { pkgs, ... }: {
+  flake.homeModules.desktop = { pkgs, ... }: {
     # Disable baloo indexer (install ripgrep-all to get search functionality)
     home.file.".config/baloofilerc".text = ''
       [Basic Settings]

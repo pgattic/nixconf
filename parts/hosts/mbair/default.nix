@@ -31,14 +31,9 @@
           trusted-public-keys = lib.mkAfter [ "nixos-apple-silicon.cachix.org-1:8psDu5SA5dAD7qA0zMy5UT292TxeEPzIz8VVEr2Js20=" ];
         };
 
-        fonts.packages = [
-          pkgs.noto-fonts-cjk-sans
-          pkgs.noto-fonts-cjk-serif
-        ];
-
         home-manager.users.pgattic.imports = [
-          inputs.self.homeModules.default
-          inputs.self.homeModules.desktop-default
+          inputs.self.homeModules.base
+          inputs.self.homeModules.desktop
           inputs.self.homeModules.stylix
           inputs.self.homeModules.browser
         ];
