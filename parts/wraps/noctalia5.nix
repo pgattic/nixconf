@@ -1,6 +1,6 @@
 { inputs, self, ... }: {
   perSystem = { pkgs, self', ... }: let
-    assets = ../../../assets;
+    assets = ../../assets;
     wlib = inputs.nix-wrapper-modules.lib;
     tomlFormat = pkgs.formats.toml { };
     sys = pkgs.stdenv.hostPlatform.system;

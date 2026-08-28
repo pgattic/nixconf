@@ -1,7 +1,7 @@
 { inputs, self, ... }: {
   perSystem = { pkgs, self', ... }: let
     wlib = inputs.nix-wrapper-modules.lib;
-    assets = ../../../assets;
+    assets = ../../assets;
     term_cmd = "foot";
     top_cmd = "foot btop";
 
