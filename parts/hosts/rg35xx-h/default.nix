@@ -1,4 +1,4 @@
-{ inputs, withSystem, ... }: {
+{ inputs, self, withSystem, ... }: {
   flake.nixosConfigurations.rg35xx-h = withSystem "aarch64-linux" ({ self', ... }: inputs.nixpkgs.lib.nixosSystem {
     modules = [
       "${inputs.nixpkgs}/nixos/modules/installer/sd-card/sd-image-aarch64.nix"
@@ -20,10 +20,7 @@
         users.users.pgattic = {
           isNormalUser = true;
           extraGroups = [ "wheel" "input" "video" "audio" "uinput" "networkmanager" ];
-          openssh.authorizedKeys.keys = [
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN+tQ11EwCLxsnFls30h6ht7mEOAJ+JapnD61tzu/urS pgattic@gmail.com"
-            "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB0Qx8iBekJ07LRxUsDNm0bcSkilw7xX51LYrzz6F4xx pgattic@gmail.com"
-          ];
+          openssh.authorizedKeys.keys = self.keys.ssh;
         };
         boot.supportedFilesystems.zfs = lib.mkForce false;
 

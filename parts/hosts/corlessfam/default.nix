@@ -1,4 +1,4 @@
-{ inputs, withSystem, ... }: {
+{ inputs, self, withSystem, ... }: {
   flake.nixosConfigurations.corlessfam = withSystem "x86_64-linux" ({ self', ... }: inputs.nixpkgs.lib.nixosSystem {
     modules = [
       ./_hardware.nix
@@ -42,12 +42,7 @@
               home = "/var/lib/nixbuilder";
               createHome = true;
               shell = pkgs.bashInteractive;
-              openssh.authorizedKeys.keys = [
-                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBfNeGvgeuyLKrAzgAsfKUhpHwB9AwwdO49WgKlkqTw+ nixbuilder-mbair"
-                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIM0S/bzInee4MQiTANd23jCRTbu/Lz50KgU15+iJtbxP nixbuilder-op6"
-                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDWIqPifAxRsDOdVuApg1S2mE7y3sf8xOnO6bodTjKIT nixbuilder-surface"
-                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEtBb1uGEGrRgl8OXt+iue4bwKUSj1m5adq2n7NziyY8 nixbuilder-t480"
-              ];
+              openssh.authorizedKeys.keys = self.keys.builder;
             };
             pgattic = {
               shell = (self'.packages.nushell-env.apply {
@@ -63,10 +58,7 @@
                 pkgs.xemu
                 pkgs.xenia-canary
               ];
-              openssh.authorizedKeys.keys =[
-                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIN+tQ11EwCLxsnFls30h6ht7mEOAJ+JapnD61tzu/urS pgattic@gmail.com" # t480
-                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIB0Qx8iBekJ07LRxUsDNm0bcSkilw7xX51LYrzz6F4xx pgattic@gmail.com" # mbair
-              ];
+              openssh.authorizedKeys.keys = self.keys.ssh;
             };
           };
         };
