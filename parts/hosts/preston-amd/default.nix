@@ -4,7 +4,6 @@
       ./_hardware.nix
       inputs.self.nixosModules.default
       inputs.self.nixosModules.desktop-default
-      inputs.self.nixosModules.stylix
 
       ({ pkgs, ... }: {
         networking.hostName = "preston-amd";

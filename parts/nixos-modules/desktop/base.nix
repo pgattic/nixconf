@@ -1,16 +1,27 @@
-{
+{ self, ... }: {
   flake.nixosModules.desktop-base = { config, lib, pkgs, ... }: {
     boot.plymouth.enable = lib.mkDefault true;
     boot.loader.systemd-boot.consoleMode = "max"; # Make plymouth full resolution
-    services.xserver.xkb = {
-      layout = "us";
-      variant = "";
-    };
     xdg.portal.xdgOpenUsePortal = true;
 
-    environment.sessionVariables = {
-      NIXOS_OZONE_WL = "1";
-    };
+    console.colors = with self.theme; [
+      base00 # 0: Normal Black
+      base08 # 1: Normal Red
+      base0B # 2: Normal Green
+      base0A # 3: Normal Yellow
+      base0D # 4: Normal Blue
+      base0E # 5: Normal Magenta
+      base0C # 6: Normal Cyan
+      base05 # 7: Normal White
+      base03 # 8: Bright Black (Gray)
+      base08 # 9: Bright Red
+      base0B # 10: Bright Green
+      base0A # 11: Bright Yellow
+      base0D # 12: Bright Blue
+      base0E # 13: Bright Magenta
+      base0C # 14: Bright Cyan
+      base07 # 15: Bright White
+    ];
 
     services = {
       upower.enable = lib.mkDefault true;

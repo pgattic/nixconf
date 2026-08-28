@@ -6,7 +6,6 @@
       inputs.home-manager.nixosModules.home-manager
       inputs.self.nixosModules.default
       inputs.self.nixosModules.desktop-default
-      inputs.self.nixosModules.stylix
       inputs.self.nixosModules.remote-builder
       inputs.self.nixosModules.work
 

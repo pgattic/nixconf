@@ -14,6 +14,9 @@
         "video/x-matroska" = "mpv.desktop";
         "video/vnd.avi" = "mpv.desktop";
         "video/mp4" = "mpv.desktop";
+        # "text/html" = "librewolf.desktop";
+        # "x-scheme-handler/http" = "librewolf.desktop";
+        # "x-scheme-handler/https" = "librewolf.desktop";
       };
     };
   };
