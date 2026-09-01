@@ -138,18 +138,6 @@
       };
     });
 
-    noctalia-activate-linux = noctalia-base.config.apply ({ ... }: {
-      preInstalledPlugins.activate-linux = {
-        src = "${inputs.noctalia-plugins.outPath}/activate-linux";
-        sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-        settings = {
-          customizeText = true;
-          firstLine = "Activate Linux";
-          secondLine = "Go to Settings to activate Linux.";
-        };
-      };
-    });
-
     noctalia-touch = noctalia-base.config.apply ({ lib, ... }: {
       settings = {
         appLauncher.viewMode = "grid";
@@ -222,7 +210,6 @@
   in {
     packages = {
       noctalia = noctalia-base.config.wrapper;
-      noctalia-activate-linux = noctalia-activate-linux.wrapper;
       noctalia-touch = noctalia-touch.wrapper;
       noctalia-mobile = noctalia-mobile.wrapper;
     };

@@ -33,14 +33,12 @@
           pkgs.ripgrep-all
         ];
 
-        programs = {
-          niri = {
-            enable = true;
-            useNautilus = false;
-            package = (self'.packages.niri-noctalia5-activate-linux.apply {
-              settings.outputs."eDP-1".scale = 1.0;
-            }).wrapper;
-          };
+        programs.niri = {
+          enable = true;
+          useNautilus = false;
+          package = (self'.packages.niri-noctalia5-activate-linux.apply {
+            settings.outputs."eDP-1".scale = 1.0;
+          }).wrapper;
         };
 
         services = {

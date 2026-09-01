@@ -46,10 +46,6 @@
       url = "github:9001/copyparty";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixgl = {
-      url = "github:nix-community/nixGL";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     vpn-confinement.url = "github:Maroka-chan/VPN-Confinement";
     helium = {
       url = "github:schembriaiden/helium-browser-nix-flake";
@@ -64,10 +60,6 @@
     };
     dark-text-src = {
       url = "github:vimjoyer/dark-text";
-      flake = false;
-    };
-    noctalia-plugins = {
-      url = "github:noctalia-dev/noctalia-plugins";
       flake = false;
     };
     noctalia.url = "github:noctalia-dev/noctalia/cachix";

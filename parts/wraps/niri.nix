@@ -336,10 +336,6 @@
       };
     };
 
-    niri-activate-linux = (mkNiri self'.packages.noctalia-activate-linux).apply {
-      settings.prefer-no-csd = {};
-    };
-
     niri-touch = mkNiri self'.packages.noctalia-touch;
 
     niri-mobile = (mkNiri self'.packages.noctalia-mobile).apply ({ lib, ... }: {
@@ -357,7 +353,6 @@
       niri = niri.wrapper;
       niri-touch = niri-touch.wrapper;
       niri-mobile = niri-mobile.wrapper;
-      niri-activate-linux = niri-activate-linux.wrapper;
       niri-noctalia5 = niri-noctalia5.wrapper;
       niri-noctalia5-activate-linux = niri-noctalia5-activate-linux.wrapper;
     };
