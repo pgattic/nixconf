@@ -40,16 +40,16 @@
         general = {
           enableShadows = false;
           enableBlurBehind = false;
-          radiusRatio = self.desktop.corner-radius / 20.0;
+          radiusRatio = self.lib.desktop.corner-radius / 20.0;
           avatarImage = "${assets}/profile.jpg";
           enableLockScreenMediaControls = true;
           clockStyle = "digital"; # This setting configures the lock screen clock
         };
         ui = {
-          panelBackgroundOpacity = self.desktop.opacity;
+          panelBackgroundOpacity = self.lib.desktop.opacity;
           settingsPanelMode = "window";
         };
-        notifications.backgroundOpacity = self.desktop.opacity;
+        notifications.backgroundOpacity = self.lib.desktop.opacity;
         dock.enabled = false;
         bar = {
           density = "compact";
@@ -92,7 +92,7 @@
         audio.volumeOverdrive = true;
         osd = { # Popup for volume/brightness changes
           location = "bottom";
-          backgroundOpacity = self.desktop.opacity;
+          backgroundOpacity = self.lib.desktop.opacity;
         };
         nightLight.enabled = true;
         # idle.enabled = true;

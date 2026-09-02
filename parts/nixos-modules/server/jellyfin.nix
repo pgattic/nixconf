@@ -13,7 +13,7 @@
     systemd.services.jellyfin.after = [ "zfs-mount.service" ];
     systemd.services.jellyfin.requires = [ "zfs-mount.service" ];
 
-    services.nginx.virtualHosts."cinema.${self.server.domain}" = {
+    services.nginx.virtualHosts."cinema.${self.lib.server.domain}" = {
       enableACME = true;
       forceSSL = true;
       locations."/" = {

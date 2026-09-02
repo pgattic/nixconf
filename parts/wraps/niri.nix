@@ -79,7 +79,7 @@
             position = "left";
             place-within-column = true;
             gaps-between-tabs = 8;
-            corner-radius = self.desktop.corner-radius;
+            corner-radius = self.lib.desktop.corner-radius;
           };
         };
         cursor = {
@@ -90,7 +90,7 @@
         };
         window-rules = [
           { # General rules
-            geometry-corner-radius = with self.desktop; [ corner-radius corner-radius corner-radius corner-radius ];
+            geometry-corner-radius = with self.lib.desktop; [ corner-radius corner-radius corner-radius corner-radius ];
             clip-to-geometry = true;
             background-effect.blur = true;
             draw-border-with-background = false;
@@ -341,7 +341,7 @@
     niri-mobile = (mkNiri self'.packages.noctalia-mobile).apply ({ lib, ... }: {
       settings = {
         window-rules = lib.mkForce [{
-          geometry-corner-radius = with self.desktop; [ corner-radius corner-radius corner-radius corner-radius ];
+          geometry-corner-radius = with self.lib.desktop; [ corner-radius corner-radius corner-radius corner-radius ];
           clip-to-geometry = true;
           open-maximized-to-edges = true; # Just wanted to override this
         }];

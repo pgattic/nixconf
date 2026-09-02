@@ -5,7 +5,7 @@
       set -euo pipefail
 
       HOSTS=("@" "www" "cinema" "cookbook" "files" "git" "finances" "library" "photos" "roms" "traccar")
-      DOMAIN="${self.server.domain}"
+      DOMAIN="${self.lib.server.domain}"
 
       : "''${NAMECHEAP_DDNS_PASSWORD:?missing NAMECHEAP_DDNS_PASSWORD}"
 

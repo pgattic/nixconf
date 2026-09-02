@@ -162,7 +162,7 @@
       zed-editor = wlib.wrapPackage ({ lib, ... }: {
         inherit pkgs;
         package = pkgs.zed-editor;
-        extraPackages = [ # Some libs that Codex depends on
+        runtimePkgs = [ # Some libs that Codex depends on
           pkgs.libcap
           pkgs.libz
         ];

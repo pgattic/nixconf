@@ -7,7 +7,7 @@
       };
     };
 
-    services.nginx.virtualHosts."traccar.${self.server.domain}" = {
+    services.nginx.virtualHosts."traccar.${self.lib.server.domain}" = {
       enableACME = true;
       forceSSL = true;
       locations."/" = {

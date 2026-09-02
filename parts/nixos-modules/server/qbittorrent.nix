@@ -3,7 +3,7 @@
     webuiPort = 6969;
     peerPort = 51413;
     lanCidr = "192.168.1.0/24";
-    defaultDir = "${self.server.paths.media}/default";
+    defaultDir = "${self.lib.server.paths.media}/default";
 
     qbUser = "qbittorrent";
     qbGroup = "qbittorrent";
@@ -48,7 +48,7 @@
 
     vpnNamespaces."wg" = {
       enable = true;
-      wireguardConfigFile = "${self.server.paths.secrets}/mullvad_wireguard_linux_us_slc/us-mia-wg-101.conf";
+      wireguardConfigFile = "${self.lib.server.paths.secrets}/mullvad_wireguard_linux_us_slc/us-mia-wg-101.conf";
       accessibleFrom = [ lanCidr ];
       portMappings = [
         { from = webuiPort; to = webuiPort; protocol = "tcp"; }
@@ -93,7 +93,7 @@
     # Ensure access to download directory
     systemd.tmpfiles.rules = [
       # media root — group controlled, not qbittorrent owned
-      "z ${self.server.paths.media} 2775 root media - -"
+      "z ${self.lib.server.paths.media} 2775 root media - -"
 
       # default download dir writable by qbittorrent
       "z ${defaultDir} 2775 ${qbUser} media - -"

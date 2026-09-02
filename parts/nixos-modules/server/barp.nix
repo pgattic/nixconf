@@ -22,7 +22,7 @@
       "d /tank/store/barp 0750 barp barp -"
     ];
 
-    services.nginx.virtualHosts."roms.${self.server.domain}" = {
+    services.nginx.virtualHosts."roms.${self.lib.server.domain}" = {
       enableACME = true;
       forceSSL = true;
       locations."/" = {

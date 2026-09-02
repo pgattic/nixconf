@@ -6,7 +6,7 @@
     };
     users.users.audiobookshelf.extraGroups = [ "media" ];
 
-    services.nginx.virtualHosts."library.${self.server.domain}" = {
+    services.nginx.virtualHosts."library.${self.lib.server.domain}" = {
       enableACME = true;
       forceSSL = true;
       locations."/" = {

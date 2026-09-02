@@ -10,7 +10,7 @@
       enable = true;
       overlays.enable = false;
       polarity = "dark";
-      base16Scheme = self.theme;
+      base16Scheme = self.lib.theme;
       cursor = {
         package = pkgs.bibata-cursors;
         name = "Bibata-Modern-Classic";
@@ -29,7 +29,7 @@
         dark = "Papirus-Dark";
         light = "Papirus-Light";
       };
-      opacity = with self.desktop; {
+      opacity = with self.lib.desktop; {
         applications = opacity;
         desktop = opacity;
         popups = opacity;

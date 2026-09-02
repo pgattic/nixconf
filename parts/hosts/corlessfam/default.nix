@@ -23,6 +23,7 @@
         boot.supportedFilesystems = [ "zfs" ];
         boot.zfs.extraPools = [ "tank" ]; # Automatic mounting
         services.zfs.autoScrub.enable = true;
+        boot.zfs.forceImportRoot = false; # Will be the default setting soon
 
         networking.hostId = "6e005e0f"; # head -c 8 /etc/machine-id
         networking.hostName = "corlessfam";
@@ -42,7 +43,7 @@
               home = "/var/lib/nixbuilder";
               createHome = true;
               shell = pkgs.bashInteractive;
-              openssh.authorizedKeys.keys = self.keys.builder;
+              openssh.authorizedKeys.keys = self.lib.keys.builder;
             };
             pgattic = {
               shell = (self'.packages.nushell-env.apply {
@@ -58,7 +59,7 @@
                 pkgs.xemu
                 pkgs.xenia-canary
               ];
-              openssh.authorizedKeys.keys = self.keys.ssh;
+              openssh.authorizedKeys.keys = self.lib.keys.ssh;
             };
           };
         };

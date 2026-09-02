@@ -20,7 +20,7 @@
         users.users.pgattic = {
           isNormalUser = true;
           extraGroups = [ "wheel" "input" "video" "audio" "uinput" "networkmanager" ];
-          openssh.authorizedKeys.keys = self.keys.ssh;
+          openssh.authorizedKeys.keys = self.lib.keys.ssh;
         };
         boot.supportedFilesystems.zfs = lib.mkForce false;
 
@@ -28,7 +28,6 @@
           initrd = {
             availableKernelModules = [ "usbhid" "hid" "evdev" "uinput" ];
             allowMissingModules = true;
-            systemd.enable = false;
           };
           loader = {
             systemd-boot.enable = false;

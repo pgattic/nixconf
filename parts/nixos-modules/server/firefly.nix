@@ -11,7 +11,7 @@
     services.firefly-iii = {
       enable = true;
       enableNginx = true;
-      virtualHost = "finances.${self.server.domain}";
+      virtualHost = "finances.${self.lib.server.domain}";
 
       settings = {
         APP_ENV = "production";
@@ -28,7 +28,7 @@
         # TRUSTED_PROXIES = "**";
       };
     };
-    services.nginx.virtualHosts."finances.${self.server.domain}" = {
+    services.nginx.virtualHosts."finances.${self.lib.server.domain}" = {
       enableACME = true;
       forceSSL = true;
     };

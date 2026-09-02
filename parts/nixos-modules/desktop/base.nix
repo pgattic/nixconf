@@ -4,7 +4,7 @@
     boot.loader.systemd-boot.consoleMode = "max"; # Make plymouth full resolution
     xdg.portal.xdgOpenUsePortal = true;
 
-    console.colors = with self.theme; [
+    console.colors = with self.lib.theme; [
       base00 # 0: Normal Black
       base08 # 1: Normal Red
       base0B # 2: Normal Green

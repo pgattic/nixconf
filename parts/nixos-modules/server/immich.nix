@@ -19,7 +19,7 @@
     systemd.services.postgresql.requires = [ "zfs-mount.service" ];
     users.users.immich.extraGroups = [ "copypartyaccess" ];
 
-    services.nginx.virtualHosts."photos.${self.server.domain}" = {
+    services.nginx.virtualHosts."photos.${self.lib.server.domain}" = {
       enableACME = true;
       forceSSL = true;
       locations."/" = {

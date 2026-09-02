@@ -1,5 +1,5 @@
 { inputs, self, ... }: let port = 3683; in {
-  flake.nixosModules.copyparty = { config, lib, ... }: let cfg = self.server; in {
+  flake.nixosModules.copyparty = { config, lib, ... }: let cfg = self.lib.server; in {
 
     imports = [ inputs.copyparty.nixosModules.default ];
     nixpkgs.overlays = [ inputs.copyparty.overlays.default ];

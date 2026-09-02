@@ -6,7 +6,7 @@
       stateDir = "/tank/store/forgejo";
       settings = {
         server = rec {
-          DOMAIN = "git.${self.server.domain}";
+          DOMAIN = "git.${self.lib.server.domain}";
           ROOT_URL = "https://${DOMAIN}/";
           HTTP_ADDR = "127.0.0.1";
           HTTP_PORT = port;
@@ -19,7 +19,7 @@
     systemd.services.forgejo.after = [ "zfs-mount.service" ];
     systemd.services.forgejo.requires = [ "zfs-mount.service" ];
 
-    services.nginx.virtualHosts."git.${self.server.domain}" = {
+    services.nginx.virtualHosts."git.${self.lib.server.domain}" = {
       enableACME = true;
       forceSSL = true;
       locations."/" = {

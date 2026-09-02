@@ -34,7 +34,7 @@
         };
         mouse-bindings.primary-paste = "none";
         colors-dark = {
-          alpha = self.desktop.opacity;
+          alpha = self.lib.desktop.opacity;
           background = "1e1e1e"; # Was 1e1e1e
           foreground = "cccccc";
           regular0 = "000000";

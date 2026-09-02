@@ -1,6 +1,6 @@
 { self, ... }: {
   flake.nixosModules.cookbook = { lib, pkgs, ... }: let
-    sourceDir = "${self.server.paths.store}/cookbook";
+    sourceDir = "${self.lib.server.paths.store}/cookbook";
     homeDir = "/var/lib/cookbook-site";
     outputDir = "/var/lib/cookbook-site/public";
 
@@ -94,7 +94,7 @@
       '';
     };
 
-    services.nginx.virtualHosts."cookbook.${self.server.domain}" = {
+    services.nginx.virtualHosts."cookbook.${self.lib.server.domain}" = {
       forceSSL = true;
       enableACME = true;
       root = outputDir;

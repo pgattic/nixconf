@@ -18,7 +18,7 @@
         start = [ "workspaces" "group:monitor" "media" ];
         center = [ "active_window" ];
         end = [ "tray" "clipboard" "brightness" "volume" "bluetooth" "network" "battery" "notifications" "clock" "control-center" ];
-        background_opacity = self.desktop.opacity;
+        background_opacity = self.lib.desktop.opacity;
         margin_edge = 0;
         margin_ends = 0;
         padding = 6;
@@ -33,7 +33,7 @@
       location.address = "Provo, United States";
       nightlight.enabled = true;
       osd = {
-        background_opacity = self.desktop.opacity;
+        background_opacity = self.lib.desktop.opacity;
         position = "bottom_center";
       };
       shell = {

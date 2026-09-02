@@ -1,5 +1,5 @@
 {
-  flake = {
+  flake.lib = {
     theme = {
       # Da one gray colors
       base00 = "181818";
