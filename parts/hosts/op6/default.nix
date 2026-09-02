@@ -34,12 +34,12 @@
         programs.niri = {
           enable = true;
           useNautilus = false;
-          package = self'.packages.niri-mobile.apply ({ lib, ... }: {
+          package = (self'.packages.niri-mobile.apply ({ lib, ... }: {
             settings = {
               spawn-at-startup = [ [ (lib.getExe self'.packages.lisgd-op6) ] ];
               outputs."DSI-1".scale = 2.0;
             };
-          }).wrapper;
+          })).wrapper;
         };
 
         services = {

@@ -30,9 +30,9 @@
         programs.niri = {
           enable = true;
           useNautilus = false;
-          package = self'.packages.niri-touch.apply ({ lib, ... }: {
+          package = (self'.packages.niri-touch.apply ({ lib, ... }: {
             settings.spawn-at-startup = [ [ (lib.getExe self'.packages.lisgd-surface) ] ];
-          }).wrapper;
+          })).wrapper;
         };
       })
     ];

@@ -2,6 +2,7 @@
   flake.nixosConfigurations.preston-amd = withSystem "x86_64-linux" ({ self', ... }: inputs.nixpkgs.lib.nixosSystem {
     modules = [
       ./_hardware.nix
+      inputs.home-manager.nixosModules.home-manager
       inputs.self.nixosModules.default
       inputs.self.nixosModules.desktop-default
 

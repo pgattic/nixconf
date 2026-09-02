@@ -39,7 +39,7 @@
         programs.niri = {
           enable = true;
           useNautilus = false;
-          package = self'.packages.niri-touch.apply ({ lib, ... }: {
+          package = (self'.packages.niri-touch.apply {
             settings.input.mod-key = "Alt";
           }).wrapper;
         };
