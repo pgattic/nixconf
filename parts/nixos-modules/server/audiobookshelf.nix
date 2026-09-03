@@ -12,9 +12,6 @@
       locations."/" = {
         proxyPass = "http://127.0.0.1:${builtins.toString port}";
         proxyWebsockets = true;
-        extraConfig = ''
-          proxy_redirect http:// $scheme://;
-        '';
       };
     };
   };

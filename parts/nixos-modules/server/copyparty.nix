@@ -13,7 +13,7 @@
     services.copyparty = {
       enable = true;
       settings = {
-        i = "0.0.0.0";
+        i = "127.0.0.1";
         p = [ port ];
         md-hist = "/var/lib/copyparty/md-hist"; # Store markdown backups externally
         # I was told to put these three for some reason
@@ -71,7 +71,6 @@
           path = "${cfg.paths.store}/corless-archive";
           access = {
             A = [ "jstucor" "pgattic" "rgattic" "skylar" ];
-            r = [ "guest" ];
           };
         };
       };
@@ -126,7 +125,6 @@
       locations."/" = {
         proxyPass = "http://127.0.0.1:${builtins.toString port}";
         proxyWebsockets = true;
-        recommendedProxySettings = true;
         extraConfig = ''
           client_max_body_size 50000M;
           proxy_read_timeout   600s;

@@ -26,10 +26,6 @@
           proxy_read_timeout 3600s;
           proxy_send_timeout 3600s;
           send_timeout 3600s;
-          proxy_set_header Range $http_range;
-          proxy_set_header If-Range $http_if_range;
-          proxy_set_header Upgrade $http_upgrade;
-          proxy_set_header Connection $http_connection;
         '';
       };
     };
