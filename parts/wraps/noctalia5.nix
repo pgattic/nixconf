@@ -3,10 +3,9 @@
     assets = ../../assets;
     wlib = inputs.nix-wrapper-modules.lib;
     tomlFormat = pkgs.formats.toml { };
-    sys = pkgs.stdenv.hostPlatform.system;
-    noctalia5-package = inputs.noctalia.packages.${sys}.default;
-    # noctalia5-package = pkgs.replaceDependency {
-    #   drv = inputs.noctalia.packages.${sys}.default;
+    noctalia-package = pkgs.noctalia;
+    # noctalia-package = pkgs.replaceDependency {
+    #   drv = pkgs.noctalia;
     #   oldDependency = pkgs.git;
     #   newDependency = pkgs.gitMinimal;
     # };
@@ -35,11 +34,13 @@
       osd = {
         background_opacity = self.lib.desktop.opacity;
         position = "bottom_center";
+        position_vertical = "center_right";
       };
       shell = {
         avatar_path = "${assets}/profile.jpg";
         panel.open_near_click_control_center = true;
         screen_time_enabled = true;
+        launcher.fetch_exchange_rates = false;
       };
       theme = {
         mode = "dark";
@@ -82,9 +83,9 @@
         tempmon = sysmon_stat "cpu_temp";
       };
     };
-    mkNoctalia5 = cfg: wlib.wrapPackage ({ config, ... }: {
+    mkNoctalia = cfg: wlib.wrapPackage ({ config, ... }: {
       inherit pkgs;
-      package = noctalia5-package;
+      package = noctalia-package;
       env.NOCTALIA_CONFIG_HOME = "${builtins.placeholder "out"}/config";
       constructFiles = {
         github-dark-palette = {
@@ -117,9 +118,41 @@
         };
       };
     });
+
+    touch_config = default_config // {
+      shell.launcher.app_grid = true;
+      widget.osk = {
+        glyph = "keyboard";
+        tooltip = "Open/Close On-Screen Keyboard";
+        type = "custom_button";
+        actions.left = "exec ${pkgs.procps}/bin/pgrep wvkbd-deskintl >/dev/null && ${pkgs.procps}/bin/pkill wvkbd-deskintl || exec ${self'.packages.wvkbd-deskintl}/bin/wvkbd-deskintl -L 412";
+
+      };
+      bar.default = {
+        thickness = 28;
+        start = [ "workspaces" "group:monitor" "launcher" "osk" "media" ];
+      };
+    };
+
+    mobile_config = touch_config // {
+      shell.panel.launcher_position = "top_center";
+      widget.osk.actions.left = "exec ${pkgs.procps}/bin/pgrep wvkbd-mobintl >/dev/null && ${pkgs.procps}/bin/pkill wvkbd-mobintl || exec ${pkgs.wvkbd}/bin/wvkbd-mobintl -H 400 -L 250 -R 16 -o | ${pkgs.clickclack}/bin/clickclack -V -E /dev/input/by-path/*haptics*";
+
+      bar.default = {
+        background_opacity = 1.0;
+        padding = 16;
+        start = [ "launcher" "workspaces" "tray" ];
+        center = []; # OnePlus 6 has a notch
+        end = [ "osk" "battery" "clock" "control-center" ];
+      };
+      osd.orientation = "vertical";
+      shell.session.grid = true;
+    };
   in {
     packages = {
-      noctalia5 = mkNoctalia5 default_config;
+      noctalia5 = mkNoctalia default_config;
+      noctalia5-touch = mkNoctalia touch_config;
+      noctalia5-mobile = mkNoctalia mobile_config;
     };
   };
 }
