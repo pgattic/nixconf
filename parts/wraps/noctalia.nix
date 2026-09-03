@@ -1,218 +1,160 @@
 { inputs, self, ... }: {
   perSystem = { pkgs, self', ... }: let
-    wlib = inputs.nix-wrapper-modules.lib;
     assets = ../../assets;
-    term_cmd = "foot";
-    top_cmd = "foot btop";
+    wlib = inputs.nix-wrapper-modules.lib;
+    tomlFormat = pkgs.formats.toml { };
+    noctalia-package = pkgs.noctalia;
+    # noctalia-package = pkgs.replaceDependency {
+    #   drv = pkgs.noctalia;
+    #   oldDependency = pkgs.git;
+    #   newDependency = pkgs.gitMinimal;
+    # };
 
-    simpleWidget = { tooltip, icon, cmd }: {
-      id = "CustomButton";
-      generalTooltipText = tooltip;
-      icon = icon;
-      leftClickExec = cmd;
-      showExecTooltip = false;
-      showTextTooltip = false;
+    mkNoctalia = cfg: wlib.wrapPackage ({ config, ... }: {
+      inherit pkgs;
+      package = noctalia-package;
+      env.NOCTALIA_CONFIG_HOME = "${builtins.placeholder "out"}/config";
+      constructFiles = {
+        github-dark-palette = {
+          relPath = "config/noctalia/palettes/MyGHDark.json";
+          content = builtins.toJSON {
+            dark = {
+              mPrimary = "#58a6ff";
+              mOnPrimary = "#010409";
+              mSecondary = "#add3ff"; # was "#bc8cff"
+              mOnSecondary = "#010409";
+              mTertiary = "#add3ff"; # was "#bc8cff"
+              mOnTertiary = "#010409";
+              mError = "#f85149";
+              mOnError = "#010409";
+              mSurface = "#010409";
+              mOnSurface = "#c9d1d9";
+              mSurfaceVariant = "#161b22";
+              mOnSurfaceVariant = "#8b949e";
+              mOutline = "#30363d";
+              mShadow = "#010409";
+              mHover = "#21262d";
+              mOnHover = "#c9d1d9";
+              terminal = {};
+            };
+          };
+        };
+        noctalia-config = {
+          relPath = "config/noctalia/noctalia-config.toml";
+          content = builtins.readFile (tomlFormat.generate "noctalia-config.toml" cfg);
+        };
+      };
+    });
+
+    default_config = {
+      bar.default = {
+        capsule_group = [
+          { id = "monitor"; opacity = 0; members = [ "cpumon" "memmon" "tempmon" ]; }
+        ];
+        start = [ "workspaces" "group:monitor" "media" ];
+        center = [ "active_window" ];
+        end = [ "tray" "clipboard" "brightness" "volume" "bluetooth" "network" "battery" "notifications" "clock" "control-center" ];
+        background_opacity = self.lib.desktop.opacity;
+        margin_edge = 0;
+        margin_ends = 0;
+        padding = 6;
+        radius = 0;
+        shadow = false;
+        thickness = 24;
+        widget_spacing = 12;
+      };
+      audio.enable_overdrive = true;
+      control_center.sidebar_section = "none";
+      desktop_widgets.enabled = false;
+      location.address = "Provo, United States";
+      nightlight.enabled = true;
+      osd = {
+        background_opacity = self.lib.desktop.opacity;
+        position = "bottom_center";
+        position_vertical = "center_right";
+      };
+      shell = {
+        avatar_path = "${assets}/profile.jpg";
+        panel.open_near_click_control_center = true;
+        screen_time_enabled = true;
+        launcher.fetch_exchange_rates = false;
+      };
+      theme = {
+        mode = "dark";
+        source = "custom";
+        custom_palette = "MyGHDark";
+        templates = {
+          enable_builtin_templates = false;
+          enable_community_templates = false;
+        };
+      };
+      wallpaper = {
+        directory = "${assets}/wallpapers";
+        default.path = "${assets}/wallpapers/wedding_temple.jpg";
+        transition = [ "honeycomb" "stripes" ];
+      };
+      weather.unit = "imperial";
+      widget = let
+        sysmon_stat = stat: { inherit stat; type = "sysmon"; show_value = false; };
+      in {
+        # Default Widget Customization
+        active_window.max_length = 800;
+        battery = {
+          display_mode = "graphic";
+          show_label = false;
+        };
+        brightness.show_label = false;
+        clock.format = "{:%a %b %d %-I:%M %p}";
+        control-center.custom_image = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+        media.hide_when_no_media = true;
+        network.show_label = false;
+        volume.show_label = false;
+        workspaces = {
+          show_labels = false;
+          pill_scale = 0.75;
+        };
+
+        # Custom Widgets
+        cpumon = sysmon_stat "cpu_usage";
+        memmon = sysmon_stat "ram_used";
+        tempmon = sysmon_stat "cpu_temp";
+      };
     };
 
-    noctalia-base = wlib.evalModule ({
-      inherit pkgs;
-      imports = [ wlib.wrapperModules.noctalia-shell ];
+    touch_config = default_config // {
+      shell.launcher.app_grid = true;
+      widget.osk = {
+        glyph = "keyboard";
+        tooltip = "Open/Close On-Screen Keyboard";
+        type = "custom_button";
+        actions.left = "exec ${pkgs.procps}/bin/pgrep wvkbd-deskintl >/dev/null && ${pkgs.procps}/bin/pkill wvkbd-deskintl || exec ${self'.packages.wvkbd-deskintl}/bin/wvkbd-deskintl -L 412";
 
-      colors = { # Copied from the GitHub Dark theme
-        mError = "#f85149";
-        mHover = "#21262d";
-        mOnError = "#010409";
-        mOnHover = "#c9d1d9";
-        mOnPrimary = "#010409";
-        mOnSecondary = "#010409";
-        mOnSurface = "#c9d1d9";
-        mOnSurfaceVariant = "#8b949e";
-        mOnTertiary = "#010409";
-        mOutline = "#30363d";
-        mPrimary = "#58a6ff";
-        mSecondary = "#add3ff"; # was "#bc8cff"
-        mShadow = "#010409";
-        mSurface = "#010409";
-        mSurfaceVariant = "#161b22";
-        mTertiary = "#add3ff"; # was "#bc8cff"
       };
-      settings = {
-        general = {
-          enableShadows = false;
-          enableBlurBehind = false;
-          radiusRatio = self.lib.desktop.corner-radius / 20.0;
-          avatarImage = "${assets}/profile.jpg";
-          enableLockScreenMediaControls = true;
-          clockStyle = "digital"; # This setting configures the lock screen clock
-        };
-        ui = {
-          panelBackgroundOpacity = self.lib.desktop.opacity;
-          settingsPanelMode = "window";
-        };
-        notifications.backgroundOpacity = self.lib.desktop.opacity;
-        dock.enabled = false;
-        bar = {
-          density = "compact";
-          showCapsule = false;
-          outerCorners = false;
-          widgets = {
-            left = [
-              { id = "Workspace"; }
-              { id = "SystemMonitor"; }
-              { id = "MediaMini"; maxWidth = 200; showVisualizer = true; showArtistFirst = false; useFixedWidth = true; }
-            ];
-            center = [
-              { id = "ActiveWindow"; maxWidth = 800; }
-            ];
-            right = [
-              { id = "Tray"; drawerEnabled = false; }
-              { id = "plugin:clipper"; }
-              { id = "Brightness"; }
-              { id = "Volume"; }
-              { id = "Bluetooth"; }
-              { id = "Network"; }
-              { id = "Battery"; }
-              { id = "NotificationHistory"; }
-              { id = "Clock"; formatHorizontal = "ddd MMM dd h:mm AP"; tooltipFormat = "h:mm:ss AP"; }
-              { id = "ControlCenter"; useDistroLogo = true; }
-            ];
-          };
-        };
-        sessionMenu.powerOptions = [
-          { keybind = "1"; action = "lock"; enabled = true; countdownEnabled = false; }
-          { keybind = "2"; action = "logout"; enabled = true; countdownEnabled = false; }
-          { keybind = "3"; action = "reboot"; enabled = true; }
-          { keybind = "4"; action = "shutdown"; enabled = true; }
-          { action = "suspend"; enabled = false; }
-          { action = "hibernate"; enabled = false; }
-          { action = "rebootToUefi"; enabled = false; }
-          { action = "userspaceReboot"; enabled = false; }
-        ];
-        systemMonitor.externalMonitor = top_cmd;
-        audio.volumeOverdrive = true;
-        osd = { # Popup for volume/brightness changes
-          location = "bottom";
-          backgroundOpacity = self.lib.desktop.opacity;
-        };
-        nightLight.enabled = true;
-        # idle.enabled = true;
-        appLauncher = {
-          enableClipboardHistory = true;
-          terminalCommand = term_cmd;
-          enableSettingsSearch = false;
-          overviewLayer = true;
-        };
-        controlCenter = {
-          shortcuts = {
-            left = [
-              { id = "Network"; }
-              { id = "Bluetooth"; }
-              { id = "WallpaperSelector"; }
-              { id = "NoctaliaPerformance"; }
-            ];
-            right = [
-              { id = "Notifications"; }
-              { id = "PowerProfile"; }
-              { id = "KeepAwake"; }
-              { id = "NightLight"; }
-            ];
-          };
-          cards = [
-            { enabled = true; id = "profile-card"; }
-            { enabled = true; id = "shortcuts-card"; }
-            { enabled = true; id = "audio-card"; }
-            { enabled = true; id = "brightness-card"; }
-            { enabled = true; id = "weather-card"; }
-            { enabled = true; id = "media-sysmon-card"; }
-          ];
-        };
-        location = {
-          name = "Provo, United States";
-          use12hourFormat = true;
-          useFahrenheit = true;
-        };
-        wallpaper = {
-          directory = "${assets}/wallpapers";
-          transitionType = "stripes";
-        };
+      bar.default = {
+        thickness = 28;
+        start = [ "workspaces" "group:monitor" "launcher" "osk" "media" ];
       };
-    });
+    };
 
-    noctalia-touch = noctalia-base.config.apply ({ lib, ... }: {
-      settings = {
-        appLauncher.viewMode = "grid";
-        bar.density = lib.mkForce "default";
-        bar.widgets.left = lib.mkForce [
-          { id = "Workspace"; }
-          { id = "SystemMonitor"; }
-          (simpleWidget { tooltip = "Open Launcher"; icon = "grid-dots"; cmd = "noctalia-shell ipc call launcher toggle"; })
-          (simpleWidget { tooltip = "Toggle Overview"; icon = "layout-distribute-horizontal"; cmd = "niri msg action toggle-overview"; })
-          (simpleWidget {
-            tooltip = "Open/Close On-Screen Keyboard"; icon = "keyboard";
-            cmd = ''
-              ${pkgs.procps}/bin/pgrep wvkbd-deskintl >/dev/null \
-                && ${pkgs.procps}/bin/pkill wvkbd-deskintl \
-                || exec ${self'.packages.wvkbd-deskintl}/bin/wvkbd-deskintl -L 412
-            '';
-          })
-          { id = "MediaMini"; maxWidth = 200; showVisualizer = true; showArtistFirst = false; useFixedWidth = true; }
-        ];
-        appLauncher.overviewLayer = lib.mkForce false; # Gets in the way of the OSK
-      };
-    });
+    mobile_config = touch_config // {
+      shell.panel.launcher_position = "top_center";
+      widget.osk.actions.left = "exec ${pkgs.procps}/bin/pgrep wvkbd-mobintl >/dev/null && ${pkgs.procps}/bin/pkill wvkbd-mobintl || exec ${pkgs.wvkbd}/bin/wvkbd-mobintl -H 400 -L 250 -R 16 -o | ${pkgs.clickclack}/bin/clickclack -V -E /dev/input/by-path/*haptics*";
 
-    noctalia-mobile = noctalia-base.config.apply ({ lib, ... }: {
-      settings = {
-        appLauncher = {
-          viewMode = "grid";
-          overviewLayer = lib.mkForce false; # Gets in the way of the OSK
-          position = "top_center";
-        };
-        ui = {
-          settingsPanelMode = lib.mkForce "attached";
-          tooltipsEnabled = false;
-        };
-        bar = {
-          density = lib.mkForce "comfortable";
-          widgetSpacing = 3;
-          useSeparateOpacity = true;
-          backgroundOpacity = 1.0;
-          contentPadding = 16;
-          outerCorners = lib.mkForce true;
-          widgets = {
-            left = lib.mkForce [
-              (simpleWidget { tooltip = "Open Launcher"; icon = "grid-dots"; cmd = "${lib.getExe pkgs.noctalia-shell} ipc call launcher toggle"; })
-              { id = "Workspace"; }
-              { id = "Tray"; }
-            ];
-            center = lib.mkForce []; # Oneplus 6 has a notch here
-            right = lib.mkForce [
-              (simpleWidget {
-                tooltip = "Open/Close On-Screen Keyboard"; icon = "keyboard";
-                cmd = ''
-                  ${pkgs.procps}/bin/pgrep wvkbd-mobintl >/dev/null \
-                    && ${pkgs.procps}/bin/pkill wvkbd-mobintl \
-                    || exec ${pkgs.wvkbd}/bin/wvkbd-mobintl -H 400 -L 250 -R 16 -o \
-                      | ${pkgs.clickclack}/bin/clickclack -V -E /dev/input/by-path/*haptics*
-                '';
-              })
-              { id = "Battery"; }
-              { id = "Clock"; formatHorizontal = "h:mm"; tooltipFormat = "h:mm:ss AP"; }
-              { id = "ControlCenter"; useDistroLogo = true; }
-            ];
-          };
-        };
-        sessionMenu.largeButtonsLayout = "grid";
-        osd.location = lib.mkForce "right";
+      bar.default = {
+        background_opacity = 1.0;
+        padding = 16;
+        start = [ "launcher" "workspaces" "tray" ];
+        center = []; # OnePlus 6 has a notch
+        end = [ "osk" "battery" "clock" "control-center" ];
       };
-    });
-
+      osd.orientation = "vertical";
+      shell.session.grid = true;
+    };
   in {
     packages = {
-      noctalia = noctalia-base.config.wrapper;
-      noctalia-touch = noctalia-touch.wrapper;
-      noctalia-mobile = noctalia-mobile.wrapper;
+      noctalia = mkNoctalia default_config;
+      noctalia-touch = mkNoctalia touch_config;
+      noctalia-mobile = mkNoctalia mobile_config;
     };
   };
 }
-

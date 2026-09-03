@@ -37,7 +37,7 @@ environment.systemPackages = with pkgs; [ git neovim nh ];
           enable = true;
           useNautilus = false;
           # Customized Niri package
-          package = (self'.packages.niri-noctalia5-activate-linux.apply {
+          package = (self'.packages.niri-activate-linux.apply {
             settings.outputs."eDP-1".scale = 1.5;
           }).wrapper;
         };

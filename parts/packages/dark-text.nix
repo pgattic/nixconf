@@ -1,5 +1,5 @@
 # Customized version of dark-text from https://github.com/vimjoyer/dark-text
-# Strips out audio dependencies, uses noctalia-qs instead of normal quickshell
+# Strips out audio dependencies
 { inputs, ... }: {
   perSystem = { pkgs, ... }: let
     dark-text-src = inputs.dark-text-src;
@@ -16,7 +16,7 @@
 
     dark-text = pkgs.writeShellApplication {
       name = "dark-text";
-      runtimeInputs = [ pkgs.noctalia-qs ];
+      runtimeInputs = [ pkgs.quickshell ];
       bashOptions = [ "errexit" "pipefail" ];
 
       text = ''

@@ -67,7 +67,7 @@
         programs.niri = {
           enable = true;
           useNautilus = false;
-          package = (self'.packages.niri-noctalia5-activate-linux.apply {
+          package = (self'.packages.niri-activate-linux.apply {
             settings.outputs."eDP-1".scale = 1.5;
           }).wrapper;
         };

@@ -278,33 +278,6 @@
       settings = {
         spawn-at-startup = [ [ noctalia-cmd ] ];
         binds = {
-          "Mod+Space" = _: { props.hotkey-overlay-title = "Open Lanucher"; content.spawn = [ noctalia-cmd "ipc" "call" "launcher" "toggle" ]; };
-          "Mod+Shift+E" = _: { props.hotkey-overlay-title = "Quit niri"; content.spawn = [ noctalia-cmd "ipc" "call" "sessionMenu" "toggle" ]; };
-
-          # The allow-when-locked=true property makes them work even when the session is locked.
-          "XF86AudioRaiseVolume"  = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "ipc" "call" "volume" "increase" ]; };
-          "XF86AudioLowerVolume"  = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "ipc" "call" "volume" "decrease" ]; };
-          "XF86AudioMute"         = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "ipc" "call" "volume" "muteOutput" ]; };
-          "XF86AudioMicMute"      = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "ipc" "call" "volume" "muteInput" ]; };
-          "XF86AudioPlay"         = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "ipc" "call" "media" "playPause" ]; };
-          "XF86AudioPrev"         = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "ipc" "call" "media" "previous" ]; };
-          "XF86AudioNext"         = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "ipc" "call" "media" "next" ]; };
-          "XF86MonBrightnessUp"   = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "ipc" "call" "brightness" "increase" ]; };
-          "XF86MonBrightnessDown" = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "ipc" "call" "brightness" "decrease" ]; };
-        };
-      };
-    });
-
-    niri = (mkNiri self'.packages.noctalia).apply {
-      settings.prefer-no-csd = {};
-    };
-
-    mkNiri5 = noctalia5-pkg: niri-base.config.apply ({ lib, ... }: let
-      noctalia-cmd = lib.getExe noctalia5-pkg;
-    in {
-      settings = {
-        spawn-at-startup = [ [ noctalia-cmd ] ];
-        binds = {
           "Mod+Space" = _: { props.hotkey-overlay-title = "Open Lanucher"; content.spawn = [ noctalia-cmd "msg" "panel-toggle" "launcher" ]; };
           "Mod+Shift+E" = _: { props.hotkey-overlay-title = "Quit niri"; content.spawn = [ noctalia-cmd "msg" "panel-toggle" "session" ]; };
 
@@ -322,15 +295,15 @@
       };
     });
 
-    niri-noctalia5 = (mkNiri5 self'.packages.noctalia5).apply {
+    niri = (mkNiri self'.packages.noctalia).apply {
       settings.prefer-no-csd = {};
     };
 
-    niri-noctalia5-activate-linux = (mkNiri5 self'.packages.noctalia5).apply {
+    niri-activate-linux = (mkNiri self'.packages.noctalia).apply {
       settings = {
         prefer-no-csd = {};
         spawn-at-startup = [
-          [ (lib.getExe self'.packages.noctalia5) ]
+          [ (lib.getExe self'.packages.noctalia) ]
           [ (lib.getExe pkgs.activate-linux) ]
         ];
       };
@@ -351,10 +324,9 @@
   in {
     packages = {
       niri = niri.wrapper;
+      niri-activate-linux = niri-activate-linux.wrapper;
       niri-touch = niri-touch.wrapper;
       niri-mobile = niri-mobile.wrapper;
-      niri-noctalia5 = niri-noctalia5.wrapper;
-      niri-noctalia5-activate-linux = niri-noctalia5-activate-linux.wrapper;
     };
   };
 }

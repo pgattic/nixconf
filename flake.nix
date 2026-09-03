@@ -62,7 +62,6 @@
       url = "github:vimjoyer/dark-text";
       flake = false;
     };
-    noctalia.url = "github:noctalia-dev/noctalia/cachix";
     barp = {
       url = "github:pgattic/barp";
       inputs.nixpkgs.follows = "nixpkgs";

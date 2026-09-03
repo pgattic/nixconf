@@ -9,7 +9,7 @@
       inputs.self.nixosModules.desktop-default
 
       ({ lib, pkgs, ... }: let
-        niri-pkg = (self'.packages.niri-noctalia5.apply {
+        niri-pkg = (self'.packages.niri.apply {
           settings.outputs."DSI-1".scale = 0.75;
         }).wrapper;
       in {
