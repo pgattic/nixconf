@@ -15,7 +15,7 @@
 
       settings = {
         APP_ENV = "production";
-        TZ = "America/Boise";
+        TZ = self.lib.general.time-zone;
         APP_KEY_FILE = "/var/lib/firefly-iii/app.key";
 
         DB_CONNECTION = "pgsql";

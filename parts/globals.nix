@@ -37,6 +37,7 @@
       # base0E = "29b8db";
       # base0F = "e5e5e5";
     };
+    general.time-zone = "America/Boise";
     desktop = {
       opacity = 0.85;
       corner-radius = 12.0;

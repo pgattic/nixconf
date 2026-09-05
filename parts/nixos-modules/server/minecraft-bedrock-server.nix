@@ -1,4 +1,4 @@
-{
+{ self, ... }: {
   flake.nixosModules.minecraft-bedrock-server = { pkgs, ... }: {
     virtualisation.podman.enable = true;
 
@@ -19,7 +19,7 @@
         environment = {
           VERSION = "1.21.60.10";
           EULA = "TRUE";
-          TZ = "America/Boise";
+          TZ = self.lib.general.time-zone;
 
           SERVER_NAME = "Corless Family Server";
           GAMEMODE = "survival";

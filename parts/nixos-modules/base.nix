@@ -24,7 +24,7 @@
       size = 16*1024; # 16 GiB
     }];
 
-    time.timeZone = "America/Boise";
+    time.timeZone = self.lib.general.time-zone;
     i18n.defaultLocale = "en_US.UTF-8";
     i18n.extraLocaleSettings = {
       LC_ADDRESS = "en_US.UTF-8";
