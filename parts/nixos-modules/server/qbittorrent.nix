@@ -48,7 +48,7 @@
 
     vpnNamespaces."wg" = {
       enable = true;
-      wireguardConfigFile = "${self.lib.server.paths.secrets}/mullvad_wireguard_linux_us_slc/us-mia-wg-101.conf";
+      wireguardConfigFile = "${self.lib.server.paths.secrets}/mullvad_wireguard_linux_us_slc/us-slc-wg-301.conf";
       accessibleFrom = [ lanCidr ];
       portMappings = [
         { from = webuiPort; to = webuiPort; protocol = "tcp"; }
