@@ -42,14 +42,13 @@
       experimental-features = [ "nix-command" "flakes" ];
       trusted-users = ["root" "@wheel" ];
       substituters = lib.mkAfter [
-        "https://noctalia.cachix.org"
       ];
       trusted-public-keys = lib.mkAfter [
-        "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
       ];
     };
 
     fonts.packages = [
+      pkgs.noto-fonts
       pkgs.noto-fonts-cjk-sans
       pkgs.noto-fonts-cjk-serif
     ];
