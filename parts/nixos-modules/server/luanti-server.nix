@@ -1,5 +1,5 @@
-{
-  flake.nixosModules.luanti-server = { pkgs, self', ... }: {
+{ moduleWithSystem, ... }: {
+  flake.nixosModules.luanti-server = moduleWithSystem ({ self', ... }: {
     services.minetest-server = {
       enable = true;
       gameId = "mineclonia"; # Minecraft ripoff
@@ -23,5 +23,5 @@
       allowedTCPPorts = [ 30000 ];
       allowedUDPPorts = [ 30000 ];
     };
-  };
+  });
 }
