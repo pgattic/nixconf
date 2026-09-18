@@ -14,7 +14,8 @@
     OVERLAYS = map (f: pkgs.lib.strings.removeSuffix ".qml" f)
       (builtins.attrNames (builtins.readDir (dark-text-src + "/shells")));
 
-    dark-text = pkgs.writeShellApplication {
+  in {
+    packages.dark-text = pkgs.writeShellApplication {
       name = "dark-text";
       runtimeInputs = [ pkgs.quickshell ];
       bashOptions = [ "errexit" "pipefail" ];
@@ -124,9 +125,5 @@
         fi
       '';
     };
-  in {
-    overlayAttrs = { inherit dark-text; };
-    packages = { inherit dark-text; };
   };
 }
-

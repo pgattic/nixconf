@@ -1,6 +1,6 @@
 {
-  perSystem = { pkgs, ... }: let
-    wvkbd-deskintl = pkgs.wvkbd.overrideAttrs (old: {
+  perSystem = { pkgs, ... }: {
+    packages.wvkbd-deskintl = pkgs.wvkbd.overrideAttrs (old: {
       pname = "wvkbd-deskintl";
       meta = (old.meta or {}) // { mainProgram = "wvkbd-deskintl"; };
       postPatch = (old.postPatch or "") + ''
@@ -8,9 +8,5 @@
           --replace 'LAYOUT = mobintl' 'LAYOUT = deskintl'
       '';
     });
-  in {
-    overlayAttrs = { inherit wvkbd-deskintl; };
-    packages = { inherit wvkbd-deskintl; };
   };
 }
-

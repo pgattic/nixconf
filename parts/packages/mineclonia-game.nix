@@ -6,13 +6,10 @@
       hash = "sha256-PZr31TsxkHYg0Z2w1q8Qqfvp9iMuwcmxyX2jrPd9ffo=";
       stripRoot = true;
     };
-    mineclonia-game = pkgs.runCommand "mineclonia-subgames" {} ''
+  in {
+    packages.mineclonia-game = pkgs.runCommand "mineclonia-subgames" {} ''
       mkdir -p "$out"
       ln -s ${src} "$out/mineclonia"
     '';
-  in {
-    overlayAttrs = { inherit mineclonia-game; };
-    packages = { inherit mineclonia-game; };
   };
 }
-

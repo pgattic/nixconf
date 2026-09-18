@@ -3,7 +3,6 @@
     nixpkgs = {
       overlays = [
         inputs.nur.overlays.default # Nix User Repository
-        self.overlays.default
       ];
       config.allowUnfree = true;
       config.permittedInsecurePackages = [

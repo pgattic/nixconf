@@ -1,5 +1,5 @@
 {
-  flake.nixosModules.luanti-server = { pkgs, ... }: {
+  flake.nixosModules.luanti-server = { pkgs, self', ... }: {
     services.minetest-server = {
       enable = true;
       gameId = "mineclonia"; # Minecraft ripoff
@@ -18,7 +18,7 @@
         creative_mode = false;
       };
     };
-    systemd.services.minetest-server.environment.MINETEST_GAME_PATH = pkgs.mineclonia-game; # Package is from overlays
+    systemd.services.minetest-server.environment.MINETEST_GAME_PATH = self'.packages.mineclonia-game;
     networking.firewall = {
       allowedTCPPorts = [ 30000 ];
       allowedUDPPorts = [ 30000 ];
