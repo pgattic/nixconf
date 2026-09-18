@@ -3,7 +3,6 @@
     modules = [
       ./_hardware.nix
       inputs.nixos-hardware.nixosModules.raspberry-pi-4
-      inputs.self.nixosModules.default
       inputs.self.nixosModules.desktop-default
       inputs.self.nixosModules.remote-builder
 

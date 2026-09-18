@@ -47,12 +47,6 @@
       ];
     };
 
-    fonts.packages = [
-      pkgs.noto-fonts
-      pkgs.noto-fonts-cjk-sans
-      pkgs.noto-fonts-cjk-serif
-    ];
-
     services = {
       fwupd.enable = lib.mkDefault true;
       openssh.package = pkgs.openssh_hpn;

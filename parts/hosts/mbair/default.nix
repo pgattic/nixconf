@@ -4,9 +4,7 @@
       ./_hardware.nix
       inputs.nixos-apple-silicon.nixosModules.apple-silicon-support
       inputs.home-manager.nixosModules.home-manager
-      inputs.self.nixosModules.default
       inputs.self.nixosModules.desktop-default
-      inputs.self.nixosModules.work
 
       ({ lib, pkgs, ... }: {
         networking.hostName = "mbair";

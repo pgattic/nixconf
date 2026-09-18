@@ -2,7 +2,6 @@
   flake.nixosConfigurations.op6 = withSystem "aarch64-linux" ({ self', ... }: inputs.nixpkgs.lib.nixosSystem {
     modules = [
       (import "${inputs.mobile-nixos}/lib/configuration.nix" { device = "oneplus-enchilada"; })
-      inputs.self.nixosModules.default
       inputs.self.nixosModules.desktop-default
       inputs.self.nixosModules.remote-builder
 

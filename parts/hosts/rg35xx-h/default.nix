@@ -5,7 +5,6 @@
       inputs.anbernix.nixosModules.anbernic-rg35xx-h
       inputs.anbernix.nixosModules.anbernic-h700-sd-image
       inputs.anbernix.nixosModules.anbernic-h700-retroarch
-      inputs.self.nixosModules.default
       inputs.self.nixosModules.desktop-default
 
       ({ lib, pkgs, ... }: let

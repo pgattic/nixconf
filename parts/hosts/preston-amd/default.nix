@@ -3,7 +3,6 @@
     modules = [
       ./_hardware.nix
       inputs.home-manager.nixosModules.home-manager
-      inputs.self.nixosModules.default
       inputs.self.nixosModules.desktop-default
 
       ({ pkgs, ... }: {

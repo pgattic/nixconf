@@ -23,6 +23,12 @@
       base07 # 15: Bright White
     ];
 
+    fonts.packages = [
+      pkgs.noto-fonts
+      pkgs.noto-fonts-cjk-sans
+      pkgs.noto-fonts-cjk-serif
+    ];
+
     services = {
       upower.enable = lib.mkDefault true;
       greetd = {
