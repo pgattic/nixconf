@@ -66,6 +66,11 @@
       url = "github:pgattic/barp";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    scripguessr = {
+      url = "github:pgattic/scripguessr";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+    };
     anbernix.url = "github:AmazinAxel/anbernix";
   };
 

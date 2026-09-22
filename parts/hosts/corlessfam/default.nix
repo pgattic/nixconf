@@ -18,6 +18,7 @@
       inputs.self.nixosModules.traccar
       inputs.self.nixosModules.barp
       inputs.self.nixosModules.yubal
+      inputs.self.nixosModules.scripguessr
 
       ({ lib, pkgs, ... }: {
         boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
