@@ -15,6 +15,7 @@
       inputs.self.nixosModules.qbittorrent
       inputs.self.nixosModules.cookbook
       inputs.self.nixosModules.forgejo
+      inputs.self.nixosModules.nextcloud
       inputs.self.nixosModules.traccar
       inputs.self.nixosModules.barp
       inputs.self.nixosModules.yubal

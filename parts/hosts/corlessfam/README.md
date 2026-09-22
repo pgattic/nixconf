@@ -22,8 +22,10 @@ tank/media/roms
 tank/secrets
 tank/store
 tank/store/cookbook
+tank/store/nextcloud
 tank/store/pgattic
 ```
 
 - For agenix, make sure to have the proper SSH key setup and files in place. See `/modules/features/agenix.nix` for their details.
 
+- Before enabling Nextcloud for the first time, create `/tank/secrets/nextcloud-admin-pass` containing the initial password for the `pgattic` administrator. Keep it readable only by root (for example, mode `0400`). The password is consumed through a systemd credential and is not copied into the Nix store.
