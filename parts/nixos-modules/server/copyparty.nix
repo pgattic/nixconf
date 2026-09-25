@@ -57,7 +57,7 @@
         "/family" = {
           path = "${cfg.paths.store}/family";
           access = {
-            A = [ "jstucor" "pgattic" "rgattic" "skylar" ];
+            A = [ "pgattic" "skylar" ];
           };
         };
         "/shared" = {
