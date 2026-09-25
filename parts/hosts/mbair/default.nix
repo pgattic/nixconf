@@ -1,5 +1,5 @@
 { inputs, withSystem, ... }: {
-  flake.nixosConfigurations.mbair = withSystem "aarch64-linux" ({ self', ... }: inputs.nixpkgs.lib.nixosSystem {
+  flake.nixosConfigurations.mbair = withSystem "aarch64-linux" ({ self', system, ... }: inputs.nixpkgs.lib.nixosSystem {
     modules = [
       ./_hardware.nix
       inputs.nixos-apple-silicon.nixosModules.apple-silicon-support
@@ -36,29 +36,31 @@
             inputs.self.homeModules.base
             inputs.self.homeModules.desktop
             inputs.self.homeModules.stylix
-            inputs.self.homeModules.browser
           ];
         };
 
-        environment.systemPackages = [
+        users.users.pgattic.packages = [
           self'.packages.foot
           self'.packages.luanti-client
           self'.packages.desktop
-          self'.packages.neovim
-          self'.packages.btop
-          self'.packages.git
           self'.packages.helium
           self'.packages.nestopia-ue
-          inputs.wasmcarts.packages.${pkgs.stdenv.hostPlatform.system}.engine-linux
+          inputs.wasmcarts.packages.${system}.engine-linux
           pkgs.signal-desktop
           pkgs.element-desktop
           pkgs.lazygit
           pkgs.codex
           pkgs.cursor-cli
           pkgs.vesktop
-          pkgs.nix-tree
           pkgs.whatsapp-electron
           pkgs.kopuz
+        ];
+
+        environment.systemPackages = [
+          self'.packages.neovim
+          self'.packages.btop
+          self'.packages.git
+          pkgs.nix-tree
         ];
 
         programs.niri = {

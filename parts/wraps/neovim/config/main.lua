@@ -152,7 +152,7 @@ vim.keymap.set({"n", "v"}, "<leader>ca", vim.lsp.buf.code_action, {}) -- TODO: r
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, {}) -- TODO: remove in favor of defaults: Ctrl+] and Ctrl+T
 vim.diagnostic.config({ -- Show diagnostic messages
   -- virtual_lines = true;
-  virtual_text = true; -- Uncomment this and comment above line when I get annoyed with the virtual lines
+  virtual_text = true, -- Uncomment this and comment above line when I get annoyed with the virtual lines
 })
 
 -- Fuzzy Finder
