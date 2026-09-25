@@ -6,14 +6,26 @@
       config.flake.homeModules.base
       config.flake.homeModules.desktop
       config.flake.homeModules.stylix
-      config.flake.homeModules.browser
 
       ({ pkgs, ... }: {
         targets.genericLinux.enable = true;
         home.packages = [
           self'.packages.foot
+          self'.packages.desktop
+          self'.packages.helium
+          self'.packages.neovim
+          self'.packages.git
+          self'.packages.btop
           pkgs.zotero
+          pkgs.lazygit
+          pkgs.codex
+          pkgs.nix-tree
         ];
+
+        wayland.windowManager.niri = {
+          enable = true;
+          package = self'.packages.niri;
+        };
       })
     ];
   });
