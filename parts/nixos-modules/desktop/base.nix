@@ -31,6 +31,7 @@
 
     services = {
       upower.enable = lib.mkDefault true;
+      gvfs.enable = lib.mkDefault true;
       greetd = {
         enable = lib.mkDefault true;
         settings.default_session = {
@@ -39,5 +40,6 @@
         };
       };
     };
+    programs.niri.useNautilus = lib.mkDefault false;
   };
 }
