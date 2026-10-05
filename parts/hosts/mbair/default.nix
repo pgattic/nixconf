@@ -15,6 +15,8 @@
           enable = true;
           peripheralFirmwareDirectory = /etc/nixos/firmware;
         };
+        boot.kernelPackages = lib.mkForce inputs.asahix.packages.${system}.linux_asahi_fairydust;
+        boot.loader.systemd-boot.configurationLimit = 3;
 
         # Uncomment this to support WPA3 (at the cost of some other connections working)
         # networking.networkmanager.wifi.backend = "iwd";
@@ -24,8 +26,8 @@
         # };
 
         nix.settings = {
-          substituters = lib.mkAfter [ "https://nixos-apple-silicon.cachix.org" ];
-          trusted-public-keys = lib.mkAfter [ "nixos-apple-silicon.cachix.org-1:8psDu5SA5dAD7qA0zMy5UT292TxeEPzIz8VVEr2Js20=" ];
+          substituters = lib.mkAfter [ "https://asahix.cachix.org" ];
+          trusted-public-keys = lib.mkAfter [ "asahix.cachix.org-1:SDzLl9HW7kV2h/6yBCZwjhveL2HUjjdI0x+qFB0I54Y=" ];
         };
 
         home-manager = {
@@ -36,6 +38,7 @@
             inputs.self.homeModules.base
             inputs.self.homeModules.desktop
             inputs.self.homeModules.stylix
+            inputs.self.homeModules.browser
           ];
         };
 

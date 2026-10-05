@@ -11,7 +11,7 @@
     };
 
     boot.loader.systemd-boot.enable = lib.mkDefault true;
-    boot.loader.systemd-boot.configurationLimit = lib.mkDefault 10;
+    boot.loader.systemd-boot.configurationLimit = lib.mkDefault 5;
     # Allow NixOS to add itself to bootloader options
     boot.loader.efi.canTouchEfiVariables = lib.mkDefault true;
     # Don't kill the user session when I rebuild

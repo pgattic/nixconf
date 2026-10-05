@@ -19,7 +19,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixos-apple-silicon = {
-      url = "github:nix-community/nixos-apple-silicon";
+      url = "github:sempiternal-aurora/nixos-apple-silicon/main";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     mobile-nixos = {
@@ -33,7 +33,6 @@
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
     };
     stylix = {
       url = "github:nix-community/stylix";
@@ -72,6 +71,7 @@
       inputs.flake-parts.follows = "flake-parts";
     };
     anbernix.url = "github:AmazinAxel/anbernix";
+    asahix.url = "github:skiletro/asahix";
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } {
