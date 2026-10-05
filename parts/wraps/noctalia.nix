@@ -63,6 +63,7 @@
         thickness = 24;
         widget_spacing = 12;
       };
+      lockscreen.lock_before_suspend = false;
       audio.enable_overdrive = true;
       control_center.sidebar_section = "none";
       desktop_widgets.enabled = false;
@@ -75,6 +76,8 @@
       };
       shell = {
         avatar_path = "${assets}/profile.jpg";
+        polkit_agent = true;
+        password_style = "random";
         panel.open_near_click_control_center = true;
         screen_time_enabled = true;
         launcher.fetch_exchange_rates = false;
