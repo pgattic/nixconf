@@ -3,16 +3,10 @@
     assets = ../../assets;
     wlib = inputs.nix-wrapper-modules.lib;
     tomlFormat = pkgs.formats.toml { };
-    noctalia-package = pkgs.noctalia;
-    # noctalia-package = pkgs.replaceDependency {
-    #   drv = pkgs.noctalia;
-    #   oldDependency = pkgs.git;
-    #   newDependency = pkgs.gitMinimal;
-    # };
 
     mkNoctalia = cfg: wlib.wrapPackage ({ config, ... }: {
       inherit pkgs;
-      package = noctalia-package;
+      package = pkgs.noctalia;
       env.NOCTALIA_CONFIG_HOME = "${builtins.placeholder "out"}/config";
       constructFiles = {
         github-dark-palette = {

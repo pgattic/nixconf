@@ -90,7 +90,7 @@
         };
         window-rules = [
           { # General rules
-            geometry-corner-radius = with self.lib.desktop; [ corner-radius corner-radius corner-radius corner-radius ];
+            geometry-corner-radius = lib.replicate 4 self.lib.desktop.corner-radius;
             clip-to-geometry = true;
             background-effect.blur = true;
             draw-border-with-background = false;
