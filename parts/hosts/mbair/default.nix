@@ -9,14 +9,14 @@
       ({ lib, pkgs, ... }: {
         networking.hostName = "mbair";
         system.stateVersion = "25.11";
-        boot.loader.efi.canTouchEfiVariables = false;
         # Use `--impure` while building
         hardware.asahi = {
           enable = true;
           peripheralFirmwareDirectory = /etc/nixos/firmware;
         };
-        boot.kernelPackages = lib.mkForce inputs.asahix.packages.${system}.linux_asahi_fairydust;
+        boot.loader.efi.canTouchEfiVariables = false;
         boot.loader.systemd-boot.configurationLimit = 3;
+        boot.kernelPackages = lib.mkForce inputs.asahix.packages.${system}.linux_asahi_fairydust;
 
         # Uncomment this to support WPA3 (at the cost of some other connections working)
         # networking.networkmanager.wifi.backend = "iwd";
