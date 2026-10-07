@@ -15,7 +15,6 @@
       inputs.self.nixosModules.qbittorrent
       inputs.self.nixosModules.cookbook
       inputs.self.nixosModules.forgejo
-      inputs.self.nixosModules.nextcloud
       inputs.self.nixosModules.traccar
       inputs.self.nixosModules.barp
       inputs.self.nixosModules.yubal
@@ -57,10 +56,10 @@
                 ];
               }).wrapper;
               packages = [
-                self'.packages.foot
-                self'.packages.helium
-                pkgs.xemu
-                pkgs.xenia-canary
+                # self'.packages.foot
+                # self'.packages.helium
+                # pkgs.xemu
+                # pkgs.xenia-canary
               ];
               openssh.authorizedKeys.keys = self.lib.keys.ssh;
             };
