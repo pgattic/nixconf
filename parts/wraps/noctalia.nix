@@ -75,10 +75,15 @@
         panel.open_near_click_control_center = true;
         screen_time_enabled = true;
         launcher.fetch_exchange_rates = false;
+        button_borders = false;
+        card_borders = false;
+        input_borders = false;
+        popup_borders = false;
       };
       theme = {
         mode = "dark";
-        source = "custom";
+        source = "community";
+        community_palette = "Breeze";
         custom_palette = "MyGHDark";
         templates = {
           enable_builtin_templates = false;
@@ -95,7 +100,10 @@
         sysmon_stat = stat: { inherit stat; type = "sysmon"; show_value = false; };
       in {
         # Default Widget Customization
-        active_window.max_length = 800;
+        active_window = {
+          min_length = 0;
+          max_length = 800;
+        };
         battery = {
           display_mode = "graphic";
           show_label = false;
@@ -109,6 +117,7 @@
         workspaces = {
           show_labels = false;
           pill_scale = 0.75;
+          focused_output_only = true;
         };
 
         # Custom Widgets
