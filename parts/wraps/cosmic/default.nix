@@ -15,7 +15,7 @@
     };
   in {
     packages = builtins.mapAttrs (_: wrapCosmicApp) {
-      inherit (pkgs) cosmic-files;
+      inherit (pkgs) cosmic-files cosmic-viewer;
     };
   };
 }

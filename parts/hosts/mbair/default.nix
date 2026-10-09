@@ -48,6 +48,7 @@
           self'.packages.desktop
           self'.packages.helium
           self'.packages.nestopia-ue
+          self'.packages.cosmic-viewer
           inputs.wasmcarts.packages.${system}.engine-linux
           pkgs.signal-desktop
           pkgs.element-desktop
@@ -57,6 +58,9 @@
           pkgs.vesktop
           pkgs.whatsapp-electron
           pkgs.kopuz
+          (pkgs.prismlauncher.override {
+            jdks = [ pkgs.jdk21 ];
+          })
         ];
 
         environment.systemPackages = [
