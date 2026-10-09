@@ -57,6 +57,20 @@
         thickness = 24;
         widget_spacing = 12;
       };
+      dock = {
+        background_opacity = self.lib.desktop.opacity;
+        smart_auto_hide = true;
+        reserve_space = false;
+        show_dots = true;
+        launcher_position = "end";
+        position = "left";
+        main_axis_padding = 0;
+        cross_axis_padding = 0;
+        item_spacing = 0;
+        radius_top_left = 0;
+        radius_bottom_left = 0;
+        magnification = false;
+      };
       lockscreen.lock_before_suspend = false;
       audio.enable_overdrive = true;
       control_center.sidebar_section = "none";
@@ -64,15 +78,28 @@
       location.address = "Provo, United States";
       nightlight.enabled = true;
       osd = {
-        background_opacity = self.lib.desktop.opacity;
+        background_opacity = 70;
         position = "bottom_center";
         position_vertical = "center_right";
+        border = false;
       };
       shell = {
         avatar_path = "${assets}/profile.jpg";
         polkit_agent = true;
         password_style = "random";
-        panel.open_near_click_control_center = true;
+        panel = {
+          borders = false;
+          transparency_mode = "soft";
+
+          control_center_placement = "floating";
+          open_near_click_control_center = true;
+
+          clipboard_position = "auto";
+          open_near_click_clipboard = true;
+
+          wallpaper_placement = "floating";
+          open_near_click_wallpaper = true;
+        };
         screen_time_enabled = true;
         launcher.fetch_exchange_rates = false;
         button_borders = false;

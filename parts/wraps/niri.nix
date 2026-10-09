@@ -112,7 +112,7 @@
         ];
         layer-rules = [
           {
-            matches = [ { namespace = "^noctalia-(background|dock|launcher-overlay)-.*$"; } ];
+            matches = [ { namespace = "^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"; } ];
             background-effect.xray = false;
           }
         ];
