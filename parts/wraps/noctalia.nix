@@ -58,6 +58,7 @@
         widget_spacing = 12;
       };
       dock = {
+        enabled = true;
         background_opacity = self.lib.desktop.opacity;
         smart_auto_hide = true;
         reserve_space = false;
