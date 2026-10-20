@@ -13,7 +13,6 @@
           self'.packages.foot
           self'.packages.desktop
           self'.packages.helium
-          self'.packages.neovim
           self'.packages.git
           pkgs.zotero
           pkgs.lazygit

@@ -29,7 +29,6 @@
           self'.packages.foot
           self'.packages.luanti-client
           self'.packages.desktop
-          self'.packages.neovim
           self'.packages.git
           self'.packages.helium
         ];

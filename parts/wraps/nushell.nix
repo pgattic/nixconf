@@ -36,6 +36,7 @@
         self'.packages.btop
         self'.packages.fastfetch
         self'.packages.nh
+        self'.packages.neovim
 
         pkgs.bat
         pkgs.openssh_hpn

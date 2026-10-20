@@ -13,7 +13,6 @@
           self'.packages.desktop
           self'.packages.foot
           self'.packages.luanti-client
-          self'.packages.neovim
           self'.packages.git
           self'.packages.bambu-studio
           self'.packages.helium
@@ -21,9 +20,7 @@
           pkgs.lazygit
         ];
 
-        programs.niri.package = (self'.packages.niri-activate-linux.apply {
-          settings.outputs."eDP-1".scale = 1.0;
-        }).wrapper;
+        programs.niri.package = self'.packages.niri-activate-linux;
       })
     ];
   });

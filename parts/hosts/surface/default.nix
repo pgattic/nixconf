@@ -17,7 +17,6 @@
           self'.packages.foot
           self'.packages.luanti-client
           self'.packages.desktop
-          self'.packages.neovim
           self'.packages.git
           self'.packages.zed-editor
           self'.packages.helium

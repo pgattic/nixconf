@@ -28,7 +28,6 @@
         environment.systemPackages = [
           self'.packages.foot
           self'.packages.desktop
-          self'.packages.neovim
           self'.packages.git
           self'.packages.helium
           pkgs.lazygit
