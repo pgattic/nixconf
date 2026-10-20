@@ -1,5 +1,5 @@
 { moduleWithSystem, self, ... }: {
-  flake.nixosModules.desktop-base = moduleWithSystem ({ config, lib, pkgs, self', ... }: {
+  flake.nixosModules.desktop-base = moduleWithSystem ({ self', ... }: { config, lib, pkgs, ... }: {
     boot.plymouth.enable = lib.mkDefault true;
     boot.loader.systemd-boot.consoleMode = "max"; # Make plymouth full resolution
     xdg.portal.xdgOpenUsePortal = true;
