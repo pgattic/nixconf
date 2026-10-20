@@ -30,17 +30,13 @@
           self'.packages.luanti-client
           self'.packages.desktop
           self'.packages.neovim
-          self'.packages.btop
           self'.packages.git
           self'.packages.helium
         ];
 
-        programs.niri = {
-          enable = true;
-          package = (self'.packages.niri-touch.apply {
-            settings.input.mod-key = "Alt";
-          }).wrapper;
-        };
+        programs.niri.package = (self'.packages.niri-touch.apply {
+          settings.input.mod-key = "Alt";
+        }).wrapper;
       })
     ];
   });

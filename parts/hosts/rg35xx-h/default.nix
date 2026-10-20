@@ -82,7 +82,6 @@
           self'.packages.luanti-client
           self'.packages.desktop
           self'.packages.neovim
-          self'.packages.btop
           self'.packages.git
           self'.packages.inputplumber-rg35xx-h
           self'.packages.helium
@@ -94,11 +93,7 @@
           "/share/inputplumber"
         ];
 
-        programs.niri = {
-          enable = true;
-          useNautilus = false;
-          package = niri-pkg;
-        };
+        programs.niri.package = niri-pkg;
       })
     ];
   });

@@ -18,7 +18,6 @@
           self'.packages.luanti-client
           self'.packages.desktop
           self'.packages.neovim
-          self'.packages.btop
           self'.packages.git
           self'.packages.zed-editor
           self'.packages.helium
@@ -26,12 +25,9 @@
           pkgs.rnote
         ];
 
-        programs.niri = {
-          enable = true;
-          package = (self'.packages.niri-touch.apply ({ lib, ... }: {
-            settings.spawn-at-startup = [ [ (lib.getExe self'.packages.lisgd-surface) ] ];
-          })).wrapper;
-        };
+        programs.niri.package = (self'.packages.niri-touch.apply ({ lib, ... }: {
+          settings.spawn-at-startup = [ [ (lib.getExe self'.packages.lisgd-surface) ] ];
+        })).wrapper;
       })
     ];
   });

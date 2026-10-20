@@ -30,15 +30,12 @@
 
         users.users.pgattic.shell = self'.packages.nushell-env;
 
-        programs.niri = {
-          enable = true;
-          package = (self'.packages.niri-mobile.apply ({ lib, ... }: {
-            settings = {
-              spawn-at-startup = [ [ (lib.getExe self'.packages.lisgd-op6) ] ];
-              outputs."DSI-1".scale = 2.0;
-            };
-          })).wrapper;
-        };
+        programs.niri.package = (self'.packages.niri-mobile.apply ({ lib, ... }: {
+          settings = {
+            spawn-at-startup = [ [ (lib.getExe self'.packages.lisgd-op6) ] ];
+            outputs."DSI-1".scale = 2.0;
+          };
+        })).wrapper;
 
         services = {
           openssh = {

@@ -29,17 +29,13 @@
           self'.packages.foot
           self'.packages.desktop
           self'.packages.neovim
-          self'.packages.btop
           self'.packages.git
           self'.packages.helium
           pkgs.lazygit
           pkgs.kopuz
         ];
 
-        programs.niri = {
-          enable = true;
-          package = niri-pkg;
-        };
+        programs.niri.package = niri-pkg;
 
         services.greetd.settings.default_session = lib.mkForce {
           command = lib.getExe niri-pkg;

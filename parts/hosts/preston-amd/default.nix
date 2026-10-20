@@ -30,7 +30,6 @@
           self'.packages.luanti-client
           self'.packages.desktop
           self'.packages.neovim
-          self'.packages.btop
           self'.packages.git
           self'.packages.helium
           self'.packages.jujutsu
@@ -43,13 +42,9 @@
           pkgs.kicad
         ];
 
-        programs.niri = {
-          enable = true;
-          useNautilus = false;
-          package = (self'.packages.niri-activate-linux.apply {
-            settings.outputs."HDMI-A-1".mode = "1920x1080@100.00";
-          }).wrapper;
-        };
+        programs.niri.package = (self'.packages.niri-activate-linux.apply {
+          settings.outputs."HDMI-A-1".mode = "1920x1080@100.00";
+        }).wrapper;
       })
     ];
   });

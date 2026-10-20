@@ -15,7 +15,6 @@
           self'.packages.helium
           self'.packages.neovim
           self'.packages.git
-          self'.packages.btop
           pkgs.zotero
           pkgs.lazygit
           pkgs.codex

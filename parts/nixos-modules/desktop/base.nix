@@ -1,5 +1,5 @@
-{ self, ... }: {
-  flake.nixosModules.desktop-base = { config, lib, pkgs, ... }: {
+{ moduleWithSystem, self, ... }: {
+  flake.nixosModules.desktop-base = moduleWithSystem ({ config, lib, pkgs, self', ... }: {
     boot.plymouth.enable = lib.mkDefault true;
     boot.loader.systemd-boot.consoleMode = "max"; # Make plymouth full resolution
     xdg.portal.xdgOpenUsePortal = true;
@@ -40,6 +40,10 @@
         };
       };
     };
-    programs.niri.useNautilus = lib.mkDefault false;
-  };
+    programs.niri = {
+      enable = lib.mkDefault true;
+      useNautilus = lib.mkDefault false;
+      package = lib.mkDefault self'.packages.niri;
+    };
+  });
 }

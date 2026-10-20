@@ -70,12 +70,9 @@
           pkgs.nix-tree
         ];
 
-        programs.niri = {
-          enable = true;
-          package = (self'.packages.niri-activate-linux.apply {
-            settings.outputs."eDP-1".scale = 1.5;
-          }).wrapper;
-        };
+        programs.niri.package = (self'.packages.niri-activate-linux.apply {
+          settings.outputs."eDP-1".scale = 1.5;
+        }).wrapper;
       })
     ];
   });
