@@ -88,6 +88,7 @@
         avatar_path = "${assets}/profile.jpg";
         polkit_agent = true;
         password_style = "random";
+        show_close_buttons = false;
         panel = {
           borders = false;
           transparency_mode = "soft";
@@ -102,7 +103,10 @@
           open_near_click_wallpaper = true;
         };
         screen_time_enabled = true;
-        launcher.fetch_exchange_rates = false;
+        launcher = {
+          layout = "simple";
+          categories = false;
+        };
         button_borders = false;
         card_borders = false;
         input_borders = false;
