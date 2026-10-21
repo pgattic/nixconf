@@ -159,6 +159,39 @@
           '';
         };
       };
+      wheelwizard-fhs = pkgs.buildFHSEnv {
+        name = "wheelwizard-fhs";
+
+        targetPkgs = pkgs:
+          (pkgs.appimageTools.defaultFhsEnvArgs.targetPkgs pkgs)
+          ++ (pkgs.appimageTools.defaultFhsEnvArgs.multiPkgs pkgs)
+          ++ [
+            pkgs.wheelwizard
+            pkgs.gcc
+            pkgs.gcc.cc
+            pkgs.glibc.dev
+          ];
+
+        # Wayland support is apparently pretty crappy for whatever UI library WheelWizard uses
+        profile = ''
+          unset WAYLAND_DISPLAY
+        '';
+
+        runScript = pkgs.lib.getExe pkgs.wheelwizard;
+
+        # Keep upstream launcher metadata and icons, routing both desktop entries
+        # (including wheelwizard:// links) through the compatibility environment.
+        extraInstallCommands = ''
+          mkdir -p "$out/share/applications"
+          cp ${pkgs.wheelwizard}/share/applications/*.desktop "$out/share/applications/"
+          chmod u+w "$out/share/applications/"*.desktop
+          for desktopFile in "$out/share/applications/"*.desktop; do
+            substituteInPlace "$desktopFile" \
+              --replace-fail "Exec=WheelWizard" "Exec=$out/bin/wheelwizard-fhs"
+          done
+          ln -s ${pkgs.wheelwizard}/share/icons "$out/share/icons"
+        '';
+      };
       zed-editor = wlib.wrapPackage ({ lib, ... }: {
         inherit pkgs;
         package = pkgs.zed-editor;
