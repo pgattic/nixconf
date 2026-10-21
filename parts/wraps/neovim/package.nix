@@ -8,7 +8,7 @@
 
       runtimePkgs = [
         pkgs.nil
-        pkgs.codebook
+        # pkgs.codebook
       ];
       settings.aliases = [ "vi" "vim" "vimdiff" ];
 
@@ -42,13 +42,27 @@
         wiki = {
           data = pkgs.vimPlugins.vimwiki;
           config = ''
-            vim.g.vimwiki_path = "~/vimwiki/"
+            vim.g.vimwiki_path = "~/copyparty/wiki/"
             vim.g.vimwiki_syntax = "markdown"
             vim.g.vimwiki_ext = "md"
             vim.g.vimwiki_global_ext = 0
             vim.treesitter.language.register("markdown", "vimwiki")
             vim.api.nvim_create_autocmd("FileType", {
               pattern = "vimwiki",
+              callback = function()
+                vim.treesitter.start()
+              end,
+            })
+          '';
+        };
+        treesitter = {
+          data = (pkgs.vimPlugins.nvim-treesitter.withPlugins (parsers: [
+            parsers.elixir
+            parsers.heex
+          ]));
+          config = ''
+            vim.api.nvim_create_autocmd("FileType", {
+              pattern = "elixir",
               callback = function()
                 vim.treesitter.start()
               end,

@@ -142,6 +142,7 @@ local lsp_servers = {
   fsautocomplete = {}, -- F#
   ts_ls = {},
   pyrefly = {},
+  elixirls = {},
 }
 for server, config in pairs(lsp_servers) do
   vim.lsp.config(server, config)
