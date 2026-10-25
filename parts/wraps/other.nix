@@ -172,15 +172,14 @@
             pkgs.glibc.dev
           ];
 
-        # Wayland support is apparently pretty crappy for whatever UI library WheelWizard uses
-        profile = ''
-          unset WAYLAND_DISPLAY
-        '';
+        # Wayland support is apparently pretty crappy for Avalonia UI
+        # profile = ''
+        #   unset WAYLAND_DISPLAY
+        # '';
 
         runScript = pkgs.lib.getExe pkgs.wheelwizard;
 
-        # Keep upstream launcher metadata and icons, routing both desktop entries
-        # (including wheelwizard:// links) through the compatibility environment.
+        # Copy over desktop entries, icons and stuff
         extraInstallCommands = ''
           mkdir -p "$out/share/applications"
           cp ${pkgs.wheelwizard}/share/applications/*.desktop "$out/share/applications/"
