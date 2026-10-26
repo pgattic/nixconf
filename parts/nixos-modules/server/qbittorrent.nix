@@ -81,6 +81,10 @@
       '';
 
       serviceConfig = {
+        InaccessiblePaths = lib.mkForce [ # Fixes service start race condition
+          "-/run/nscd"
+          "-/run/resolvconf"
+        ];
         UMask = "0002";
         # NoNewPrivileges = true;
         # PrivateTmp = true;
