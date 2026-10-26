@@ -9,7 +9,7 @@
       inputs.self.nixosModules.luanti-server
       inputs.self.nixosModules.jellyfin
       inputs.self.nixosModules.immich
-      inputs.self.nixosModules.firefly
+      # inputs.self.nixosModules.firefly
       inputs.self.nixosModules.audiobookshelf
       inputs.self.nixosModules.copyparty
       inputs.self.nixosModules.qbittorrent
