@@ -8,35 +8,9 @@
       inherit pkgs;
       package = pkgs.noctalia;
       env.NOCTALIA_CONFIG_HOME = "${builtins.placeholder "out"}/config";
-      constructFiles = {
-        github-dark-palette = {
-          relPath = "config/noctalia/palettes/MyGHDark.json";
-          content = builtins.toJSON {
-            dark = {
-              mPrimary = "#58a6ff";
-              mOnPrimary = "#010409";
-              mSecondary = "#add3ff"; # was "#bc8cff"
-              mOnSecondary = "#010409";
-              mTertiary = "#add3ff"; # was "#bc8cff"
-              mOnTertiary = "#010409";
-              mError = "#f85149";
-              mOnError = "#010409";
-              mSurface = "#010409";
-              mOnSurface = "#c9d1d9";
-              mSurfaceVariant = "#161b22";
-              mOnSurfaceVariant = "#8b949e";
-              mOutline = "#30363d";
-              mShadow = "#010409";
-              mHover = "#21262d";
-              mOnHover = "#c9d1d9";
-              terminal = {};
-            };
-          };
-        };
-        noctalia-config = {
-          relPath = "config/noctalia/noctalia-config.toml";
-          content = builtins.readFile (tomlFormat.generate "noctalia-config.toml" cfg);
-        };
+      constructFiles.noctalia-config = {
+        relPath = "config/noctalia/noctalia-config.toml";
+        content = builtins.readFile (tomlFormat.generate "noctalia-config.toml" cfg);
       };
     });
 
@@ -116,7 +90,6 @@
         mode = "dark";
         source = "community";
         community_palette = "Breeze";
-        custom_palette = "MyGHDark";
         templates = {
           enable_builtin_templates = false;
           enable_community_templates = false;
