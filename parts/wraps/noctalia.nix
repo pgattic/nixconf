@@ -126,7 +126,7 @@
         };
 
         # Custom Widgets
-        cpumon = sysmon_stat "cpu_usage";
+        cpumon = sysmon_stat "cpu_usage" // { show_cpu_cores = true; };
         memmon = sysmon_stat "ram_used";
         tempmon = sysmon_stat "cpu_temp";
       };
