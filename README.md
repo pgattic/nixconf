@@ -20,27 +20,21 @@ environment.systemPackages = with pkgs; [ git neovim nh ];
   flake.nixosConfigurations.new-computer = withSystem "x86_64-linux" ({ pkgs, self', ... }: inputs.nixpkgs.lib.nixosSystem {
     modules = [
       ./_hardware.nix
-      inputs.self.nixosModules.options
-      inputs.self.nixosModules.default
       inputs.self.nixosModules.desktop-default
-      inputs.self.nixosModules.browser
       ({ pkgs, ... }: {
         networking.hostName = "new-computer";
         system.stateVersion = "25.05";
 
         environment.systemPackages = [
           self'.packages.foot
-          pkgs.rnote
+          self'.packages.git
+          pkgs.lazygit
         ];
 
-        programs.niri = {
-          enable = true;
-          useNautilus = false;
-          # Customized Niri package
-          package = (self'.packages.niri-activate-linux.apply {
-            settings.outputs."eDP-1".scale = 1.5;
-          }).wrapper;
-        };
+        # Customized Niri package (optional)
+        programs.niri.package = (self'.packages.niri-activate-linux.apply {
+          settings.outputs."eDP-1".scale = 1.5;
+        }).wrapper;
       })
     ];
   });
