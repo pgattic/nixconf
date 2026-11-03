@@ -50,6 +50,7 @@
           self'.packages.nestopia-ue
           self'.packages.cosmic-viewer
           self'.packages.wheelwizard-fhs
+          self'.packages.horizon-launcher
           inputs.wasmcarts.packages.${system}.engine-linux
           pkgs.signal-desktop
           pkgs.element-desktop

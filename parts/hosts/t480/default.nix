@@ -16,6 +16,8 @@
           self'.packages.git
           self'.packages.bambu-studio
           self'.packages.helium
+          self'.packages.wheelwizard-fhs
+          self'.packages.horizon-launcher
           pkgs.codex
           pkgs.lazygit
         ];
