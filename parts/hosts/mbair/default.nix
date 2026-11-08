@@ -38,7 +38,6 @@
             inputs.self.homeModules.base
             inputs.self.homeModules.desktop
             inputs.self.homeModules.stylix
-            inputs.self.homeModules.browser
           ];
         };
 
@@ -50,7 +49,7 @@
           self'.packages.nestopia-ue
           self'.packages.cosmic-viewer
           self'.packages.wheelwizard-fhs
-          self'.packages.horizon-launcher
+          # self'.packages.horizon-launcher
           inputs.wasmcarts.packages.${system}.engine-linux
           pkgs.signal-desktop
           pkgs.element-desktop
@@ -59,7 +58,6 @@
           pkgs.cursor-cli
           pkgs.vesktop
           pkgs.whatsapp-electron
-          pkgs.kopuz
           (pkgs.prismlauncher.override {
             jdks = [ pkgs.jdk21 ];
           })

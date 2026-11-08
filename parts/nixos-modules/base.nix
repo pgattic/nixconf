@@ -1,9 +1,6 @@
-{ inputs, self, ... }: {
+{ self, ... }: {
   flake.nixosModules.base = { config, lib, pkgs, ... }: {
     nixpkgs = {
-      overlays = [
-        inputs.nur.overlays.default # Nix User Repository
-      ];
       config.allowUnfree = true;
       config.permittedInsecurePackages = [
         "ventoy-1.1.10"

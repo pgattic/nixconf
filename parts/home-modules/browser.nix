@@ -1,20 +1,10 @@
 {
   flake.homeModules.browser = { pkgs, ... }: let
     defaultOptions = {
-      extensions = { # nix flake show "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons"
-        force = true;
-        packages = with pkgs.nur.repos.rycee.firefox-addons; [
-          auto-tab-discard
-          bitwarden
-          qr-code-address-bar
-          vimium
-          wappalyzer
-        ];
-      };
+      extensions.force = true;
       bookmarks.force = true;
       bookmarks.settings = [
         { "name" = "NixOS Search"; url = "https://search.nixos.org"; tags = ["nixos" "search"]; }
-        { "name" = "Home Manager Options"; url = "https://home-manager-options.extranix.com"; tags = ["home" "nixos" "search"]; }
         { "name" = "pgattic.dev"; url = "https://pgattic.dev"; }
       ];
       search.force = true;
@@ -52,18 +42,6 @@
           icon = "https://search.nixos.org/favicon-96x96.png";
           definedAliases = [ "@nix" ];
         };
-        home-manager = {
-          name = "Home Manager Options";
-          urls = [{
-            template = "https://home-manager-options.extranix.com";
-            params = [
-              { name = "query"; value = "{searchTerms}"; }
-              { name = "release"; value = "master"; }
-            ];
-          }];
-          icon = "https://home-manager-options.extranix.com/images/favicon.png";
-          definedAliases = [ "@hm" ];
-        };
       };
       settings = {
         # Librewolf-specific stuff
@@ -95,11 +73,6 @@
         "browser.uiCustomization.state" = builtins.toJSON {
           placements = {
             widget-overflow-fixed-list = [ ];
-            unified-extensions-area = [ # If I don't put extensions here, they'll get put in the navbar
-              "simple-tab-groups_drive4ik-browser-action"
-              "_d7742d87-e61d-4b78-b8a1-b469842139fa_-browser-action" # Vimium
-              "firefoxcolor_mozilla_com-browser-action"
-            ];
             nav-bar = [
               "sidebar-button"
               "back-button"
@@ -113,8 +86,6 @@
               "fxa-toolbar-menu-button"
               # "unified-extensions-button"
               "ublock0_raymondhill_net-browser-action"
-              "wappalyzer_crunchlabz_com-browser-action"
-              "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action" # BitWarden
               # "alltabs-button"
             ];
             toolbar-menubar = [
@@ -146,30 +117,17 @@
           newElementCount = 2;
         };
       };
-      # Fix sidebar showing in fullscreen
-      userChrome = ''
-        :root[sizemode="fullscreen"] #sidebar-main { visibility: collapse }
-      '';
     };
   in {
     programs.librewolf = {
       enable = true;
       profiles.pgattic = defaultOptions // {
         id = 0;
-        isDefault = true;
+        isDefault = false;
       };
       profiles.work = defaultOptions // {
         id = 1;
-        isDefault = false;
-        extensions = { # nix flake show "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons"
-          force = true;
-          packages = with pkgs.nur.repos.rycee.firefox-addons; [
-            auto-tab-discard
-            bitwarden
-            onepassword-password-manager
-            qr-code-address-bar
-          ];
-        };
+        isDefault = true;
       };
     };
   };

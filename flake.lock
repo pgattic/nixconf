@@ -493,18 +493,20 @@
     "nur": {
       "inputs": {
         "flake-parts": [
+          "stylix",
           "flake-parts"
         ],
         "nixpkgs": [
+          "stylix",
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1794102190,
-        "narHash": "sha256-fLwNzMQRIKMiVIozp1+Q6HgkcD5YOmSvc0cboA15tPg=",
+        "lastModified": 1794113756,
+        "narHash": "sha256-uqYHr46CiQvUoSaaCc7qbjrGvSmAIiFslWrQT+dnmYg=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "2e11798e8d4220ca819ab0473fdc48f085bc1f04",
+        "rev": "edbf650c6ae7ef473c46e69e6dbca9551b9d5b26",
         "type": "github"
       },
       "original": {
@@ -563,7 +565,6 @@
         "nixos-apple-silicon": "nixos-apple-silicon",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_3",
-        "nur": "nur",
         "scripguessr": "scripguessr",
         "stylix": "stylix",
         "vpn-confinement": "vpn-confinement",
@@ -607,9 +608,7 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "nur": [
-          "nur"
-        ],
+        "nur": "nur",
         "systems": "systems_2",
         "tinted-kitty": "tinted-kitty",
         "tinted-schemes": "tinted-schemes",
