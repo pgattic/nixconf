@@ -7,6 +7,7 @@
       inputs.self.nixosModules.dynamic-dns
       inputs.self.nixosModules.nginx
       inputs.self.nixosModules.luanti-server
+      inputs.self.nixosModules.minecraft-java-server
       inputs.self.nixosModules.jellyfin
       inputs.self.nixosModules.immich
       # inputs.self.nixosModules.firefly
@@ -53,6 +54,8 @@
                   self'.packages.neovim
                   self'.packages.git
                   pkgs.lazygit
+                  pkgs.codex
+                  pkgs.herdr
                 ];
               }).wrapper;
               packages = [
