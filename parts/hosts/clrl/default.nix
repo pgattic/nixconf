@@ -37,7 +37,7 @@
         programs.niri.package = niri-pkg;
 
         services.greetd.settings.default_session = lib.mkForce {
-          command = lib.getExe niri-pkg;
+          command = "${niri-pkg}/bin/niri-session";
           user = "pgattic";
         };
       })

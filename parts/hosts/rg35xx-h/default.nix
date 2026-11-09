@@ -58,7 +58,7 @@
           greetd = {
             enable = true;
             settings.default_session = lib.mkForce {
-              command = "${lib.getExe niri-pkg}";
+              command = "${niri-pkg}/bin/niri-session";
               user = "pgattic";
             };
           };
