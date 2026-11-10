@@ -55,6 +55,7 @@
           pkgs.element-desktop
           pkgs.lazygit
           pkgs.codex
+          pkgs.claude-code
           pkgs.cursor-cli
           pkgs.vesktop
           pkgs.whatsapp-electron

@@ -1,5 +1,5 @@
 { inputs, ... }: {
-  perSystem = { pkgs, self', ... }: let
+  perSystem = { pkgs, self', system, ... }: let
     wlib = inputs.nix-wrapper-modules.lib;
   in {
     packages = {
@@ -55,12 +55,7 @@
         };
         env.GIT_CONFIG_GLOBAL = config.constructFiles.gitConfig.path;
       });
-      helium = wlib.wrapPackage {
-        inherit pkgs;
-        package = inputs.helium.packages.${pkgs.stdenv.hostPlatform.system}.default;
-        flags."--ozone-platform" = "wayland";
-        flagSeparator = "=";
-      };
+      helium = inputs.helium.packages.${system}.default;
       helix = wlib.evalPackage {
         inherit pkgs;
         imports = [ wlib.wrapperModules.helix ];

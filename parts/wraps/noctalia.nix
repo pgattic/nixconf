@@ -42,8 +42,7 @@
         main_axis_padding = 0;
         cross_axis_padding = 0;
         item_spacing = 0;
-        radius_top_left = 0;
-        radius_bottom_left = 0;
+        margin_edge = 8;
         magnification = false;
       };
       lockscreen.lock_before_suspend = false;
