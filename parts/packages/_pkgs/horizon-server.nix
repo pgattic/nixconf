@@ -12,18 +12,18 @@
 
 rustPlatform.buildRustPackage (finalAttrs: {
   pname = "horizon-server";
-  version = "0-unstable-2026-11-02";
+  version = "0-unstable-2026-11-08";
 
   __structuredAttrs = true;
 
   src = fetchFromGitHub {
     owner = "horizon-rust";
     repo = "horizon";
-    rev = "b2258cbf68346a146b125f6a45d479e9e9584b4c";
-    hash = "sha256-EILkMLy99s7w1vnJERW9HwxSKKaAKbJPXmMkwiaj9M8=";
+    rev = "fdc87aecdbd116bf1e08adcd062fcbaea8c2e2ca";
+    hash = "sha256-UYWAAqnE3bWpGmccemc/6deHp7Nuyp1xNkTgpKlz500=";
   };
 
-  cargoHash = "sha256-i3aryNUgV+ZFG9sr4X8LvaqDuqgGHaYLv8CpiLngfic=";
+  cargoHash = "sha256-5Hnj6BUIsBkaYkkTIlBtCD9h9Yt7fMksKEfyYLHu9DI=";
 
   cargoBuildFlags = [
     "--package=horizon-server"
