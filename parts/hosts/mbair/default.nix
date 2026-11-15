@@ -4,6 +4,7 @@
       ./_hardware.nix
       inputs.nixos-apple-silicon.nixosModules.apple-silicon-support
       inputs.home-manager.nixosModules.home-manager
+      inputs.bootmap.nixosModules.default
       inputs.self.nixosModules.desktop-default
 
       ({ lib, pkgs, ... }: {
@@ -15,8 +16,13 @@
           peripheralFirmwareDirectory = /etc/nixos/firmware;
         };
         boot.loader.efi.canTouchEfiVariables = false;
-        boot.loader.systemd-boot.configurationLimit = 3;
         boot.kernelPackages = lib.mkForce inputs.asahix.packages.${system}.linux_asahi_fairydust;
+
+        services.bootmap = {
+          enable = true;
+          initrd = true;
+        };
+        boot.plymouth.enable = false;
 
         # Uncomment this to support WPA3 (at the cost of some other connections working)
         # networking.networkmanager.wifi.backend = "iwd";

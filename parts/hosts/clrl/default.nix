@@ -2,6 +2,7 @@
   flake.nixosConfigurations.clrl = withSystem "x86_64-linux" ({ self', ... }: inputs.nixpkgs.lib.nixosSystem {
     modules = [
       ./_hardware.nix
+      inputs.bootmap.nixosModules.default
       inputs.self.nixosModules.desktop-default
 
       ({ lib, pkgs, ... }: let
@@ -23,6 +24,12 @@
             enable = true;
             device = "/dev/sda";
           };
+        };
+
+        boot.plymouth.enable = false;
+        services.bootmap = {
+          enable = true;
+          initrd = true;
         };
 
         environment.systemPackages = [

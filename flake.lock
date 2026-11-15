@@ -147,6 +147,26 @@
         "type": "github"
       }
     },
+    "bootmap": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794728298,
+        "narHash": "sha256-8MIhV+kZxLZIoMzeNz7EXv9jPhh9lhAFUxV9BHCWLdc=",
+        "owner": "pgattic",
+        "repo": "bootmap",
+        "rev": "81a7bb82d2d4d7bf76f8882a7b10a9ff098ca2aa",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pgattic",
+        "repo": "bootmap",
+        "type": "github"
+      }
+    },
     "copyparty": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -554,6 +574,7 @@
         "anbernix": "anbernix",
         "asahix": "asahix",
         "barp": "barp",
+        "bootmap": "bootmap",
         "copyparty": "copyparty",
         "dark-text-src": "dark-text-src",
         "flake-parts": "flake-parts",

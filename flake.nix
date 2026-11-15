@@ -66,6 +66,10 @@
     };
     anbernix.url = "github:AmazinAxel/anbernix";
     asahix.url = "github:skiletro/asahix";
+    bootmap = {
+      url = "github:pgattic/bootmap";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } {
