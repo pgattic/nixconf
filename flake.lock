@@ -154,11 +154,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1794728298,
-        "narHash": "sha256-8MIhV+kZxLZIoMzeNz7EXv9jPhh9lhAFUxV9BHCWLdc=",
+        "lastModified": 1795058748,
+        "narHash": "sha256-tKgPoZxWEPHbNX09EAxBt1UROWLECRlpALZXh4FYYig=",
         "owner": "pgattic",
         "repo": "bootmap",
-        "rev": "81a7bb82d2d4d7bf76f8882a7b10a9ff098ca2aa",
+        "rev": "c18424382f6f7dcd3bdbc6a23dfe068cb831d6df",
         "type": "github"
       },
       "original": {

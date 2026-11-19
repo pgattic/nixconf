@@ -16,6 +16,7 @@
       in {
         networking.hostName = "clrl";
         system.stateVersion = "25.05";
+        boot.initrd.kernelModules = [ "i915" ];
 
         # The hardware doesn't support uefi boot
         boot.loader = {
