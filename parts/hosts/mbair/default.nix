@@ -3,6 +3,7 @@
     modules = [
       ./_hardware.nix
       inputs.nixos-apple-silicon.nixosModules.apple-silicon-support
+      inputs.asahix.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
       inputs.bootmap.nixosModules.default
       inputs.self.nixosModules.desktop-default
@@ -16,7 +17,7 @@
           peripheralFirmwareDirectory = /etc/nixos/firmware;
         };
         boot.loader.efi.canTouchEfiVariables = false;
-        boot.kernelPackages = lib.mkForce inputs.asahix.packages.${system}.linux_asahi_fairydust;
+        boot.kernelPackages = lib.mkForce pkgs.linuxPackages_asahi-fairydust;
 
         services.bootmap = {
           enable = true;
@@ -30,11 +31,6 @@
         #   enable = true;
         #   settings.General.EnableNetworkConfiguration = true;
         # };
-
-        nix.settings = {
-          substituters = lib.mkAfter [ "https://asahix.cachix.org" ];
-          trusted-public-keys = lib.mkAfter [ "asahix.cachix.org-1:SDzLl9HW7kV2h/6yBCZwjhveL2HUjjdI0x+qFB0I54Y=" ];
-        };
 
         home-manager = {
           useGlobalPkgs = true;

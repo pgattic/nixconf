@@ -65,7 +65,7 @@
       inputs.flake-parts.follows = "flake-parts";
     };
     anbernix.url = "github:AmazinAxel/anbernix";
-    asahix.url = "github:skiletro/asahix";
+    asahix.url = "github:warm-vodka/asahix";
     bootmap = {
       url = "github:pgattic/bootmap";
       inputs.nixpkgs.follows = "nixpkgs";
