@@ -268,53 +268,43 @@
           "End".spawn = [];
           "Page_Up".spawn = [];
           "Page_Down".spawn = [];
-        };
-      };
-    });
 
-    mkNiri = noctalia-pkg: niri-base.config.apply ({ lib, ... }: let
-      noctalia-cmd = lib.getExe noctalia-pkg;
-    in {
-      settings = {
-        spawn-at-startup = [ [ noctalia-cmd ] ];
-        binds = {
-          "Mod+Space" = _: { props.hotkey-overlay-title = "Open Lanucher"; content.spawn = [ noctalia-cmd "msg" "panel-toggle" "launcher" ]; };
-          "Mod+Shift+E" = _: { props.hotkey-overlay-title = "Quit niri"; content.spawn = [ noctalia-cmd "msg" "panel-toggle" "session" ]; };
+          "Mod+Space" = _: { props.hotkey-overlay-title = "Open Lanucher"; content.spawn = [ "noctalia" "msg" "panel-toggle" "launcher" ]; };
+          "Mod+Shift+E" = _: { props.hotkey-overlay-title = "Quit niri"; content.spawn = [ "noctalia" "msg" "panel-toggle" "session" ]; };
 
           # The allow-when-locked=true property makes them work even when the session is locked.
-          "XF86AudioRaiseVolume"  = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "msg" "volume-up"]; };
-          "XF86AudioLowerVolume"  = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "msg" "volume-down" ]; };
-          "XF86AudioMute"         = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "msg" "volume-mute" ]; };
-          "XF86AudioMicMute"      = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "msg" "mic-mute" ]; };
-          "XF86AudioPlay"         = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "msg" "media" "toggle" ]; };
-          "XF86AudioPrev"         = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "msg" "media" "previous" ]; };
-          "XF86AudioNext"         = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "msg" "media" "next" ]; };
-          "XF86MonBrightnessUp"   = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "msg" "brightness-up" ]; };
-          "XF86MonBrightnessDown" = _: { props.allow-when-locked = true; content.spawn = [ noctalia-cmd "msg" "brightness-down" ]; };
+          "XF86AudioRaiseVolume"  = _: { props.allow-when-locked = true; content.spawn = [ "noctalia" "msg" "volume-up"]; };
+          "XF86AudioLowerVolume"  = _: { props.allow-when-locked = true; content.spawn = [ "noctalia" "msg" "volume-down" ]; };
+          "XF86AudioMute"         = _: { props.allow-when-locked = true; content.spawn = [ "noctalia" "msg" "volume-mute" ]; };
+          "XF86AudioMicMute"      = _: { props.allow-when-locked = true; content.spawn = [ "noctalia" "msg" "mic-mute" ]; };
+          "XF86AudioPlay"         = _: { props.allow-when-locked = true; content.spawn = [ "noctalia" "msg" "media" "toggle" ]; };
+          "XF86AudioPrev"         = _: { props.allow-when-locked = true; content.spawn = [ "noctalia" "msg" "media" "previous" ]; };
+          "XF86AudioNext"         = _: { props.allow-when-locked = true; content.spawn = [ "noctalia" "msg" "media" "next" ]; };
+          "XF86MonBrightnessUp"   = _: { props.allow-when-locked = true; content.spawn = [ "noctalia" "msg" "brightness-up" ]; };
+          "XF86MonBrightnessDown" = _: { props.allow-when-locked = true; content.spawn = [ "noctalia" "msg" "brightness-down" ]; };
         };
       };
     });
 
-    niri = (mkNiri self'.packages.noctalia).apply {
+    niri = niri-base.config.apply {
       settings.prefer-no-csd = {};
     };
 
-    niri-activate-linux = (mkNiri self'.packages.noctalia).apply {
+    niri-activate-linux = niri-base.config.apply {
       settings = {
         prefer-no-csd = {};
         spawn-at-startup = [
-          [ (lib.getExe self'.packages.noctalia) ]
           [ (lib.getExe pkgs.activate-linux) ]
         ];
       };
     };
 
-    niri-touch = mkNiri self'.packages.noctalia-touch;
+    niri-touch = niri-base.config;
 
-    niri-mobile = (mkNiri self'.packages.noctalia-mobile).apply ({ lib, ... }: {
+    niri-mobile = niri-base.config.apply ({ lib, ... }: {
       settings = {
         window-rules = lib.mkForce [{
-          geometry-corner-radius = with self.lib.desktop; [ corner-radius corner-radius corner-radius corner-radius ];
+          geometry-corner-radius = lib.replicate 4 self.lib.desktop.corner-radius;
           clip-to-geometry = true;
           open-maximized-to-edges = true; # Just wanted to override this
         }];

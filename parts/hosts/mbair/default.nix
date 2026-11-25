@@ -5,7 +5,6 @@
       inputs.nixos-apple-silicon.nixosModules.apple-silicon-support
       inputs.asahix.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
-      inputs.bootmap.nixosModules.default
       inputs.self.nixosModules.desktop-default
 
       ({ lib, pkgs, ... }: {
@@ -18,12 +17,6 @@
         };
         boot.loader.efi.canTouchEfiVariables = false;
         boot.kernelPackages = lib.mkForce pkgs.linuxPackages_asahi-fairydust;
-
-        services.bootmap = {
-          enable = true;
-          initrd = true;
-        };
-        boot.plymouth.enable = false;
 
         # Uncomment this to support WPA3 (at the cost of some other connections working)
         # networking.networkmanager.wifi.backend = "iwd";
@@ -56,6 +49,7 @@
           pkgs.signal-desktop
           pkgs.element-desktop
           pkgs.lazygit
+          pkgs.gh
           pkgs.codex
           pkgs.claude-code
           pkgs.cursor-cli
@@ -74,6 +68,25 @@
         ];
 
         programs.niri.package = self'.packages.niri-activate-linux;
+
+        # Omarchy Mobile stuff
+        virtualisation.docker.enable = true;
+        users.users.pgattic.extraGroups = [ "docker" ];
+        services.envfs.enable = true;
+        networking.networkmanager.ensureProfiles.profiles.omamobile-phone = {
+          connection = {
+            id = "omamobile-phone";
+            type = "ethernet";
+            autoconnect-priority = "-100";
+          };
+          match.driver = "cdc_ncm";
+          ipv4 = {
+            method = "manual";
+            address1 = "172.16.42.2/24";
+            never-default = "true";
+          };
+          ipv6.method = "disabled";
+        };
       })
     ];
   });

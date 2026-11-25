@@ -27,6 +27,7 @@
         programs.niri.package = (self'.packages.niri-touch.apply ({ lib, ... }: {
           settings.spawn-at-startup = [ [ (lib.getExe self'.packages.lisgd-surface) ] ];
         })).wrapper;
+        programs.noctalia.package = self'.packages.noctalia-touch;
       })
     ];
   });

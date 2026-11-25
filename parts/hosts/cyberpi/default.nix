@@ -36,6 +36,7 @@
         programs.niri.package = (self'.packages.niri-touch.apply {
           settings.input.mod-key = "Alt";
         }).wrapper;
+        programs.noctalia.package = self'.packages.noctalia-touch;
       })
     ];
   });

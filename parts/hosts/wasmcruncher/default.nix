@@ -24,6 +24,11 @@
           enable = true;
           package = self'.packages.niri;
         };
+        programs.noctalia = {
+          enable = true;
+          systemd.enable = true;
+          package = self'.packages.noctalia;
+        };
       })
     ];
   });

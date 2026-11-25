@@ -2,14 +2,12 @@
   flake.nixosConfigurations.clrl = withSystem "x86_64-linux" ({ self', ... }: inputs.nixpkgs.lib.nixosSystem {
     modules = [
       ./_hardware.nix
-      inputs.bootmap.nixosModules.default
       inputs.self.nixosModules.desktop-default
 
       ({ lib, pkgs, ... }: let
         niri-pkg = (self'.packages.niri.apply {
           env.WGPU_BACKEND = "gl"; # Fixes WGPU apps like cosmic
           settings.spawn-at-startup = [
-            [ (lib.getExe self'.packages.noctalia) ]
             [ (lib.getExe self'.packages.helium) ]
           ];
         }).wrapper;
@@ -25,12 +23,6 @@
             enable = true;
             device = "/dev/sda";
           };
-        };
-
-        boot.plymouth.enable = false;
-        services.bootmap = {
-          enable = true;
-          initrd = true;
         };
 
         environment.systemPackages = [

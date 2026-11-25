@@ -1,7 +1,10 @@
-{ moduleWithSystem, self, ... }: {
+{ inputs, moduleWithSystem, self, ... }: {
   flake.nixosModules.desktop-base = moduleWithSystem ({ self', ... }: { config, lib, pkgs, ... }: {
-    boot.plymouth.enable = lib.mkDefault true;
-    boot.loader.systemd-boot.consoleMode = "max"; # Make plymouth full resolution
+    imports = [
+      inputs.bootmap.nixosModules.default
+    ];
+
+    boot.loader.systemd-boot.consoleMode = "max"; # Make bootmap full resolution
     xdg.portal.xdgOpenUsePortal = true;
 
     console.colors = with self.lib.theme; [
@@ -30,20 +33,42 @@
     ];
 
     services = {
+      bootmap = { # From bootmap module
+        enable = true;
+        initrd = true;
+      };
       upower.enable = lib.mkDefault true;
       gvfs.enable = lib.mkDefault true;
-      greetd = {
+      displayManager.noctalia-greeter = {
         enable = lib.mkDefault true;
-        settings.default_session = {
-          command = "${pkgs.tuigreet}/bin/tuigreet --remember --asterisks --time --time-format \"%a %b %d %I:%M %p\" --window-padding 2 --theme \"border=blue;action=blue;time=blue;button=gray\" --sessions ${config.services.displayManager.sessionData.desktops}/share/wayland-sessions --session-wrapper ${config.services.displayManager.sessionData.wrapper}";
-          user = "greeter";
+        settings = {
+          appearance = {
+            password_style = "random";
+            wallpaper = {
+              path = ../../../assets/wallpapers/wedding_temple.jpg;
+              blur = 0.5;
+              tint = 0.7;
+            };
+          };
+          cursor = {
+            theme = "Bibata-Modern-Classic";
+            path = "${pkgs.bibata-cursors}/share/icons";
+          };
         };
       };
     };
-    programs.niri = {
-      enable = lib.mkDefault true;
-      useNautilus = lib.mkDefault false;
-      package = lib.mkDefault self'.packages.niri;
+
+    programs = {
+      niri = {
+        enable = lib.mkDefault true;
+        useNautilus = lib.mkDefault false;
+        package = lib.mkDefault self'.packages.niri;
+      };
+      noctalia = {
+        enable = lib.mkDefault true;
+        systemd.enable = lib.mkDefault true;
+        package = lib.mkDefault self'.packages.noctalia;
+      };
     };
   });
 }

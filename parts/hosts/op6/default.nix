@@ -36,6 +36,7 @@
             outputs."DSI-1".scale = 2.0;
           };
         })).wrapper;
+        programs.noctalia.package = self'.packages.noctalia-mobile;
 
         services = {
           openssh = {
