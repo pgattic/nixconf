@@ -19,8 +19,6 @@
         nixconf = {
           desktop.activate-linux.enable = true;
           terminal.apps = [
-            self'.packages.git
-            pkgs.lazygit
             pkgs.gh
             pkgs.claude-code
           ];

@@ -30,9 +30,6 @@
 
         nixconf = {
           desktop.variant = "touch";
-          terminal.apps = [
-            self'.packages.git
-          ];
           swapfile.enable = false;
           remote-builder.enable = true;
         };

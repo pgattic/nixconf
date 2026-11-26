@@ -38,7 +38,9 @@
         self'.packages.btop
         self'.packages.fastfetch
         self'.packages.nh
+        self'.packages.git
 
+        pkgs.lazygit
         pkgs.bat
         pkgs.openssh_hpn
         pkgs.ripgrep

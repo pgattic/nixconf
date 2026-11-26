@@ -33,9 +33,7 @@
         nixconf = {
           desktop.activate-linux.enable = true;
           terminal.apps = [
-            self'.packages.git
             self'.packages.jujutsu
-            pkgs.lazygit
             pkgs.gh
             pkgs.claude-code
             pkgs.cursor-cli

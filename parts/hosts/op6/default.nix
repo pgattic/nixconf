@@ -20,10 +20,6 @@
 
         nixconf = {
           desktop.variant = "mobile";
-          terminal.apps = [
-            self'.packages.git
-            pkgs.lazygit
-          ];
           remote-builder.enable = true;
           swapfile.size = 2 * 1024;
         };

@@ -29,13 +29,6 @@
           inputs.nixpkgs-kopuz.legacyPackages.${system}.kopuz
         ];
 
-        nixconf = {
-          terminal.apps = [
-            self'.packages.git
-            pkgs.lazygit
-          ];
-        };
-
         programs.niri.package = niri-pkg;
 
         services.displayManager.noctalia-greeter.enable = false;

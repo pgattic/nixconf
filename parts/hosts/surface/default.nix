@@ -20,9 +20,6 @@
 
         nixconf = {
           desktop.variant = "touch";
-          terminal.apps = [
-            self'.packages.git
-          ];
           swapfile.enable = false; # This device has a swap partition already
           remote-builder.enable = true;
         };

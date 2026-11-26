@@ -57,8 +57,6 @@
           terminal.apps = [
             pkgs.smartmontools # Used for hard drive SMART tests (`sudo smartctl -x /dev/sdX`)
             # pkgs.waypipe
-            self'.packages.git
-            pkgs.lazygit
             pkgs.codex
             pkgs.claude-code
             pkgs.herdr
