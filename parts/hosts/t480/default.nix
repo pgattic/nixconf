@@ -3,26 +3,29 @@
     modules = [
       ./_hardware.nix
       inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
-      inputs.self.nixosModules.desktop-default
+      inputs.self.nixosModules.new-default
 
       ({ pkgs, ... }: {
         networking.hostName = "t480";
         system.stateVersion = "25.05";
 
-        environment.systemPackages = [
-          self'.packages.desktop
-          self'.packages.foot
+        users.users.pgattic.packages = [
           self'.packages.luanti-client
-          self'.packages.git
           self'.packages.bambu-studio
-          self'.packages.helium
           self'.packages.wheelwizard-fhs
           self'.packages.horizon-launcher
-          pkgs.codex
-          pkgs.lazygit
         ];
 
-        programs.niri.package = self'.packages.niri-activate-linux;
+        nixconf = {
+          desktop.activate-linux.enable = true;
+          terminal.apps = [
+            self'.packages.git
+            pkgs.lazygit
+            pkgs.gh
+            pkgs.claude-code
+          ];
+          swapfile.enable = false; # This device has a swap partition already
+        };
       })
     ];
   });

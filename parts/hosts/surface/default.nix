@@ -3,8 +3,7 @@
     modules = [
       ./_hardware.nix
       inputs.nixos-hardware.nixosModules.microsoft-surface-pro-intel
-      inputs.self.nixosModules.desktop-default
-      inputs.self.nixosModules.remote-builder
+      inputs.self.nixosModules.new-default
 
       ({ pkgs, ... }: {
         networking.hostName = "surface";
@@ -13,21 +12,23 @@
         # Enable power button, volume rocker
         boot.initrd.kernelModules = [ "pinctrl_sunrisepoint" ]; # lsmod | grep pinctrl
 
-        environment.systemPackages = [
-          self'.packages.foot
+        users.users.pgattic.packages = [
           self'.packages.luanti-client
-          self'.packages.desktop
-          self'.packages.git
-          self'.packages.zed-editor
-          self'.packages.helium
           pkgs.lazygit
           pkgs.rnote
         ];
 
+        nixconf = {
+          desktop.variant = "touch";
+          terminal.apps = [
+            self'.packages.git
+          ];
+          swapfile.enable = false; # This device has a swap partition already
+          remote-builder.enable = true;
+        };
         programs.niri.package = (self'.packages.niri-touch.apply ({ lib, ... }: {
           settings.spawn-at-startup = [ [ (lib.getExe self'.packages.lisgd-surface) ] ];
         })).wrapper;
-        programs.noctalia.package = self'.packages.noctalia-touch;
       })
     ];
   });

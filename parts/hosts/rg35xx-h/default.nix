@@ -5,7 +5,7 @@
       inputs.anbernix.nixosModules.anbernic-rg35xx-h
       inputs.anbernix.nixosModules.anbernic-h700-sd-image
       inputs.anbernix.nixosModules.anbernic-h700-retroarch
-      inputs.self.nixosModules.desktop-default
+      inputs.self.nixosModules.new-default
 
       ({ lib, pkgs, ... }: let
         niri-pkg = (self'.packages.niri.apply {
@@ -48,10 +48,10 @@
         security.rtkit.enable = true;
         security.sudo.wheelNeedsPassword = false;
 
-        swapDevices = lib.mkForce [{
-          device = "/var/lib/swapfile";
-          size = 4*1024; # 4 GiB
-        }];
+        nixconf = {
+          swapfile.size = 4*1024; # 4 GiB
+          desktop.enable = false; # This host does things manually
+        };
 
         services = {
           fwupd.enable = false;
@@ -92,7 +92,16 @@
           "/share/inputplumber"
         ];
 
-        programs.niri.package = niri-pkg;
+        programs.niri = {
+          enable = true;
+          useNautilus = false;
+          package = niri-pkg;
+        };
+        programs.noctalia = {
+          enable = true;
+          package = self'.packages.noctalia;
+          systemd.enable = true;
+        };
       })
     ];
   });

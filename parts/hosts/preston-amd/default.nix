@@ -3,7 +3,7 @@
     modules = [
       ./_hardware.nix
       inputs.home-manager.nixosModules.home-manager
-      inputs.self.nixosModules.desktop-default
+      inputs.self.nixosModules.new-default
 
       ({ pkgs, ... }: {
         networking.hostName = "preston-amd";
@@ -25,23 +25,25 @@
           ];
         };
 
-        environment.systemPackages = [
-          self'.packages.foot-rude-sfw
-          self'.packages.luanti-client
-          self'.packages.desktop
-          self'.packages.git
-          self'.packages.helium
-          self'.packages.jujutsu
-          pkgs.kopuz
+        users.users.pgattic.packages = [
           pkgs.signal-desktop
-          pkgs.lazygit
-          pkgs.codex
-          pkgs.cursor-cli
-          pkgs.nix-tree
           pkgs.kicad
         ];
 
-        programs.niri.package = (self'.packages.niri-activate-linux.apply {
+        nixconf = {
+          desktop.activate-linux.enable = true;
+          terminal.apps = [
+            self'.packages.git
+            self'.packages.jujutsu
+            pkgs.lazygit
+            pkgs.gh
+            pkgs.claude-code
+            pkgs.cursor-cli
+            pkgs.nix-tree
+          ];
+        };
+
+        programs.niri.package = (self'.packages.niri.apply {
           settings.outputs."HDMI-A-1".mode = "1920x1080@100.00";
         }).wrapper;
       })

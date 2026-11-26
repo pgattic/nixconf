@@ -1,8 +1,7 @@
-{ inputs, self, ... }: {
+{ moduleWithSystem, inputs, self, ... }: {
   perSystem = { pkgs, self', ... }: let
-    assets = ../../assets;
+    assets = ../../../assets;
     wlib = inputs.nix-wrapper-modules.lib;
-    tomlFormat = pkgs.formats.toml { };
 
     mkNoctalia = cfg: wlib.wrapPackage ({ config, ... }: {
       inherit pkgs;
@@ -10,7 +9,8 @@
       env.NOCTALIA_CONFIG_HOME = "${builtins.placeholder "out"}/config";
       constructFiles.noctalia-config = {
         relPath = "config/noctalia/noctalia-config.toml";
-        content = builtins.readFile (tomlFormat.generate "noctalia-config.toml" cfg);
+        content = builtins.toJSON cfg;
+        builder = ''${pkgs.remarshal}/bin/json2toml "$1" "$2"'';
       };
     });
 
@@ -167,4 +167,18 @@
       noctalia-mobile = mkNoctalia mobile_config;
     };
   };
+
+  flake.nixosModules.new-default = moduleWithSystem ({ self', ... }: { config, lib, pkgs, ... }: {
+    config = lib.mkIf config.nixconf.desktop.enable {
+      programs.noctalia = {
+        enable = true;
+        systemd.enable = true;
+        package = lib.mkDefault {
+          default = self'.packages.noctalia;
+          touch = self'.packages.noctalia-touch;
+          mobile = self'.packages.noctalia-mobile;
+        }.${config.nixconf.desktop.variant};
+      };
+    };
+  });
 }

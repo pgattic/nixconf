@@ -16,6 +16,8 @@
         i = "127.0.0.1";
         p = [ port ];
         md-hist = "/var/lib/copyparty/md-hist"; # Store markdown backups externally
+        # Enable file indexing + search on all volumes (scan on startup and watch for changes)
+        e2dsa = true;
         # I was told to put these three for some reason
         xff-hdr = "x-forwarded-for";
         xff-src = [ "127.0.0.1" "::1" ];
@@ -45,6 +47,9 @@
           path = "${cfg.paths.store}/cookbook";
           access = {
             A = [ "pgattic" "skylar" ];
+          };
+          flags = {
+            d2d = true; # No indexing/search for this volume
           };
         };
         "/roms" = {

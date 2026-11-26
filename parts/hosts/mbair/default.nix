@@ -5,7 +5,7 @@
       inputs.nixos-apple-silicon.nixosModules.apple-silicon-support
       inputs.asahix.nixosModules.default
       inputs.home-manager.nixosModules.home-manager
-      inputs.self.nixosModules.desktop-default
+      inputs.self.nixosModules.new-default
 
       ({ lib, pkgs, ... }: {
         networking.hostName = "mbair";
@@ -37,39 +37,35 @@
         };
 
         users.users.pgattic.packages = [
-          self'.packages.foot
           self'.packages.luanti-client
-          self'.packages.desktop
-          self'.packages.helium
           self'.packages.nestopia-ue
-          self'.packages.cosmic-viewer
           self'.packages.wheelwizard-fhs
           # self'.packages.horizon-launcher
           inputs.wasmcarts.packages.${system}.engine-linux
           pkgs.signal-desktop
           pkgs.element-desktop
-          pkgs.lazygit
-          pkgs.gh
-          pkgs.codex
-          pkgs.claude-code
-          pkgs.cursor-cli
           pkgs.vesktop
           pkgs.whatsapp-electron
           (pkgs.prismlauncher.override {
             jdks = [ pkgs.jdk21 ];
           })
+          pkgs.imv
         ];
 
-        environment.systemPackages = [
-          self'.packages.neovim
-          self'.packages.btop
-          self'.packages.git
-          pkgs.nix-tree
-        ];
+        nixconf = {
+          desktop.activate-linux.enable = true;
+          terminal.apps = [
+            self'.packages.git
+            pkgs.nix-tree
+            pkgs.lazygit
+            pkgs.gh
+            pkgs.codex
+            pkgs.claude-code
+            pkgs.cursor-cli
+          ];
+        };
 
-        programs.niri.package = self'.packages.niri-activate-linux;
-
-        # Omarchy Mobile stuff
+        # Omarchy Mobile dev stuff
         virtualisation.docker.enable = true;
         users.users.pgattic.extraGroups = [ "docker" ];
         services.envfs.enable = true;

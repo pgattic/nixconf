@@ -3,8 +3,7 @@
     modules = [
       ./_hardware.nix
       inputs.nixos-hardware.nixosModules.raspberry-pi-4
-      inputs.self.nixosModules.desktop-default
-      inputs.self.nixosModules.remote-builder
+      inputs.self.nixosModules.new-default
 
       ({ pkgs, ... }: {
         boot.loader.systemd-boot.enable = false;
@@ -25,18 +24,22 @@
         services.upower.enable = false;
         hardware.bluetooth.enable = false;
 
-        environment.systemPackages = [
-          self'.packages.foot
+        users.users.pgattic.packages = [
           self'.packages.luanti-client
-          self'.packages.desktop
-          self'.packages.git
-          self'.packages.helium
         ];
 
+        nixconf = {
+          desktop.variant = "touch";
+          terminal.apps = [
+            self'.packages.git
+          ];
+          swapfile.enable = false;
+          remote-builder.enable = true;
+        };
         programs.niri.package = (self'.packages.niri-touch.apply {
           settings.input.mod-key = "Alt";
         }).wrapper;
-        programs.noctalia.package = self'.packages.noctalia-touch;
+        services.bootmap.enable = false;
       })
     ];
   });

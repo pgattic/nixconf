@@ -2,7 +2,7 @@
   flake.nixosConfigurations.clrl = withSystem "x86_64-linux" ({ self', ... }: inputs.nixpkgs.lib.nixosSystem {
     modules = [
       ./_hardware.nix
-      inputs.self.nixosModules.desktop-default
+      inputs.self.nixosModules.new-default
 
       ({ lib, pkgs, ... }: let
         niri-pkg = (self'.packages.niri.apply {
@@ -25,20 +25,22 @@
           };
         };
 
-        environment.systemPackages = [
-          self'.packages.foot
-          self'.packages.desktop
-          self'.packages.git
-          self'.packages.helium
-          pkgs.lazygit
-          pkgs.kopuz
-        ];
+        nixconf = {
+          terminal.apps = [
+            self'.packages.git
+            pkgs.lazygit
+          ];
+        };
 
         programs.niri.package = niri-pkg;
 
-        services.greetd.settings.default_session = lib.mkForce {
-          command = "${niri-pkg}/bin/niri-session";
-          user = "pgattic";
+        services.displayManager.noctalia-greeter.enable = false;
+        services.greetd = {
+          enable = true;
+          settings.default_session = lib.mkForce {
+            command = "${niri-pkg}/bin/niri-session";
+            user = "pgattic";
+          };
         };
       })
     ];

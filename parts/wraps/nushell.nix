@@ -20,17 +20,15 @@
             case_sensitive: true,
           }
         }
-      '';
-    });
-
-    nushell-env = nushell.config.apply ({ lib, ... }: {
-      "config.nu".content = lib.mkAfter ''
         if $nu.is-interactive {
           $"Uptime: (ansi green_bold)((sys host).uptime)(ansi reset)" | print
           $"Memory used: (ansi green_bold)(sys mem | get used)(ansi reset)/(ansi green_bold)(sys mem | get total)(ansi reset)" | print
           "\"You are nothing but an unreliable wizard\" - Bruce Webster" | print
         }
       '';
+    });
+
+    nushell-env = nushell.config.apply ({ lib, ... }: {
       env.EDITOR = lib.getExe self'.packages.neovim;
       runtimePkgs = [
         self'.packages.btop
@@ -79,4 +77,3 @@
     };
   };
 }
-

@@ -1,4 +1,4 @@
-{ inputs, lib, self, ... }: {
+{ inputs, lib, moduleWithSystem, self, ... }: {
   perSystem = { pkgs, self', ... }: let
     wlib = inputs.nix-wrapper-modules.lib;
 
@@ -290,15 +290,6 @@
       settings.prefer-no-csd = {};
     };
 
-    niri-activate-linux = niri-base.config.apply {
-      settings = {
-        prefer-no-csd = {};
-        spawn-at-startup = [
-          [ (lib.getExe pkgs.activate-linux) ]
-        ];
-      };
-    };
-
     niri-touch = niri-base.config;
 
     niri-mobile = niri-base.config.apply ({ lib, ... }: {
@@ -311,12 +302,36 @@
       };
     });
 
+    # Niri package that includes Noctalia
+    niri-full = niri-base.config.apply {
+      settings = {
+        prefer-no-csd = {};
+        spawn-at-startup = [
+          [ (lib.getExe self'.packages.noctalia) ]
+        ];
+      };
+    };
+
   in {
     packages = {
       niri = niri.wrapper;
-      niri-activate-linux = niri-activate-linux.wrapper;
       niri-touch = niri-touch.wrapper;
       niri-mobile = niri-mobile.wrapper;
+      niri-full = niri-full.wrapper;
     };
   };
+
+  flake.nixosModules.new-default = moduleWithSystem ({ self', ... }: { config, lib, pkgs, ... }: {
+    config = lib.mkIf config.nixconf.desktop.enable {
+      programs.niri = {
+        enable = true;
+        useNautilus = false;
+        package = lib.mkDefault {
+          default = self'.packages.niri;
+          touch = self'.packages.niri-touch;
+          mobile = self'.packages.niri-mobile;
+        }.${config.nixconf.desktop.variant};
+      };
+    };
+  });
 }

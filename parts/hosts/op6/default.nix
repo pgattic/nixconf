@@ -2,8 +2,7 @@
   flake.nixosConfigurations.op6 = withSystem "aarch64-linux" ({ self', ... }: inputs.nixpkgs.lib.nixosSystem {
     modules = [
       (import "${inputs.mobile-nixos}/lib/configuration.nix" { device = "oneplus-enchilada"; })
-      inputs.self.nixosModules.desktop-default
-      inputs.self.nixosModules.remote-builder
+      inputs.self.nixosModules.new-default
 
       ({ pkgs, ... }: {
         networking.hostName = "op6";
@@ -15,28 +14,25 @@
           HandlePowerKeyLongPress = "poweroff";
         };
 
-        environment.systemPackages = [
-          self'.packages.foot
+        users.users.pgattic.packages = [
           self'.packages.luanti-client
-          self'.packages.desktop
-          self'.packages.neovim
-          self'.packages.btop
-          self'.packages.git
-          self'.packages.helium
-          pkgs.signal-desktop
-          pkgs.lazygit
-          pkgs.librewolf
         ];
 
-        users.users.pgattic.shell = self'.packages.nushell-env;
-
+        nixconf = {
+          desktop.variant = "mobile";
+          terminal.apps = [
+            self'.packages.git
+            pkgs.lazygit
+          ];
+          remote-builder.enable = true;
+          swapfile.size = 2 * 1024;
+        };
         programs.niri.package = (self'.packages.niri-mobile.apply ({ lib, ... }: {
           settings = {
             spawn-at-startup = [ [ (lib.getExe self'.packages.lisgd-op6) ] ];
             outputs."DSI-1".scale = 2.0;
           };
         })).wrapper;
-        programs.noctalia.package = self'.packages.noctalia-mobile;
 
         services = {
           openssh = {
@@ -44,7 +40,8 @@
             settings.PasswordAuthentication = true;
           };
           displayManager.gdm.enable = true;
-          greetd.enable = false; # Overriding from desktop-base
+          displayManager.noctalia-greeter.enable = false;
+          bootmap.enable = false;
         };
       })
     ];

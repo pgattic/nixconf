@@ -2,7 +2,7 @@
   flake.nixosConfigurations.corlessfam = withSystem "x86_64-linux" ({ self', ... }: inputs.nixpkgs.lib.nixosSystem {
     modules = [
       ./_hardware.nix
-      inputs.self.nixosModules.default
+      inputs.self.nixosModules.new-default
       inputs.self.nixosModules.agenix
       inputs.self.nixosModules.dynamic-dns
       inputs.self.nixosModules.nginx
@@ -48,31 +48,22 @@
               shell = pkgs.bashInteractive;
               openssh.authorizedKeys.keys = self.lib.keys.builder;
             };
-            pgattic = {
-              shell = (self'.packages.nushell-env.apply {
-                runtimePkgs = [
-                  self'.packages.neovim
-                  self'.packages.git
-                  pkgs.lazygit
-                  pkgs.codex
-                  pkgs.herdr
-                ];
-              }).wrapper;
-              packages = [
-                # self'.packages.foot
-                # self'.packages.helium
-                # pkgs.xemu
-                # pkgs.xenia-canary
-              ];
-              openssh.authorizedKeys.keys = self.lib.keys.ssh;
-            };
+            pgattic.openssh.authorizedKeys.keys = self.lib.keys.ssh;
           };
         };
 
-        environment.systemPackages = [
-          pkgs.smartmontools # Used for hard drive SMART tests (`sudo smartctl -x /dev/sdX`)
-          pkgs.waypipe
-        ];
+        nixconf = {
+          desktop.enable = false;
+          terminal.apps = [
+            pkgs.smartmontools # Used for hard drive SMART tests (`sudo smartctl -x /dev/sdX`)
+            # pkgs.waypipe
+            self'.packages.git
+            pkgs.lazygit
+            pkgs.codex
+            pkgs.claude-code
+            pkgs.herdr
+          ];
+        };
 
         services = {
           openssh.enable = true;
