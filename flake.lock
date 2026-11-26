@@ -449,6 +449,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-kopuz": {
+      "locked": {
+        "lastModified": 1795433536,
+        "narHash": "sha256-5aO8zIDx3am+ZQm3hzddJLkoyaQLu9eSVYjuIfAHpY0=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "069d662c66b69ed90fc1c2df032434d43f9ef350",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "069d662c66b69ed90fc1c2df032434d43f9ef350",
+        "type": "github"
+      }
+    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1793504054,
@@ -569,6 +585,7 @@
         "nixos-apple-silicon": "nixos-apple-silicon",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_3",
+        "nixpkgs-kopuz": "nixpkgs-kopuz",
         "scripguessr": "scripguessr",
         "stylix": "stylix",
         "vpn-confinement": "vpn-confinement",

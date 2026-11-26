@@ -42,6 +42,7 @@
           self'.packages.wheelwizard-fhs
           # self'.packages.horizon-launcher
           inputs.wasmcarts.packages.${system}.engine-linux
+          inputs.nixpkgs-kopuz.legacyPackages.${system}.kopuz
           pkgs.signal-desktop
           pkgs.element-desktop
           pkgs.vesktop

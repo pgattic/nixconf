@@ -1,5 +1,5 @@
 { inputs, withSystem, ... }: {
-  flake.nixosConfigurations.clrl = withSystem "x86_64-linux" ({ self', ... }: inputs.nixpkgs.lib.nixosSystem {
+  flake.nixosConfigurations.clrl = withSystem "x86_64-linux" ({ self', system, ... }: inputs.nixpkgs.lib.nixosSystem {
     modules = [
       ./_hardware.nix
       inputs.self.nixosModules.new-default
@@ -24,6 +24,10 @@
             device = "/dev/sda";
           };
         };
+
+        users.users.pgattic.packages = [
+          inputs.nixpkgs-kopuz.legacyPackages.${system}.kopuz
+        ];
 
         nixconf = {
           terminal.apps = [

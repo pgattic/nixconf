@@ -70,6 +70,7 @@
       url = "github:pgattic/bootmap";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixpkgs-kopuz.url = "github:NixOS/nixpkgs/069d662c66b69ed90fc1c2df032434d43f9ef350";
   };
 
   outputs = inputs: inputs.flake-parts.lib.mkFlake { inherit inputs; } {

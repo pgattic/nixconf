@@ -69,6 +69,12 @@
       nix.settings = {
         experimental-features = [ "nix-command" "flakes" ];
         trusted-users = ["root" "@wheel" ];
+        substituters = lib.mkAfter [
+          "https://vladexa.cachix.org"
+        ];
+        trusted-public-keys = lib.mkAfter [
+          "vladexa.cachix.org-1:ThmpOQRxh92xt3RMgUA5XOEklLhW1pLQa5lPTREozO4="
+        ];
       };
 
       services = {
